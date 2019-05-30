@@ -1,0 +1,37 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "run",
+            "command": ".\\a.exe",
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build_lab_2",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                ".\\Lab_2\\queue\\queue_functions.cpp",
+                ".\\Lab_2\\main.cpp",
+                ".\\Lab_2\\stack\\stack_functions.cpp",
+                "-I",
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019\\Lab_2"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build_lab_3",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                ".\\Lab_3\\main.cpp",
+                "-I",
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_3"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
