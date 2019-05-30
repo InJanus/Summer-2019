@@ -27,7 +27,9 @@
             "label": "build_lab_3",
             "command": "C:\\MinGW\\bin\\g++.exe",
             "args": [
+                "-g",
                 ".\\Lab_3\\main.cpp",
+                ".\\Lab_3\\linked_list\\linked_list_functions.cpp",
                 "-I",
                 "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_3"
             ],
