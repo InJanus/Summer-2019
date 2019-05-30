@@ -1,0 +1,10 @@
+To compile lab 2 we used mingw 6.3 and above to compile the files
+
+the command to compile the project is to use this command:
+
+g++ "path to main file" "path to stack_functions.cpp" "path to queue_functions.cpp" -I "path to Lab_2 headder folder"
+
+Note:
+if there are spaces in your file directory folder names make sure to include the path names in qotations like above
+
+this will give you an a.exe file to run
