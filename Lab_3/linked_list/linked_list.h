@@ -14,9 +14,10 @@ class linked_list{
     private:
         student *head;
     public:
+        linked_list();
         void addItem(student);
-        student getItem();
-        bool isinList(student);
+        student getItem(int);
+        int isinList(student);
         bool isEmpty();
         int size();
         student seeNext();
