@@ -45,7 +45,6 @@ int linked_list::size(){
 }
 
 int linked_list::isinList(student search){
-
     //returns the int of the location of the student, if not in list then returns -1
     //searches down the list of the .h file
     int location = -1;
@@ -68,4 +67,8 @@ int linked_list::isinList(student search){
         }
     }
     return -1;
+}
+
+bool linked_list::isEmpty(){
+    return(size() == 0);
 }
