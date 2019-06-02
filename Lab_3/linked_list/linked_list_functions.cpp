@@ -30,3 +30,10 @@ void linked_list::addItem(student stud){
     head-> lastName = stud.lastName;
     head-> gpa = stud.gpa;
 }
+
+bool linked_list::isinList(student stud){
+    
+    for(int i=0;i<size();i++){
+        
+    }
+}
