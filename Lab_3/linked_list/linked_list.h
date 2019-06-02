@@ -17,7 +17,7 @@ class linked_list{
         linked_list();
         void addItem(student);
         student getItem(int);
-        //int isinList(student);
+        int isinList(student);
         //bool isEmpty();
         int size();
         //student seeNext();

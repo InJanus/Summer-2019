@@ -15,7 +15,6 @@ student linked_list::getItem(int location){
     }else{
         for(int i = 0; i < location-1; i++){
             temp = temp->next;
-            cout << temp->firstName << endl;
         }
         student returnValue = *(temp->next);
         //temp->next = temp->next->next;  //replaces the next value
@@ -43,4 +42,22 @@ int linked_list::size(){
         cout << i << endl;
     }
     return i;
+}
+
+int linked_list::isinList(student search){
+
+    //returns the int of the location of the student, if not in list then returns -1
+    //searches down the list of the .h file
+    int location = -1;
+    student *temp = head;
+    for(int i = 0; i < size(); i++){
+        location++;
+        if(temp->m_number == search.m_number){
+            return location;
+        }else if(temp->firstName == search.firstName){
+            return location;
+        }
+        temp = temp->next;
+    }
+    
 }
