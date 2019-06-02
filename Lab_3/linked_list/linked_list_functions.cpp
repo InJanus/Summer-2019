@@ -56,8 +56,16 @@ int linked_list::isinList(student search){
             return location;
         }else if(temp->firstName == search.firstName){
             return location;
+        }else if(temp->lastName == search.lastName){
+            return location;
+        }else if(temp->birthday == search.birthday){
+            return location;
+        }else if(temp->gpa == search.gpa){
+            return location;
         }
-        temp = temp->next;
+        else{
+            temp = temp->next;
+        }
     }
-    
+    return -1;
 }
