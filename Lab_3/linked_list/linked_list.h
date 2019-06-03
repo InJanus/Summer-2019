@@ -6,7 +6,7 @@ struct student{
     string firstName;
     string lastName;
     string birthday;
-    int gpa;
+    double gpa;
     student *next = nullptr;
 };
 
@@ -18,7 +18,7 @@ class linked_list{
         linked_list();
         void addItem(student);
         student getItem(int);
-        bool isinList(student);
+        int isinList(int);
         bool isEmpty();
         int size();
         student seeNext(int);

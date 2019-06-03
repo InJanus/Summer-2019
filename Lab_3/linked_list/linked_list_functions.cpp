@@ -14,13 +14,19 @@ student linked_list::getItem(int location){
     if(location > size()){
         //return error
     }else{
-        for(int i = 0; i < location-1; i++){
-            temp = temp->next;
+        if(location == 0){
+            student *returnVal = head;
+            head = temp->next;
+            return *returnVal;
+        }else{
+            for(int i = 0; i < location-2; i++){
+                temp = temp->next;
+            }
+            student returnValue = *(temp->next);
+            temp->next = temp->next->next;
+            return returnValue;
         }
-        //Hey I think this returns not the item at the location but the next -Greg
-        student returnValue = *(temp->next);
         //temp->next = temp->next->next;  //replaces the next value
-        return returnValue;
     }
 }
 
@@ -31,42 +37,41 @@ void linked_list::addItem(student stud){
     head-> m_number = stud.m_number;
     head-> firstName = stud.firstName;
     head-> lastName = stud.lastName;
+    head-> birthday = stud.birthday;
     head-> gpa = stud.gpa;
 }
 
 int linked_list::size(){
     student *temp = head;
     int i = 0;
-    while(temp->next != nullptr){
-        temp = temp->next;
+    if(temp == nullptr){
+        return i;
+    }else{
         i++;
-        cout << i << endl;
+        while(temp->next != nullptr){
+            temp = temp->next;
+            i++;
+        }
+        return i;
     }
-    return i;
+
+    
 }
 
-bool linked_list::isinList(student search){
+int linked_list::isinList(int search){
     //returns the int of the location of the student, if not in list then returns -1
     //searches down the list of the .h file
     int location = -1;
     student *temp = head;
     for(int i = 0; i < size(); i++){
         location++;
-        if(temp->m_number == search.m_number){
+        if(temp->m_number == search){
             return location;
-        }else if(temp->firstName == search.firstName){
-            return location;
-        }else if(temp->lastName == search.lastName){
-            return location;
-        }else if(temp->birthday == search.birthday){
-            return location;
-        }else if(temp->gpa == search.gpa){
-            return location;
-        }
-        else{
+        }else{
             temp = temp->next;
         }
     }
+    //throw error for not in list
     return -1;
 }
 
@@ -97,7 +102,7 @@ student linked_list::seeAt(int location){
     if (isEmpty()){
         //Throw error
     }
-    for(int i = 0; i < location-1; i++){
+    for(int i = 0; i < location; i++){
             temp = temp->next;
         }
         pointer = temp;
