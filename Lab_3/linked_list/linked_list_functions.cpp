@@ -39,9 +39,25 @@ void linked_list::addItem(student stud){
     temp-> lastName = stud.lastName;
     temp-> birthday = stud.birthday;
     temp-> gpa = stud.gpa;
-
-    while(*temp.m_number > *temp2.m_number){
-
+    if(temp->m_number < temp2->m_number){
+        head = temp;
+        head -> next = temp2;
+    }
+    else{
+        bool flag = false;
+        while(temp->m_number > temp2->next->m_number){
+            if(temp2->next->next == nullptr){
+                temp2 -> next -> next = temp;
+                flag = true;
+                break;
+            }else{
+                temp2 = temp2->next;
+            }
+        }
+        if(!flag){
+            temp -> next = temp2 ->next;
+            temp2 -> next = temp;
+        }
     }
 }
 
