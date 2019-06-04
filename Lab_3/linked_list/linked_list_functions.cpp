@@ -79,20 +79,11 @@ bool linked_list::isEmpty(){
     return(size() == 0);
 }
 
-//2 calls confuses me 
-student linked_list::seeNext(int location){
-    if(pointer == head){
-        student *temp = head;
+student linked_list::seeNext(){
         if (isEmpty()){
             //Throw error
         }
-        for(int i = 0; i < location-1; i++){
-                temp = temp->next;
-            }
-        pointer = temp->next;
-        }else{
-            pointer = pointer->next;
-        }
+        pointer = pointer->next;
     
     return *pointer;
 }

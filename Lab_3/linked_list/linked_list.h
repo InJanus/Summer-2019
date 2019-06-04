@@ -21,7 +21,7 @@ class linked_list{
         int isinList(int);
         bool isEmpty();
         int size();
-        student seeNext(int);
+        student seeNext();
         student seeAt(int);
         void reset();
 };
