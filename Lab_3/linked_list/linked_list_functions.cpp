@@ -31,14 +31,18 @@ student linked_list::getItem(int location){
 }
 
 void linked_list::addItem(student stud){
-    student *temp = head;
-    head = new student;
-    head -> next = temp;
-    head-> m_number = stud.m_number;
-    head-> firstName = stud.firstName;
-    head-> lastName = stud.lastName;
-    head-> birthday = stud.birthday;
-    head-> gpa = stud.gpa;
+    student *temp;
+    student *temp2 = head;
+    temp = new student;
+    temp-> m_number = stud.m_number;
+    temp-> firstName = stud.firstName;
+    temp-> lastName = stud.lastName;
+    temp-> birthday = stud.birthday;
+    temp-> gpa = stud.gpa;
+
+    while(*temp.m_number > *temp2.m_number){
+
+    }
 }
 
 int linked_list::size(){
