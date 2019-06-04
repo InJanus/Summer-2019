@@ -146,7 +146,7 @@ student linked_list::seeAt(int location){
                 temp = temp->next;
                 
         }
-        mylocation = (location+1);
+        mylocation = location;
         return *temp;
     }
 }
