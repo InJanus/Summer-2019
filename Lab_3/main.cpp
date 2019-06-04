@@ -119,9 +119,7 @@ int main(){
                 break;
             case 7:
                 //seeNext
-                cout << "location of student: ";
-                cin >> search;
-                temp = mylist.seeNext(search);
+                temp = mylist.seeNext();
                 cout << "FirstName: " << temp.firstName << endl;
                 cout << "LastName: " << temp.lastName << endl;
                 cout << "M-number: " << temp.m_number << endl; 
