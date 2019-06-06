@@ -13,7 +13,7 @@ struct student{
 class linked_list{
     private:
         student *head;
-        student *pointer;
+        int mylocation;
     public:
         linked_list();
         void addItem(student);
