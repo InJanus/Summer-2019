@@ -10,13 +10,13 @@ struct student{
     student *next = nullptr;
 };
 
-class linked_list{
+class linked_list2{
     private:
-        student *head;
         int mylocation;
     public:
-        linked_list();
-        void addItem(student);
+        student *head;
+        linked_list2();
+        void addItem(student, bool);
         student getItem(int);
         int isinList(int);
         bool isEmpty();
