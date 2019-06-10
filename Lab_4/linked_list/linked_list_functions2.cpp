@@ -49,6 +49,7 @@ void linked_list2::addItem(student stud, bool unordered){
         temp-> m_number = stud.m_number;
         temp-> firstName = stud.firstName;
         temp-> lastName = stud.lastName;
+        temp-> birthday = stud.birthday;
         temp-> gpa = stud.gpa;
         if(temp2 == nullptr){
             head = temp;
