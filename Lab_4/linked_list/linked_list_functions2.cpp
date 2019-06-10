@@ -45,17 +45,17 @@ void linked_list2::addItem(student stud, bool unordered){
         */
 
        //ADD TO THE BACK
-       if(temp2 == nullptr){
+        temp = new student;
+        temp-> m_number = stud.m_number;
+        temp-> firstName = stud.firstName;
+        temp-> lastName = stud.lastName;
+        temp-> gpa = stud.gpa;
+        if(temp2 == nullptr){
             head = temp;
         }else{
             while(temp2-> next != nullptr){
                 temp2 = temp2->next;
             }
-            temp = new student;
-            temp-> m_number = stud.m_number;
-            temp-> firstName = stud.firstName;
-            temp-> lastName = stud.lastName;
-            temp-> gpa = stud.gpa;
 
             temp2->next = temp;
         }
