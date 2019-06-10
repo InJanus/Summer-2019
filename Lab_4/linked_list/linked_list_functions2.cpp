@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-#include "C:\Users\Brian Culberson\Documents\Code\Summer-2019-1\reused_classes\reused.cpp"
-
 linked_list2::linked_list2(){
     head = nullptr;
     mylocation = 0;
@@ -13,7 +11,7 @@ student linked_list2::getItem(int location){
     student *temp = head;
     
     if(location > size()){
-        throwError("Location not inside list");
+        cout << "Location not inside list" << endl;
     }else{
         if(location == 0){
             student *returnVal = head;
@@ -130,7 +128,7 @@ int linked_list2::isinList(int search){
             temp = temp->next;
         }
     }
-    throwError("not in list");
+    cout << "not in list" << endl;
     return -1;
 }
 
@@ -140,7 +138,7 @@ bool linked_list2::isEmpty(){
 
 student linked_list2::seeNext(){
     if (isEmpty()){
-        throwError("list is empty");
+        cout << "list is empty" << endl;
     }else{
         // if(pointer == nullptr){
         //     return *pointer;
@@ -151,7 +149,7 @@ student linked_list2::seeNext(){
         student retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
-            throwError("End of list");
+            cout << "End of list" << endl;
         }else{
             mylocation++;
         }
@@ -162,7 +160,7 @@ student linked_list2::seeNext(){
 student linked_list2::seeAt(int location){
     student *temp = head;
     if (isEmpty()){
-        throwError("list is empty");
+        cout << "list is empty" << endl;
     }else{
         for(int i = 0; i < location; i++){
                 temp = temp->next;

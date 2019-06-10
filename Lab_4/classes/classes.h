@@ -13,4 +13,5 @@ class classes:linked_list2{
         bool isFull();
         int size();
         void clearList();
+        int getMaxSize();
 };

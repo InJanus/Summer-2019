@@ -8,16 +8,18 @@ int main(){
 
     bool stop = false;
     int choice;
-    student input, temp;
-    classes myinput;
 
-    cout << "Set Size --------------------------- 1" << endl;
-    cout << "addItem ---------------------------- 2" << endl;
-    cout << "getItem ---------------------------- 3" << endl;
-    cout << "isEmpty ---------------------------- 4" << endl;
-    cout << "isFull ----------------------------- 5" << endl;
-    cout << "size ------------------------------- 6" << endl;
-    cout << "clearList -------------------------- 7" << endl;
+    cout << "Enter size of list: ";
+    cin >> choice;
+    classes myinput(choice);
+    student input, temp;
+
+    cout << "addItem ---------------------------- 1" << endl;
+    cout << "getItem ---------------------------- 2" << endl;
+    cout << "isEmpty ---------------------------- 3" << endl;
+    cout << "isFull ----------------------------- 4" << endl;
+    cout << "size ------------------------------- 5" << endl;
+    cout << "clearList -------------------------- 6" << endl;
     cout << "QUIT ------------------------------- 0" << endl;
 
     while(!stop){
@@ -28,7 +30,7 @@ int main(){
             case(0):
                 stop = true;
                 break;
-            case(2):
+            case(1):
                 fflush(stdin);
                 cout << "First Name: ";
                 getline(cin, input.firstName);
@@ -47,7 +49,7 @@ int main(){
                 fflush(stdin);
                 myinput.addItem(input);
                 break;
-            case(3):
+            case(2):
                 if(myinput.isEmpty()){
                     cout << "List is empty" << endl;
                 }else{
@@ -59,31 +61,27 @@ int main(){
                     cout << "GPA: " << temp.gpa << endl << endl;
                 }
                 break;
-            case(4):
+            case(3):
                 if(myinput.isEmpty()){
                     cout << "list is empty" << endl;
                 }else{
                     cout << "list is not empty" << endl;
                 }
                 break;
-            case(5):
+            case(4):
                 if(myinput.isFull()){
                     cout << "list is full" << endl;
                 }else{
                     cout << "list is not full" << endl;
                 }
                 break;
-            case(6):
+            case(5):
                 cout << "size of list: " << myinput.size() << endl;
                 break;
-            case(7):
+            case(6):
                 myinput.clearList();
                 cout << "list is cleared" << endl;
                 break;
-            case(1):
-                cout << "enter new size: "; 
-                cin >> choice;
-                classes myinput = *new classes(choice);
             }
 
 
