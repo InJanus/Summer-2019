@@ -31,5 +31,8 @@ int classes::size(){
 }
 
 void classes::clearList(){
-    
+    student temp;
+    for(int i = 0; i < size(); i++){
+        temp = linked_list2::getItem(0);
+    }
 }
