@@ -1,6 +1,9 @@
 #include <string>
 using namespace std;
 
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 struct student{
     int m_number;
     string firstName;
@@ -25,3 +28,5 @@ class linked_list2{
         student seeAt(int);
         void reset();
 };
+
+#endif

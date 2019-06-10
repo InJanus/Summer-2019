@@ -1,5 +1,8 @@
 #include "..\\linked_list\linked_list2.h"
 
+#ifndef CLASSES_H
+#define CLASSES_H
+
 class classes:linked_list2{
     private:
         int mysize;  
@@ -15,3 +18,5 @@ class classes:linked_list2{
         void clearList();
         int getMaxSize();
 };
+
+#endif

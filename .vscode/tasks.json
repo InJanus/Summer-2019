@@ -44,6 +44,7 @@
                 ".\\Lab_4\\main.cpp",
                 ".\\Lab_4\\linked_list\\linked_list_functions2.cpp",
                 ".\\Lab_4\\classes\\classes.cpp",
+                ".\\Lab_4\\classes_s\\classes_s.cpp",
                 "-I",
                 "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_4" //change this
             ],
