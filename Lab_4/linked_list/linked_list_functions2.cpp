@@ -2,21 +2,14 @@
 #include <iostream>
 using namespace std;
 
-void throwError(string message){
-    try{
-        throw runtime_error(message);
-    }catch(exception& e){
-        cerr << e.what() << endl;
-    }
-}
+#include "reused_classes/reused.cpp"
 
-
-linked_list::linked_list(){
+linked_list2::linked_list2(){
     head = nullptr;
     mylocation = 0;
 }
 
-student linked_list::getItem(int location){
+student linked_list2::getItem(int location){
     student *temp = head;
     
     if(location > size()){
@@ -38,47 +31,75 @@ student linked_list::getItem(int location){
     }
 }
 
-void linked_list::addItem(student stud){
+void linked_list2::addItem(student stud, bool unordered){
     student *temp;
     student *temp2 = head;
-    temp = new student;
-    temp-> m_number = stud.m_number;
-    temp-> firstName = stud.firstName;
-    temp-> lastName = stud.lastName;
-    temp-> birthday = stud.birthday;
-    temp-> gpa = stud.gpa;
-    if(temp2 == nullptr){
-        head = temp;
-    }else{
-        if(temp->m_number < temp2->m_number){
+    if(unordered){
+        /* ADDS TO THE FRONT
+        head = new student;
+        head -> next = temp2;
+        head-> m_number = stud.m_number;
+        head-> firstName = stud.firstName;
+        head-> lastName = stud.lastName;
+        head-> gpa = stud.gpa;
+        */
+
+       //ADD TO THE BACK
+       if(temp2 == nullptr){
             head = temp;
-            head -> next = temp2;
+        }else{
+            while(temp2-> next != nullptr){
+                temp2 = temp2->next;
+            }
+            temp = new student;
+            temp-> m_number = stud.m_number;
+            temp-> firstName = stud.firstName;
+            temp-> lastName = stud.lastName;
+            temp-> gpa = stud.gpa;
+
+            temp2->next = temp;
         }
-        else{
-            bool flag = false;
-            if(temp2->next == nullptr){
-                temp2 -> next = temp;
-                flag = true;
-            }else{
-                while(temp->m_number > temp2->next->m_number){
-                    if(temp2->next->next == nullptr){
-                        temp2 -> next -> next = temp;
-                        flag = true;
-                        break;
-                    }else{
-                        temp2 = temp2->next;
+
+    }else{
+        temp = new student;
+        temp-> m_number = stud.m_number;
+        temp-> firstName = stud.firstName;
+        temp-> lastName = stud.lastName;
+        temp-> birthday = stud.birthday;
+        temp-> gpa = stud.gpa;
+        if(temp2 == nullptr){
+            head = temp;
+        }else{
+            if(temp->m_number < temp2->m_number){
+                head = temp;
+                head -> next = temp2;
+            }
+            else{
+                bool flag = false;
+                if(temp2->next == nullptr){
+                    temp2 -> next = temp;
+                    flag = true;
+                }else{
+                    while(temp->m_number > temp2->next->m_number){
+                        if(temp2->next->next == nullptr){
+                            temp2 -> next -> next = temp;
+                            flag = true;
+                            break;
+                        }else{
+                            temp2 = temp2->next;
+                        }
                     }
                 }
-            }
-            if(!flag){
-                temp -> next = temp2 ->next;
-                temp2 -> next = temp;
+                if(!flag){
+                    temp -> next = temp2 ->next;
+                    temp2 -> next = temp;
+                }
             }
         }
     }
 }
 
-int linked_list::size(){
+int linked_list2::size(){
     student *temp = head;
     int i = 0;
     if(temp == nullptr){
@@ -95,7 +116,7 @@ int linked_list::size(){
     
 }
 
-int linked_list::isinList(int search){
+int linked_list2::isinList(int search){
     //returns the int of the location of the student, if not in list then returns -1
     //searches down the list of the .h file
     int location = -1;
@@ -112,11 +133,11 @@ int linked_list::isinList(int search){
     return -1;
 }
 
-bool linked_list::isEmpty(){
+bool linked_list2::isEmpty(){
     return(size() == 0);
 }
 
-student linked_list::seeNext(){
+student linked_list2::seeNext(){
     if (isEmpty()){
         throwError("list is empty");
     }else{
@@ -137,7 +158,7 @@ student linked_list::seeNext(){
     }
 }
 
-student linked_list::seeAt(int location){
+student linked_list2::seeAt(int location){
     student *temp = head;
     if (isEmpty()){
         throwError("list is empty");
@@ -151,6 +172,6 @@ student linked_list::seeAt(int location){
     }
 }
 
-void linked_list::reset(){
+void linked_list2::reset(){
     mylocation = 0; 
 }
