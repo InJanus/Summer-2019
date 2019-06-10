@@ -23,7 +23,7 @@ int main(){
     while(!stop){
         cout << "::> ";
         cin >> choice;
-
+        //some case statments where used again from lab 3 just changed variable names
         switch(choice){
             case(0):
                 stop = true;

@@ -11,7 +11,11 @@ classes::classes(int size){
 }
 
 void classes::addItem(student stud){
-    
+    if(mysize > size()){
+        linked_list2::addItem(stud, true);
+    }else{
+        //throw error
+    }
 }
 
 student classes::getItem(){
