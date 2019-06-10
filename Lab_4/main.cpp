@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Lab_4\classes\classes.h"
+#include "..\\Lab_4\classes\classes.h"
 using namespace std;
 
 int main(){
@@ -48,12 +48,16 @@ int main(){
                 myinput.addItem(input);
                 break;
             case(3):
-                temp = myinput.getItem();
-                cout << "FirstName: " << temp.firstName << endl;
-                cout << "LastName: " << temp.lastName << endl;
-                cout << "M-number: " << temp.m_number << endl; 
-                cout << "Birthday: " << temp.birthday << endl;
-                cout << "GPA: " << temp.gpa << endl << endl;
+                if(myinput.isEmpty()){
+                    cout << "List is empty" << endl;
+                }else{
+                    temp = myinput.getItem();
+                    cout << "FirstName: " << temp.firstName << endl;
+                    cout << "LastName: " << temp.lastName << endl;
+                    cout << "M-number: " << temp.m_number << endl; 
+                    cout << "Birthday: " << temp.birthday << endl;
+                    cout << "GPA: " << temp.gpa << endl << endl;
+                }
                 break;
             case(4):
                 if(myinput.isEmpty()){
@@ -76,9 +80,10 @@ int main(){
                 myinput.clearList();
                 cout << "list is cleared" << endl;
                 break;
-            // case(1):
-            //     cin >> input;
-            //     classes myinput = new classes(input);
+            case(1):
+                cout << "enter new size: "; 
+                cin >> choice;
+                classes myinput = *new classes(choice);
             }
 
 

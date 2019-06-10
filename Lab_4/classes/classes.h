@@ -1,4 +1,4 @@
-#include "Lab_4/linked_list/linked_list2.h"
+#include "..\\linked_list\linked_list2.h"
 
 class classes:linked_list2{
     private:

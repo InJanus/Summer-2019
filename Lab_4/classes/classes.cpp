@@ -2,12 +2,12 @@
 
 classes::classes(){
     mysize = 20;
-    linked_list2::linked_list2();
+    linked_list2();
 }
 
 classes::classes(int size){
     mysize = size;
-    linked_list2::linked_list2();
+    linked_list2();
 }
 
 void classes::addItem(student stud){
