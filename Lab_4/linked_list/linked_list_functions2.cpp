@@ -1,18 +1,26 @@
-#include "linked_list.h"
+#include "linked_list2.h"
 #include <iostream>
 using namespace std;
+
+void throwError(string message){
+    try{
+        throw runtime_error(message);
+    }catch(exception& e){
+        cerr << e.what() << endl;
+    }
+}
 
 
 linked_list::linked_list(){
     head = nullptr;
-    pointer = nullptr;
+    mylocation = 0;
 }
 
 student linked_list::getItem(int location){
     student *temp = head;
     
     if(location > size()){
-        //return error
+        throwError("Location not inside list");
     }else{
         if(location == 0){
             student *returnVal = head;
@@ -39,24 +47,33 @@ void linked_list::addItem(student stud){
     temp-> lastName = stud.lastName;
     temp-> birthday = stud.birthday;
     temp-> gpa = stud.gpa;
-    if(temp->m_number < temp2->m_number){
+    if(temp2 == nullptr){
         head = temp;
-        head -> next = temp2;
-    }
-    else{
-        bool flag = false;
-        while(temp->m_number > temp2->next->m_number){
-            if(temp2->next->next == nullptr){
-                temp2 -> next -> next = temp;
-                flag = true;
-                break;
-            }else{
-                temp2 = temp2->next;
-            }
+    }else{
+        if(temp->m_number < temp2->m_number){
+            head = temp;
+            head -> next = temp2;
         }
-        if(!flag){
-            temp -> next = temp2 ->next;
-            temp2 -> next = temp;
+        else{
+            bool flag = false;
+            if(temp2->next == nullptr){
+                temp2 -> next = temp;
+                flag = true;
+            }else{
+                while(temp->m_number > temp2->next->m_number){
+                    if(temp2->next->next == nullptr){
+                        temp2 -> next -> next = temp;
+                        flag = true;
+                        break;
+                    }else{
+                        temp2 = temp2->next;
+                    }
+                }
+            }
+            if(!flag){
+                temp -> next = temp2 ->next;
+                temp2 -> next = temp;
+            }
         }
     }
 }
@@ -91,7 +108,7 @@ int linked_list::isinList(int search){
             temp = temp->next;
         }
     }
-    //throw error for not in list
+    throwError("not in list");
     return -1;
 }
 
@@ -100,26 +117,40 @@ bool linked_list::isEmpty(){
 }
 
 student linked_list::seeNext(){
-        if (isEmpty()){
-            //Throw error
+    if (isEmpty()){
+        throwError("list is empty");
+    }else{
+        // if(pointer == nullptr){
+        //     return *pointer;
+        // }else{
+        //     pointer = pointer->next;
+        //     return *pointer;
+        // }
+        student retval = seeAt(mylocation);
+        if(retval.next == nullptr){
+            //still has a value but end of list
+            throwError("End of list");
+        }else{
+            mylocation++;
         }
-        pointer = pointer->next;
-    
-    return *pointer;
+        return retval;
+    }
 }
 
 student linked_list::seeAt(int location){
     student *temp = head;
     if (isEmpty()){
-        //Throw error
-    }
-    for(int i = 0; i < location; i++){
-            temp = temp->next;
+        throwError("list is empty");
+    }else{
+        for(int i = 0; i < location; i++){
+                temp = temp->next;
+                
         }
-        pointer = temp;
-        return *pointer;
+        mylocation = location;
+        return *temp;
+    }
 }
 
 void linked_list::reset(){
-    pointer = head; 
+    mylocation = 0; 
 }
