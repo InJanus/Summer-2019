@@ -95,14 +95,6 @@ int main(){
                 myinput2.clearList();
                 cout << "list is cleared" << endl;
                 break;
-            }
-
-
-
         }
-
-
-
-
-
     }
+}

@@ -21,7 +21,7 @@ void classes_s::addItem(student stud){
 }
 
 student classes_s::getItem(){
-    return linked_list2::getItem(size());
+    return linked_list2::getItem(size()-1);
 }
 
 bool classes_s::isEmpty(){
