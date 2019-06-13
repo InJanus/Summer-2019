@@ -49,6 +49,19 @@
                 "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_4" //change this
             ],
             "problemMatcher": []   
+        },
+        {
+            "type": "shell",
+            "label": "build_lab_5",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-g",
+                ".\\Lab_5\\sort.cpp",
+                ".\\Lab_5\\main.cpp",
+                "-I",
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_5" //change this
+            ],
+            "problemMatcher": []   
         }
     ]
 }
