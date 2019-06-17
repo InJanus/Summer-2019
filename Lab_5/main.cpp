@@ -47,7 +47,7 @@ int main(){
     
     int mysorteditems[size];
     for(int i = 0; i < size; i++){
-        mysorteditems[i] = insertionSort(myitems, size)[i];
+        mysorteditems[i] = (myitems, size)[i];
     }
     printItems(mysorteditems, 10);
 

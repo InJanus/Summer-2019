@@ -24,6 +24,7 @@ int* bubbleSort(int *items, int size){
         ammountSorted++;
     }
     return temp;
+    //works
 }
 
 //insertion sort -greg (use)
@@ -43,6 +44,7 @@ int *insertionSort(int myArray[], int size){
         myArray[k + 1] = holder;  
     }  
     return myArray;
+    //works
 }
 //merge sort - brian (use)
 int *merge(int *items, int *items2){
@@ -83,8 +85,16 @@ int *mergeSort(int *items, int size){
 /* I think there needs to be 2 different temp Arrays coming out of this but the whole
 Size thing is messing with me and the recurrsion will be called within the "J" if
 statements for each of them but we also need to make an isSorted function I think */
-int *quickSort(int myArray[]){
-    int size = mysize(myArray);
+bool isSorted(int *items, int size){
+    for(int i = 0; i < size;i++){
+        if(!(items[i] < items[i+1])){
+            return false;
+        }
+    }
+    return true;
+}
+
+int *quickSort(int myArray[], int size){
     srand(time(0));
     int holder = rand() % size +1;;
 
@@ -107,15 +117,12 @@ int *quickSort(int myArray[]){
             else if(myArray[i] > holder && j == 2){
                 tempArray[loc] = myArray[i];
             }
-            else{
-
-            }
         }
     }
-    if(isSorted(tempArray)){
+    if(isSorted(tempArray, size)){
         return tempArray;
     }
-    quickSort(tempArray); 
+    quickSort(tempArray, size); 
 }
 
 //counting sort - brian
@@ -135,11 +142,4 @@ void printItems(int *items, int size){
     }
 }
 
-bool isSorted(int *items, int size){
-    for(int i = 0; i < size;i++){
-        if(!(items[i] < items[i+1])){
-            return false;
-        }
-    }
-    return true;
-}
+
