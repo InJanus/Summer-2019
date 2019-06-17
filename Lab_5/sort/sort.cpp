@@ -29,7 +29,7 @@ int* bubbleSort(int *items, int size){
 //insertion sort -greg (use)
 int *insertionSort(int myArray[], int size){
     int holder;
-    int k;
+    int k;  
     for (int i = 1; i < size; i++) {  
         holder = myArray[i];  
         k = i - 1;  
@@ -43,7 +43,7 @@ int *insertionSort(int myArray[], int size){
         myArray[k + 1] = holder;  
     }  
 }
-
+//merge sort - brian (use)
 int *merge(int *items, int *items2){
     int retval[2];
     if(items[0] > items2[0]){
@@ -112,12 +112,18 @@ int *quickSort(int myArray[]){
         }
     }
     if(isSorted(tempArray)){
-        return tempArray;
+        for(int i = 0; i < size; i++){
+            myArray[i] = tempArray[i];
+            return;
+        }
     }
     quickSort(tempArray); 
 }
 
 //counting sort - brian
+void countingSort(int myArray) {
+
+}
 //radix sort - greg and brian
 
 int *radixSort(int myArray){
