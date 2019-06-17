@@ -2,9 +2,9 @@
 #include <iostream>
 #include ".\\sort\sort.h"
 using namespace std;
-#include <stdio.h>      // printf, scanf, puts, NULL 
-#include <stdlib.h>     // srand, rand 
-#include <time.h>       // time #include <iostream>
+#include <stdio.h>       
+#include <stdlib.h>     
+#include <time.h>       
 #include <chrono>
 typedef std::chrono::high_resolution_clock Clock;
 
@@ -50,6 +50,9 @@ int main(){
         mysorteditems[i] = insertionSort(myitems, size)[i];
     }
     printItems(mysorteditems, 10);
+
+    //We can add a feature that if the size is less we use a "delete"
+    //So then we shave the array down to the correct size
 
     /* Task 2 
     auto t1 = Clock::now();
