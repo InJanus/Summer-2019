@@ -121,12 +121,41 @@ int *quickSort(int myArray[], int size){
 }
 
 //counting sort - brian
-void countingSort(int myArray,int size) {
-
+int *countingSort(int myArray[],int size, int digit) {
+    // Declaring tempArray to put the number back into and count to figure out how many of each digit
+	int tempArray[size];
+    int count[10] = {0};
+ 
+	// Count the number of times each digit occurred at (exp)th place in every input.
+	for (int i = 0; i < size; i++){
+		count[(myArray[i] / digit) % 10]++;
+    }
+ 
+	// Calculating the total count.
+	for (int i = 1; i < 10; i++){
+		count[i] += count[i-1];
+    }
+	// Inserting values according to the digit
+	for (int i = size - 1; i >= 0; i--)
+	{
+		tempArray[count[(myArray[i] / digit) % 10] - 1] = myArray[i];
+		count[(myArray[i] / digit) % 10]--;
+	}
+ 
+	return tempArray;
 }
 //radix sort - greg and brian
-int *radixSort(int myArray,int size){
-
+int *radixSort(int myArray[],int size){
+    int maxData = myArray[0];
+    for (int i = 1; i < size; i++){
+		if (myArray[i] > maxData){
+			maxData = myArray[i];
+        }
+    }
+    for(int digit = 0; maxData/digit > 0; digit*10){
+        myArray = countingSort(myArray,size,digit);
+    }
+    return myArray;
 }
 
 void printItems(int *items, int size){
