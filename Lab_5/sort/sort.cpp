@@ -1,7 +1,7 @@
 #include <iostream>
-#include <stdio.h>      // printf, scanf, puts, NULL 
+#include <stdio.h>       
 #include <stdlib.h>     // srand, rand 
-#include <time.h>       // time 
+#include <time.h>       
 
 #include "sort.h"
 using namespace std;
@@ -50,20 +50,9 @@ Size thing is messing with me and the recurrsion will be called within the "J" i
 statements for each of them but we also need to make an isSorted function I think */
 int *quickSort(int myArray[]){
     int size = mysize(myArray);
-    int high = myArray[size];
-    int low = myArray[0];
-    int mid = myArray[size/2];
-    int holder;
+    srand(time(0));
+    int holder = rand() % size +1;;
 
-    if(low > high && low < mid || high > low && mid < low){
-        holder == low;
-    }
-    else if(low > high && high > mid || high > low && mid > high){
-        holder = high;
-    }
-    else{
-        holder = mid;
-    }
     //Sort to the left and to the right of holder
     int tempArray[size]; //.size() .length() ect?
     int loc = 0;
@@ -88,7 +77,9 @@ int *quickSort(int myArray[]){
             }
         }
     }
-    //check if sorted first?
+    if(isSorted(tempArray)){
+        return tempArray;
+    }
     quickSort(tempArray); 
 }
 
@@ -110,4 +101,11 @@ int mysize(int *items){
     return(sizeof(items)/sizeof(int));
 }
 
-
+bool isSorted(int *items){
+    for(int i = 0; i < mysize(items);i++){
+        if(!(items[i] < items[i+1])){
+            return false;
+        }
+    }
+    return true;
+}

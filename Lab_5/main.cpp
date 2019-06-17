@@ -2,9 +2,9 @@
 #include <iostream>
 #include ".\\sort\sort.h"
 using namespace std;
-#include <stdio.h>      // printf, scanf, puts, NULL 
-#include <stdlib.h>     // srand, rand 
-#include <time.h>       // time #include <iostream>
+#include <stdio.h>       
+#include <stdlib.h>     
+#include <time.h>       
 #include <chrono>
 typedef std::chrono::high_resolution_clock Clock;
 
@@ -36,13 +36,13 @@ int main(){
             size = 100000;
             break;
     }
+
     //We can add a feature that if the size is less we use a "delete"
     //So then we shave the array down to the correct size
     int myArray[size];
     for(int i=0;i<size;i++){
         myArray[i] = rand() % size +1;
     }
-
     int myitems[] = {1,6,8,3,4,10,2,12,7,30};
     int *mysorteditems = bubbleSort(myitems);
     printItems(mysorteditems);
