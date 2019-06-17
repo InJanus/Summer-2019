@@ -1,20 +1,26 @@
 #include <iostream>
-using namespace std;
 #include <stdio.h>      // printf, scanf, puts, NULL 
 #include <stdlib.h>     // srand, rand 
 #include <time.h>       // time 
 
+#include "sort.h"
+using namespace std;
 //this is where the sort functions will go
 
-//random genaration
-int *randomGenerate(int n){
-    int myArray[10];
+int mysize(int *items){
+    return (sizeof(items)/sizeof(int));
+}
 
-    for(int i=0;i<n;i++){
-        myArray[i] = rand() % n +1;
+void randomGenerate(int *myArray){
+
+    // int myArray[n];
+
+    for(int i=0;i<100;i++){
+        myArray[i] = rand() % (100*2) +1;
+        cout << myArray[i] << endl;
     }
 
-    return myArray;
+    // return myArray;
 }
 //Bubble sort - brian
 //insertion sort -greg
@@ -25,7 +31,7 @@ int *randomGenerate(int n){
 
 int* bubbleSort(int *items){
     int ammountSorted = 0;
-    int size = int(sizeof(items));
+    int size = mysize(items);
     while(ammountSorted < size){
         for(int i = 0; i < size-ammountSorted-1; i++){
             if(items[i+1] < items[i]){
@@ -40,7 +46,9 @@ int* bubbleSort(int *items){
 }
 
 void printItems(int *items){
-    for(int i =0; i < int(sizeof(items)); i++){
+    for(int i =0; i < mysize(items); i++){
         cout << "i: " << i << " == " << items[i] << endl;
     }
 }
+
+

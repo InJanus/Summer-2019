@@ -1,10 +1,12 @@
 //main
 #include <iostream>
-#include "sort.cpp"
+#include ".\\sort\sort.h"
 using namespace std;
 
 int main(){
-    int myitems[] = {1,6,8,3,4,10,2,12,7,30};
-    int *mysorteditems = bubbleSort(myitems);
-    printItems(mysorteditems);
+    int myitems[100];
+    randomGenerate(myitems);
+    // int *mysorteditems = bubbleSort(myitems);
+    cout << mysize(myitems) << endl;
+    printItems(myitems);
 }
