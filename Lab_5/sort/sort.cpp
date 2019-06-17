@@ -24,6 +24,7 @@ int* bubbleSort(int *items, int size){
         ammountSorted++;
     }
     return temp;
+    //works
 }
 
 //insertion sort -greg (use)
@@ -43,6 +44,7 @@ int *insertionSort(int myArray[], int size){
         myArray[k + 1] = holder;  
     }  
     return myArray;
+    //works
 }
 //merge sort - brian (use)
 int *merge(int *items, int *items2){
@@ -79,10 +81,18 @@ int *mergeSort(int *items, int size){
     }
 }
 //quick sort - greg
+bool isSorted(int *items, int size){
+    for(int i = 0; i < size-1;i++){
+        if(!(items[i] < items[i+1])){
+            return false;
+        }
+    }
+    return true;
+}
 
 int *quickSort(int myArray[], int size){
-    int holder = rand() % size +1;;
-    int tempArray[size];
+    int holder = rand() % size +1;
+    int *tempArray = myArray;
     int loc = 0;
     for(int j = 0; j < 3;j++){
         for(int i = 0; i < size; i++){
@@ -99,12 +109,14 @@ int *quickSort(int myArray[], int size){
             //j=2 greater than holder
             else if(myArray[i] > holder && j == 2){
                 tempArray[loc] = myArray[i];
+                loc++;
             }
         }
     }
-    if(isSorted(tempArray)){
+    if(isSorted(tempArray, size)){
         return tempArray;
     }
+    printItems(tempArray, size);
     quickSort(tempArray, size); 
 }
 
@@ -123,11 +135,4 @@ void printItems(int *items, int size){
     }
 }
 
-bool isSorted(int *items, int size){
-    for(int i = 0; i < size;i++){
-        if(!(items[i] < items[i+1])){
-            return false;
-        }
-    }
-    return true;
-}
+
