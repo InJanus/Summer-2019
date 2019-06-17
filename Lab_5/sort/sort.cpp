@@ -127,12 +127,8 @@ void printItems(int *items, int size){
     }
 }
 
-int mysize(int *items){
-    return sizeof(items)/sizeof(*items);
-}
-
-bool isSorted(int *items){
-    for(int i = 0; i < mysize(items);i++){
+bool isSorted(int *items, int size){
+    for(int i = 0; i < size;i++){
         if(!(items[i] < items[i+1])){
             return false;
         }
