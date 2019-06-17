@@ -45,10 +45,10 @@ int main(){
     const int size = 10;
     int myitems[size] = {1,6,8,3,4,10,2,12,7,30};
     
-    int mysorteditems[size];
-    for(int i = 0; i < size; i++){
-        mysorteditems[i] = quickSort(myitems, size)[i];
-    }
+    int *mysorteditems = mergeSort(myitems, size);
+    // for(int i = 0; i < size; i++){
+    //     mysorteditems[i] = quickSort(myitems, size)[i];
+    // }
     printItems(mysorteditems, 10);
 
     //We can add a feature that if the size is less we use a "delete"

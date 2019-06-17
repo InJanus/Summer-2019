@@ -47,14 +47,18 @@ int *insertionSort(int myArray[], int size){
     //works
 }
 //merge sort - brian (use)
-int *merge(int *items, int *items2){
-    int retval[2];
+int *merge(int *items, int *items2, int size, int size2){
+    int retval[size+size2];
+    int count = 0;
+    int astart, bstart;
+    astart = 0;
+    bstart = 0;
     if(items[0] > items2[0]){
-        retval[0] = items[0];
-        retval[1] = items2[0];
+        retval[count] = items2[0];
+        count++;
     }else if(items[0] <= items2[0]){
-        retval[0] = items2[0];
-        retval[1] = items[0];
+        retval[count] = items[0];
+        count++;
     }
     return retval;
 }
@@ -92,7 +96,7 @@ bool isSorted(int *items, int size){
 
 int *quickSort(int myArray[], int size){
     int holder = rand() % size +1;
-    int *tempArray = myArray;
+    int tempArray[size];
     int loc = 0;
     for(int j = 0; j < 3;j++){
         for(int i = 0; i < size; i++){
@@ -109,8 +113,10 @@ int *quickSort(int myArray[], int size){
             //j=2 greater than holder
             else if(myArray[i] > holder && j == 2){
                 tempArray[loc] = myArray[i];
+                loc++;
             }
         }
+        
     }
     if(isSorted(tempArray, size)){
         return tempArray;
