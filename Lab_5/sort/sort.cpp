@@ -81,7 +81,6 @@ int *mergeSort(int *items, int size){
 //quick sort - greg
 
 int *quickSort(int myArray[], int size){
-    srand(time(0));
     int holder = rand() % size +1;;
     int tempArray[size];
     int loc = 0;
@@ -100,9 +99,6 @@ int *quickSort(int myArray[], int size){
             //j=2 greater than holder
             else if(myArray[i] > holder && j == 2){
                 tempArray[loc] = myArray[i];
-            }
-            else{
-
             }
         }
     }
