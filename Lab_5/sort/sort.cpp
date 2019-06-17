@@ -95,6 +95,7 @@ bool isSorted(int *items, int size){
 }
 
 int *quickSort(int myArray[], int size){
+    //establish the piece the spot to make things go to the left and right of.
     int holder = rand() % size +1;
     int tempArray[size];
     int loc = 0;
@@ -129,14 +130,14 @@ int *quickSort(int myArray[], int size){
 int *countingSort(int myArray[],int size, int digit) {
     // Declaring tempArray to put the number back into and count to figure out how many of each digit
 	int tempArray[size];
-    int count[10] = {0};
+    int count[10];
  
-	// Count the number of times each digit occurred at (exp)th place in every input.
+	// Count the number of times each digit occurred
 	for (int i = 0; i < size; i++){
 		count[(myArray[i] / digit) % 10]++;
     }
  
-	// Calculating the total count.
+	// Calculate the total count
 	for (int i = 1; i < 10; i++){
 		count[i] += count[i-1];
     }
