@@ -2,9 +2,10 @@
 #define SORT_H
 
 void randomGenerate(int*);
-int *bubbleSort(int*);
+int *bubbleSort(int*, int);
+int *insertionSort(int*, int);
+void printItems(int*, int);
+int *quickSort(int*, int);
 
-int mysize(int*);
-void printItems(int*);
 
 #endif
