@@ -83,7 +83,7 @@ int *mergeSort(int *items, int size){
 //quick sort - greg
 bool isSorted(int *items, int size){
     for(int i = 0; i < size-1;i++){
-        if(!(items[i] < items[i+1])){
+        if(!(items[i] <= items[i+1])){
             return false;
         }
     }
