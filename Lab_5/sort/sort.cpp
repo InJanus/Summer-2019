@@ -97,9 +97,7 @@ bool isSorted(int *items, int size){
 int *quickSort(int myArray[], int size){
     srand(time(0));
     int holder = rand() % size +1;;
-
-    //Sort to the left and to the right of holder
-    int tempArray[size]; //.size() .length() ect?
+    int tempArray[size];
     int loc = 0;
     for(int j = 0; j < 3;j++){
         for(int i = 0; i < size; i++){
@@ -126,13 +124,11 @@ int *quickSort(int myArray[], int size){
 }
 
 //counting sort - brian
-void countingSort(int myArray) {
+void countingSort(int myArray,int size) {
 
 }
 //radix sort - greg and brian
-
-int *radixSort(int myArray){
-    //int size = int(sizeof(myArray));
+int *radixSort(int myArray,int size){
 
 }
 
