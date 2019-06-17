@@ -28,7 +28,7 @@ int* bubbleSort(int *items){
 int *insertionSort(int myArray[]){
     int holder;
     int k;  
-    int size = int(sizeof(myArray));
+    int size = mysize(myArray);
     for (int i = 1; i < size; i++) {  
         holder = myArray[i];  
         k = i - 1;  
@@ -49,7 +49,7 @@ int *insertionSort(int myArray[]){
 Size thing is messing with me and the recurrsion will be called within the "J" if
 statements for each of them but we also need to make an isSorted function I think */
 int *quickSort(int myArray[]){
-    int size = int(sizeof(myArray));
+    int size = mysize(myArray);
     int high = myArray[size];
     int low = myArray[0];
     int mid = myArray[size/2];
@@ -96,7 +96,7 @@ int *quickSort(int myArray[]){
 //radix sort - greg and brian
 
 int *radixSort(int myArray){
-int size = int(sizeof(myArray));
+    //int size = int(sizeof(myArray));
 
 }
 
@@ -104,6 +104,10 @@ void printItems(int *items){
     for(int i =0; i < mysize(items); i++){
         cout << "i: " << i << " == " << items[i] << endl;
     }
+}
+
+int mysize(int *items){
+    return(sizeof(items)/sizeof(int));
 }
 
 

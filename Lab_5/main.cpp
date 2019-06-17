@@ -38,10 +38,11 @@ int main(){
     }
     //We can add a feature that if the size is less we use a "delete"
     //So then we shave the array down to the correct size
-    int myArray[100000];
+    int myArray[size];
     for(int i=0;i<size;i++){
         myArray[i] = rand() % size +1;
     }
+
     int myitems[] = {1,6,8,3,4,10,2,12,7,30};
     int *mysorteditems = bubbleSort(myitems);
     printItems(mysorteditems);
