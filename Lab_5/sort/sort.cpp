@@ -41,8 +41,8 @@ int *insertionSort(int myArray[], int size){
             k--;  
         }  
         myArray[k + 1] = holder;  
-    }
-
+    }  
+    return myArray;
 }
 //merge sort - brian (use)
 int *merge(int *items, int *items2){
@@ -113,10 +113,7 @@ int *quickSort(int myArray[]){
         }
     }
     if(isSorted(tempArray)){
-        for(int i = 0; i < size; i++){
-            myArray[i] = tempArray[i];
-            return;
-        }
+        return tempArray;
     }
     quickSort(tempArray); 
 }
