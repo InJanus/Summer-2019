@@ -53,12 +53,22 @@ int *merge(int *items, int *items2, int size, int size2){
     int astart, bstart;
     astart = 0;
     bstart = 0;
-    if(items[0] > items2[0]){
-        retval[count] = items2[0];
+    if(astart == size){
+        retval[count] = items2[bstart];
         count++;
-    }else if(items[0] <= items2[0]){
-        retval[count] = items[0];
+        bstart++;
+    }else if(bstart == size){
+        retval[count] = items[astart];
         count++;
+        astart++;
+    }else if(items[astart] > items2[bstart]){
+        retval[count] = items2[bstart];
+        count++;
+        bstart++;
+    }else if(items[astart] <= items2[bstart]){
+        retval[count] = items[astart];
+        count++;
+        astart++;
     }
     return retval;
 }
@@ -66,14 +76,25 @@ int *merge(int *items, int *items2, int size, int size2){
 //merge sort - brian (use)
 int *mergeSort(int *items, int size){
     //store the list of item locations of the merge sort
+    int size1, size2;
     if(size == 1){
         return items;
     }else{
-        int l1[size/2];
-        int l2[size/2];
-        for(int i = 0; i < size/2; i++){
+
+        if(size%2 == 1){
+            size1 = (size+1)/2;
+        }else{
+            size1 = size/2;
+        }
+        size2 = size/2;
+        int *l1 = new int[size1];
+        int *l2 = new int[size2];
+
+        for(int i = 0; i < size1; i++){
             l1[i] = items[i];
-            l2[i] = items[(i+size/2)];
+        }
+        for(int i = 0; i < size2; i++){
+            l2[i] = items[(i+size2)];
         }
 
         //first split the array
@@ -81,7 +102,7 @@ int *mergeSort(int *items, int size){
             l1[i] = mergeSort(l1, size/2)[i];
             l2[i] = mergeSort(l2, size/2)[i];
         }
-        return(merge(l1,l2));
+        return(merge(l1,l2, size1, size2));
     }
 }
 //quick sort - greg
@@ -125,6 +146,35 @@ int *quickSort(int myArray[], int size){
     printItems(tempArray, size);
     quickSort(tempArray, size); 
 }
+
+int *countingSort(int *items, int size){
+    int *myitems = new int[size*2];
+    int *retval = new int[size];
+    for(int i = 0; i < size*2; i++){
+        myitems[i] = 0;
+    }
+    for(int i = 0; i < size;i++){
+        myitems[items[i]-1]++;
+    }
+
+    bool stop = false;
+    int count = 0;
+    int i = 0;
+    while(!stop){
+        if(myitems[count] >= 1){
+            retval[i] = count+1;
+            myitems[count]--;
+            i++;
+        }else if(myitems[count] == 0){
+            count++;
+        }else if(count == (size*2)){
+            stop = true;
+        }
+    }
+    return retval;
+
+}
+
 
 //counting sort - brian
 int *countingSort(int myArray[],int size, int digit) {

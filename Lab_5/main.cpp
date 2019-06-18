@@ -43,9 +43,9 @@ int main(){
     //     myArray[i] = rand() % size +1;
     // }
     const int size = 10;
-    int myitems[size] = {1,6,8,3,4,10,2,12,7,30};
+    int myitems[size] = {1,6,8,3,4,10,2,12,7,20};
     
-    int *mysorteditems = mergeSort(myitems, size);
+    int *mysorteditems = countingSort(myitems, size);
     // for(int i = 0; i < size; i++){
     //     mysorteditems[i] = quickSort(myitems, size)[i];
     // }
