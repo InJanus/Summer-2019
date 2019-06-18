@@ -1,7 +1,8 @@
 #include <iostream>
 #include <stdio.h>       
 #include <stdlib.h>     // srand, rand 
-#include <time.h>       
+#include <time.h>     
+#include <math.h>       //log10  
 
 #include "sort.h"
 using namespace std;
@@ -184,8 +185,8 @@ int *countingSort(int *items, int size){
 
 int *countingSort(int myArray[],int size, int digit) {
     // Declaring tempArray to put the number back into and count to figure out how many of each digit
-	int tempArray[size];
-    int count[10];
+	int *tempArray = new int[size];
+    int *count = new int[10];
  
 	// Count the number of times each digit occurred
 	for (int i = 0; i < size; i++){
@@ -208,18 +209,41 @@ int *countingSort(int myArray[],int size, int digit) {
 //radix sort - Srts least significant digit first then goes through the larger ones
 //it just works
 int *radixSort(int myArray[],int size){
-    int maxData = myArray[0];
-    for (int i = 1; i < size; i++){
-		if (myArray[i] > maxData){
-			maxData = myArray[i];
-        }
-    }
+
     //Choose what digit we are dealing with starting with least significant (1) and going to maxData's largest digit.
     //This is assuming code takes 1 and makes it xxx1 (x being amount of digits)
-    for(int digit = 1; maxData/digit > 0; digit*10){
-        myArray = countingSort(myArray,10,digit);
-    }
-    return myArray;
+
+
+    int digit = int(log10(size*2));
+    int *retval = new int[size];
+        for(int i = 0; i < size; i++){
+            retval[i] = myArray[i];
+        }
+        int ammountSorted = 0;
+        for(int j = 0; j <= digit; j++){
+            ammountSorted = 0;
+            while(ammountSorted < size){
+                for(int i = 0; i < size-ammountSorted-1; i++){
+                    if((retval[i+1]/int(pow(10,j)))%10 < (retval[i]/int(pow(10,j)))%10){
+                        //switch the items
+                        int temp2 = retval[i];
+                        retval[i] = retval[i+1];
+                        retval[i+1] = temp2;
+                    }
+            }
+            ammountSorted++;
+            }
+        }
+
+    // myArray
+
+
+
+    // for(int digit = 1; (size*2)/digit > 0; digit*10){
+    //     myArray = countingSort(myArray,10,digit);
+    // }
+    // return myArray;
+    return retval;
 }
 
 void printItems(int *items, int size){
