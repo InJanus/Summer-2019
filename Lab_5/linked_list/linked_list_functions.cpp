@@ -39,43 +39,21 @@ student linked_list::getItem(int location){
 }
 
 void linked_list::addItem(student stud){
-    student *temp;
     student *temp2 = head;
-    temp = new student;
+    student *temp = new student;
     temp-> m_number = stud.m_number;
     temp-> firstName = stud.firstName;
     temp-> lastName = stud.lastName;
-    temp-> birthday = stud.birthday;
-    temp-> gpa = stud.gpa;
     if(temp2 == nullptr){
         head = temp;
     }else{
-        if(temp->m_number < temp2->m_number){
-            head = temp;
-            head -> next = temp2;
+        while(temp2-> next != nullptr){
+            temp2 = temp2->next;
         }
-        else{
-            bool flag = false;
-            if(temp2->next == nullptr){
-                temp2 -> next = temp;
-                flag = true;
-            }else{
-                while(temp->m_number > temp2->next->m_number){
-                    if(temp2->next->next == nullptr){
-                        temp2 -> next -> next = temp;
-                        flag = true;
-                        break;
-                    }else{
-                        temp2 = temp2->next;
-                    }
-                }
-            }
-            if(!flag){
-                temp -> next = temp2 ->next;
-                temp2 -> next = temp;
-            }
-        }
+
+        temp2->next = temp;
     }
+
 }
 
 int linked_list::size(){
@@ -153,4 +131,43 @@ student linked_list::seeAt(int location){
 
 void linked_list::reset(){
     mylocation = 0; 
+}
+
+void linked_list::bubbleSort(){
+    int ammountSorted = 0;
+    student *temp = head;
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
+
+    while(!stop){
+        if(temp->m_number > temp->next->m_number){
+            //switch the items
+            tempdata.m_number = temp->m_number;
+            tempdata.firstName = temp->firstName;
+            tempdata.lastName = temp->lastName;
+            temp->m_number = temp->next->m_number;
+            temp->firstName = temp->next->firstName;
+            temp->lastName = temp->next->lastName;
+            temp->next->m_number = tempdata.m_number;
+            temp->next->firstName = tempdata.firstName;
+            temp->next->lastName = tempdata.lastName;
+            
+        }else{
+            count++;
+        }
+
+        if(count == size()-1){
+            stop = true;
+        }
+        if(temp->next->next == nullptr){
+            temp = head;
+            count = 0;
+        }else{
+            temp = temp->next;
+        }
+
+    }
+    
 }

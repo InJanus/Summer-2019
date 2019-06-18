@@ -58,6 +58,7 @@
                 "-g",
                 ".\\Lab_5\\main.cpp",
                 ".\\Lab_5\\sort\\sort.cpp",
+                ".\\Lab_5\\linked_list\\linked_list_functions.cpp",
                 "-I",
                 "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_5" //change this
             ],
