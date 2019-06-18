@@ -6,5 +6,7 @@ int *insertionSort(int*, int);
 void printItems(int*, int);
 int *quickSort(int*, int);
 int *mergeSort(int*, int);
+int *countingSort(int*,int);
+int *radixSort(int*,int);
 
 #endif
