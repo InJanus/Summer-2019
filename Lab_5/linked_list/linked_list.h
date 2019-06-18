@@ -27,7 +27,12 @@ class linked_list{
         student seeNext();
         student seeAt(int);
         void reset();
+        bool isSorted();
         void bubbleSort();
+        void quickSort();
+        void radixSort();
+        void radix_flip();
+        void bubble_flip();
 };
 
 #endif

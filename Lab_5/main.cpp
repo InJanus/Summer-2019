@@ -40,6 +40,7 @@ int main(){
     // //We can add a feature that if the size is less we use a "delete"
     // //So then we shave the array down to the correct size
     // int myArray[size];
+    srand(time(0));
     int size = 50;
     int count = 1;
     linked_list mylist;
@@ -53,8 +54,23 @@ int main(){
         count++;
     }
 
-    // cout << mylist.size() << endl;
-    mylist.bubbleSort();
+    int pick;
+    cout << "Pick a sort (1)bubble (2)bubble reverse (3)radix (4)radix reverse" << endl;
+    cin >> pick;
+    switch(pick){
+        case 1:
+            mylist.bubbleSort();
+            break;
+        case 2:
+            mylist.bubble_flip();
+            break;
+        case 3:
+            mylist.radixSort();
+            break;
+        case 4:
+            mylist.radix_flip();
+            break;
+    }
     
     for(int i = 0; i < size; i++){
         cout << mylist.seeAt(i).m_number << endl;
