@@ -54,9 +54,11 @@ int main(){
     //We can add a feature that if the size is less we use a "delete"
     //So then we shave the array down to the correct size
 
-    /* Task 2 
+    //Task 2 
     auto t1 = Clock::now();
+    // Put the Sort that is being used in between here:
+
     auto t2 = Clock::now();
     std::cout << "Delta t2-t1: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 -t1).count()<< " nanoseconds" << std::endl;
-    */
+    
 }

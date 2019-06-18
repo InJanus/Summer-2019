@@ -158,8 +158,10 @@ int *radixSort(int myArray[],int size){
 			maxData = myArray[i];
         }
     }
-    for(int digit = 0; maxData/digit > 0; digit*10){
-        myArray = countingSort(myArray,size,digit);
+    //Choose what digit we are dealing with starting with least significant (1) and going to maxData's largest digit.
+    //This is assuming code takes 1 and makes it xxx1 (x being amount of digits)
+    for(int digit = 1; maxData/digit > 0; digit*10){
+        myArray = countingSort(myArray,10,digit);
     }
     return myArray;
 }
