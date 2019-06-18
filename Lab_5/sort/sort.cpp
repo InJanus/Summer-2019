@@ -7,7 +7,8 @@
 using namespace std;
 //this is where the sort functions will go
 
-//Bubble sort - brian (use)
+//Bubble sort - a very simple algorithm that compares each item with each other item to put them in the
+//right order. Its called bubble sort because the smallest (or largest) items bubble to the top.
 int* bubbleSort(int *items, int size){
     int *temp = items;
     int ammountSorted = 0;
@@ -27,7 +28,7 @@ int* bubbleSort(int *items, int size){
     //works
 }
 
-//insertion sort -greg (use)
+//insertion sort - a simple algorithm that builds the final list 1 item at a time
 int *insertionSort(int myArray[], int size){
     int holder;
     int k;  
@@ -46,7 +47,7 @@ int *insertionSort(int myArray[], int size){
     return myArray;
     //works
 }
-//merge sort - brian (use)
+//merge the stuff back together
 int *merge(int *items, int *items2, int size, int size2){
     int *retval = new int[(size+size2)];
     int count = 0;
@@ -76,7 +77,8 @@ int *merge(int *items, int *items2, int size, int size2){
     return retval;
 }
 
-//merge sort - brian (use)
+//merge sort - a recursive, divide and conquer algorithm. It is an efficient algorithm compared to bubble
+//and insertion sort.
 int *mergeSort(int *items, int size){
     //store the list of item locations of the merge sort
     int size1, size2;
@@ -107,7 +109,7 @@ int *mergeSort(int *items, int size){
         return(merge(l1,l2, size1, size2));
     }
 }
-//quick sort - greg
+
 bool isSorted(int *items, int size){
     for(int i = 0; i < size-1;i++){
         if(!(items[i] <= items[i+1])){
@@ -117,6 +119,7 @@ bool isSorted(int *items, int size){
     return true;
 }
 
+//quick sort - another divide and conquer
 int *quickSort(int myArray[], int size){
     //establish the piece the spot to make things go to the left and right of.
     int holder = rand() % size +1;
@@ -149,6 +152,8 @@ int *quickSort(int myArray[], int size){
     quickSort(tempArray, size); 
 }
 
+//counting sort : an algorithm for sorting items when they are small(ish) integers (at least the sort key is).
+//This is not an in-place sort. The output is a new array.
 int *countingSort(int *items, int size){
     int *myitems = new int[size*2];
     int *retval = new int[size];
@@ -177,8 +182,6 @@ int *countingSort(int *items, int size){
 
 }
 
-
-//counting sort - brian
 int *countingSort(int myArray[],int size, int digit) {
     // Declaring tempArray to put the number back into and count to figure out how many of each digit
 	int tempArray[size];
@@ -202,7 +205,8 @@ int *countingSort(int myArray[],int size, int digit) {
  
 	return tempArray;
 }
-//radix sort - greg and brian
+//radix sort - Srts least significant digit first then goes through the larger ones
+//it just works
 int *radixSort(int myArray[],int size){
     int maxData = myArray[0];
     for (int i = 1; i < size; i++){
@@ -223,5 +227,4 @@ void printItems(int *items, int size){
         cout << "i: " << i << " == " << items[i] << endl;
     }
 }
-
 
