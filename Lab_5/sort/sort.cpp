@@ -48,28 +48,31 @@ int *insertionSort(int myArray[], int size){
 }
 //merge sort - brian (use)
 int *merge(int *items, int *items2, int size, int size2){
-    int retval[size+size2];
+    int *retval = new int[(size+size2)];
     int count = 0;
     int astart, bstart;
     astart = 0;
     bstart = 0;
-    if(astart == size){
-        retval[count] = items2[bstart];
-        count++;
-        bstart++;
-    }else if(bstart == size){
-        retval[count] = items[astart];
-        count++;
-        astart++;
-    }else if(items[astart] > items2[bstart]){
-        retval[count] = items2[bstart];
-        count++;
-        bstart++;
-    }else if(items[astart] <= items2[bstart]){
-        retval[count] = items[astart];
-        count++;
-        astart++;
+    for(int i = 0; i < (size+size2); i++){
+        if(astart == size){
+            retval[count] = items2[bstart];
+            count++;
+            bstart++;
+        }else if(bstart == size2){
+            retval[count] = items[astart];
+            count++;
+            astart++;
+        }else if(items[astart] > items2[bstart]){
+            retval[count] = items2[bstart];
+            count++;
+            bstart++;
+        }else if(items[astart] <= items2[bstart]){
+            retval[count] = items[astart];
+            count++;
+            astart++;
+        }
     }
+    printItems(retval, (size+size2));
     return retval;
 }
 
@@ -94,14 +97,13 @@ int *mergeSort(int *items, int size){
             l1[i] = items[i];
         }
         for(int i = 0; i < size2; i++){
-            l2[i] = items[(i+size2)];
+            l2[i] = items[(i+size1)];
         }
+        printItems(l1, size1);
+        printItems(l2, size2);
 
-        //first split the array
-        for(int i = 0; i < size/2; i++){
-            l1[i] = mergeSort(l1, size/2)[i];
-            l2[i] = mergeSort(l2, size/2)[i];
-        }
+        l1 = mergeSort(l1, size1);
+        l2 = mergeSort(l2, size2);
         return(merge(l1,l2, size1, size2));
     }
 }
