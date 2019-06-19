@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdio.h>       
 #include <stdlib.h>     // srand, rand 
-#include <time.h>     
-#include <math.h>       //log10  
+#include <time.h>   
+#include <math.h>       //log10      
 
 #include "sort.h"
 using namespace std;
@@ -185,7 +185,7 @@ int *countingSort(int *items, int size){
 
 int *countingSort(int myArray[],int size, int digit) {
     // Declaring tempArray to put the number back into and count to figure out how many of each digit
-	int *tempArray = new int[size];
+    int *tempArray = new int[size];
     int *count = new int[10];
  
 	// Count the number of times each digit occurred
@@ -213,8 +213,8 @@ int *radixSort(int myArray[],int size){
     //Choose what digit we are dealing with starting with least significant (1) and going to maxData's largest digit.
     //This is assuming code takes 1 and makes it xxx1 (x being amount of digits)
 
-
-    int digit = int(log10(size*2));
+    
+   int digit = int(log10(size*2));
     int *retval = new int[size];
         for(int i = 0; i < size; i++){
             retval[i] = myArray[i];
