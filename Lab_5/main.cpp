@@ -1,6 +1,7 @@
 //main
 #include <iostream>
 #include ".\\sort\sort.h"
+#include ".\\linked_list\linked_list.h"
 using namespace std;
 #include <stdio.h>       
 #include <stdlib.h>     
@@ -14,7 +15,7 @@ int main(){
     // int size = 0;
     // int num;
     // srand(time(0));
-    // cout << "Size of array: \n 1) 10 \n 2) 100 \n 3) 500 \n 4)5000 \n 5)25000 \n 6) 100000 " <<endl;
+    // cout << "Size of array: \n 1) 10 \n 2) 100 \n 3) 500 \n 4) 5000 \n 5) 25000 \n 6) 100000 " <<endl;
     // cin >> num;
     // switch(num){
     //     case 1: 
@@ -39,26 +40,45 @@ int main(){
     // //We can add a feature that if the size is less we use a "delete"
     // //So then we shave the array down to the correct size
     // int myArray[size];
-    // for(int i=0;i<size;i++){
-    //     myArray[i] = rand() % size +1;
-    // }
-    const int size = 10;
-    int myitems[size] = {1,6,8,3,4,10,2,12,7,20};
+    srand(time(0));
+    int size = 50;
+    int count = 1;
+    linked_list mylist;
+    for(int i=0;i<size;i++){
+        student temp;
+        temp.m_number = rand()%50+1;
+        temp.firstName = rand()%50+1;
+        temp.lastName = rand()%50+1;
+
+        mylist.addItem(temp);
+        count++;
+    }
+
+    int pick;
+    cout << "Pick a sort (1)bubble (2)bubble reverse (3)radix (4)radix reverse" << endl;
+    cin >> pick;
+    switch(pick){
+        case 1:
+            mylist.bubbleSort();
+            break;
+        case 2:
+            mylist.bubble_flip();
+            break;
+        case 3:
+            mylist.radixSort();
+            break;
+        case 4:
+            mylist.radix_flip();
+            break;
+    }
     
-    int *mysorteditems = radixSort(myitems, size);
-    // for(int i = 0; i < size; i++){
-    //     mysorteditems[i] = quickSort(myitems, size)[i];
-    // }
-    printItems(mysorteditems, 10);
-
-    //We can add a feature that if the size is less we use a "delete"
-    //So then we shave the array down to the correct size
-
-    //Task 2 
-    auto t1 = Clock::now();
-    // Put the Sort that is being used in between here:
-
-    auto t2 = Clock::now();
-    std::cout << "Delta t2-t1: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 -t1).count()<< " nanoseconds" << std::endl;
+    for(int i = 0; i < size; i++){
+        cout << mylist.seeAt(i).m_number << endl;
+    }
+    //bubble
+    //insercion
+    //merge
     
+
+
 }

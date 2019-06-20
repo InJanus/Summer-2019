@@ -1,5 +1,6 @@
 #include "linked_list.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 void throwError(string message){
@@ -8,6 +9,10 @@ void throwError(string message){
     }catch(exception& e){
         cerr << e.what() << endl;
     }
+}
+
+void isSorted(){
+
 }
 
 
@@ -39,43 +44,21 @@ student linked_list::getItem(int location){
 }
 
 void linked_list::addItem(student stud){
-    student *temp;
     student *temp2 = head;
-    temp = new student;
+    student *temp = new student;
     temp-> m_number = stud.m_number;
     temp-> firstName = stud.firstName;
     temp-> lastName = stud.lastName;
-    temp-> birthday = stud.birthday;
-    temp-> gpa = stud.gpa;
     if(temp2 == nullptr){
         head = temp;
     }else{
-        if(temp->m_number < temp2->m_number){
-            head = temp;
-            head -> next = temp2;
+        while(temp2-> next != nullptr){
+            temp2 = temp2->next;
         }
-        else{
-            bool flag = false;
-            if(temp2->next == nullptr){
-                temp2 -> next = temp;
-                flag = true;
-            }else{
-                while(temp->m_number > temp2->next->m_number){
-                    if(temp2->next->next == nullptr){
-                        temp2 -> next -> next = temp;
-                        flag = true;
-                        break;
-                    }else{
-                        temp2 = temp2->next;
-                    }
-                }
-            }
-            if(!flag){
-                temp -> next = temp2 ->next;
-                temp2 -> next = temp;
-            }
-        }
+
+        temp2->next = temp;
     }
+
 }
 
 int linked_list::size(){
@@ -153,4 +136,225 @@ student linked_list::seeAt(int location){
 
 void linked_list::reset(){
     mylocation = 0; 
+}
+
+void linked_list::bubbleSort(){
+    int ammountSorted = 0;
+    student *temp = head;
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
+
+    while(!stop){
+        if(temp->m_number > temp->next->m_number){
+            //switch the items
+            tempdata.m_number = temp->m_number;
+            tempdata.firstName = temp->firstName;
+            tempdata.lastName = temp->lastName;
+            temp->m_number = temp->next->m_number;
+            temp->firstName = temp->next->firstName;
+            temp->lastName = temp->next->lastName;
+            temp->next->m_number = tempdata.m_number;
+            temp->next->firstName = tempdata.firstName;
+            temp->next->lastName = tempdata.lastName;
+            
+        }else{
+            count++;
+        }
+
+        if(count == size()-1){
+            stop = true;
+        }
+        if(temp->next->next == nullptr){
+            temp = head;
+            count = 0;
+        }else{
+            temp = temp->next;
+        }
+
+    }
+    
+}
+
+bool linked_list::isSorted(){
+    student *temp = head;
+    for(int i = 0; i < size(); i++){
+        if(temp->m_number > temp->next->m_number){
+            return false;
+        }
+        temp = temp->next;
+    }
+    return true;
+}
+
+void linked_list::quickSort(){
+    int holder = rand() % size()+1;
+    student *tempArray = head;
+    student *tempArrayHead;
+    student *temp = head;
+    int holderMnumber;
+    for(int i = 0; i < holder; i++){
+        temp = temp->next;
+        holderMnumber = temp->m_number;
+    }
+    tempArrayHead = tempArray;
+    for(int j = 0; j < 3;j++){
+        for(int i = 0; i < size()-1; i++){
+            //j=0 less than holder
+            if(temp->m_number < holderMnumber && j == 0){
+                tempArray->m_number = temp->m_number;
+                tempArray->firstName = temp->firstName;
+                tempArray->lastName = temp->lastName;
+                tempArray = tempArray->next;
+            }
+            //j=1 equal to holder
+            else if(temp->m_number == holderMnumber && j == 1){
+                tempArray->m_number = temp->m_number;
+                tempArray->firstName = temp->firstName;
+                tempArray->lastName = temp->lastName;
+                tempArray = tempArray->next; 
+            }
+            //j=2 greater than holder
+            else if(temp->m_number > holderMnumber && j == 2){
+                tempArray->m_number = temp->m_number;
+                tempArray->firstName = temp->firstName;
+                tempArray->lastName = temp->lastName;
+                tempArray = tempArray->next; 
+            }
+            temp = temp->next;
+        }
+        
+    }
+    head = tempArray;
+    if(isSorted()){
+        return;
+    }
+    quickSort(); 
+
+}
+
+void linked_list::radixSort(){
+    student *temp = head;
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
+
+    //int digit = int(log10(size()*2));
+    int digit = 1;
+        for(int j = 0; j <= digit; j++){
+            stop = false;
+            while(!stop){
+                if((temp->next->m_number/int(pow(10,j)))%10 < (temp->m_number/int(pow(10,j)))%10){
+            //switch the items
+                    tempdata.m_number = temp->m_number;
+                    tempdata.firstName = temp->firstName;
+                    tempdata.lastName = temp->lastName;
+                    temp->m_number = temp->next->m_number;
+                    temp->firstName = temp->next->firstName;
+                    temp->lastName = temp->next->lastName;
+                    temp->next->m_number = tempdata.m_number;
+                    temp->next->firstName = tempdata.firstName;
+                    temp->next->lastName = tempdata.lastName;
+            
+                }else{
+                    count++;
+                }
+
+                if(count == size()-1){
+                    stop = true;
+                }
+                if(temp->next->next == nullptr){
+                    temp = head;
+                    count = 0;
+                }else{
+                    temp = temp->next;
+                }
+                
+            }
+
+        }
+}
+
+void linked_list::bubble_flip(){
+    int ammountSorted = 0;
+    student *temp = head;
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
+
+    while(!stop){
+        if(temp->m_number < temp->next->m_number){
+            //switch the items
+            tempdata.m_number = temp->m_number;
+            tempdata.firstName = temp->firstName;
+            tempdata.lastName = temp->lastName;
+            temp->m_number = temp->next->m_number;
+            temp->firstName = temp->next->firstName;
+            temp->lastName = temp->next->lastName;
+            temp->next->m_number = tempdata.m_number;
+            temp->next->firstName = tempdata.firstName;
+            temp->next->lastName = tempdata.lastName;
+            
+        }else{
+            count++;
+        }
+
+        if(count == size()-1){
+            stop = true;
+        }
+        if(temp->next->next == nullptr){
+            temp = head;
+            count = 0;
+        }else{
+            temp = temp->next;
+        }
+
+    }
+    
+}
+
+void linked_list::radix_flip(){
+    student *temp = head;
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
+
+    //int digit = int(log10(size()*2));
+    int digit = 1;
+        for(int j = 0; j <= digit; j++){
+            stop = false;
+            while(!stop){
+                if((temp->next->m_number/int(pow(10,j)))%10 > (temp->m_number/int(pow(10,j)))%10){
+            //switch the items
+                    tempdata.m_number = temp->m_number;
+                    tempdata.firstName = temp->firstName;
+                    tempdata.lastName = temp->lastName;
+                    temp->m_number = temp->next->m_number;
+                    temp->firstName = temp->next->firstName;
+                    temp->lastName = temp->next->lastName;
+                    temp->next->m_number = tempdata.m_number;
+                    temp->next->firstName = tempdata.firstName;
+                    temp->next->lastName = tempdata.lastName;
+            
+                }else{
+                    count++;
+                }
+
+                if(count == size()-1){
+                    stop = true;
+                }
+                if(temp->next->next == nullptr){
+                    temp = head;
+                    count = 0;
+                }else{
+                    temp = temp->next;
+                }
+                
+            }
+
+        }
 }

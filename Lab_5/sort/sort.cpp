@@ -74,7 +74,6 @@ int *merge(int *items, int *items2, int size, int size2){
             astart++;
         }
     }
-    printItems(retval, (size+size2));
     return retval;
 }
 
@@ -102,8 +101,6 @@ int *mergeSort(int *items, int size){
         for(int i = 0; i < size2; i++){
             l2[i] = items[(i+size1)];
         }
-        printItems(l1, size1);
-        printItems(l2, size2);
 
         l1 = mergeSort(l1, size1);
         l2 = mergeSort(l2, size2);
@@ -124,7 +121,7 @@ bool isSorted(int *items, int size){
 int *quickSort(int myArray[], int size){
     //establish the piece the spot to make things go to the left and right of.
     int holder = rand() % size +1;
-    int tempArray[size];
+    int *tempArray = new int[size];
     int loc = 0;
     for(int j = 0; j < 3;j++){
         for(int i = 0; i < size; i++){
@@ -149,7 +146,6 @@ int *quickSort(int myArray[], int size){
     if(isSorted(tempArray, size)){
         return tempArray;
     }
-    printItems(tempArray, size);
     quickSort(tempArray, size); 
 }
 
@@ -183,6 +179,7 @@ int *countingSort(int *items, int size){
 
 }
 
+<<<<<<< HEAD
 int *countingSort(int myArray[],int size, int digit) {
     // Declaring tempArray to put the number back into and count to figure out how many of each digit
     int *tempArray = new int[size];
@@ -206,6 +203,8 @@ int *countingSort(int myArray[],int size, int digit) {
  
 	return tempArray;
 }
+=======
+>>>>>>> 3f4b8f6a0aaa1287173ffc7ed5d41dce8651a2cc
 //radix sort - Srts least significant digit first then goes through the larger ones
 //it just works
 int *radixSort(int myArray[],int size){
@@ -213,8 +212,12 @@ int *radixSort(int myArray[],int size){
     //Choose what digit we are dealing with starting with least significant (1) and going to maxData's largest digit.
     //This is assuming code takes 1 and makes it xxx1 (x being amount of digits)
 
+<<<<<<< HEAD
     
    int digit = int(log10(size*2));
+=======
+    int digit = int(log10(size*2));
+>>>>>>> 3f4b8f6a0aaa1287173ffc7ed5d41dce8651a2cc
     int *retval = new int[size];
         for(int i = 0; i < size; i++){
             retval[i] = myArray[i];
@@ -234,15 +237,6 @@ int *radixSort(int myArray[],int size){
             ammountSorted++;
             }
         }
-
-    // myArray
-
-
-
-    // for(int digit = 1; (size*2)/digit > 0; digit*10){
-    //     myArray = countingSort(myArray,10,digit);
-    // }
-    // return myArray;
     return retval;
 }
 
