@@ -41,6 +41,7 @@ int main(){
     // //So then we shave the array down to the correct size
     // int myArray[size];
     srand(time(0));
+    int test[50];
     int size = 50;
     int count = 1;
     linked_list mylist;
@@ -49,28 +50,39 @@ int main(){
         temp.m_number = rand()%50+1;
         temp.firstName = rand()%50+1;
         temp.lastName = rand()%50+1;
+        // test[i] = rand()%50+1;
+        // cout << test[i] << endl;
+
 
         mylist.addItem(temp);
         count++;
     }
+    insertionSort(test,50);
 
-    int pick;
-    cout << "Pick a sort (1)First Name (2)First Name reverse (3)MNumber (4)Mnumber reverse" << endl;
-    cin >> pick;
-    switch(pick){
-        case 1:
-            mylist.bubbleSort();
-            break;
-        case 2:
-            mylist.bubble_flip();
-            break;
-        case 3:
-            mylist.radixSort();
-            break;
-        case 4:
-            mylist.radix_flip();
-            break;
+    for(int i = 0; i < size; i++){
+        cout << mylist.seeAt(i).m_number << endl;
     }
+
+    // int pick;
+    // cout << "Pick a sort (1)First Name (2)First Name reverse (3)MNumber (4)Mnumber reverse" << endl;
+    // cin >> pick;
+    // switch(pick){
+    //     case 1:
+    //         mylist.bubbleSort_mn();
+    //         break;
+    //     case 2:
+    //         mylist.bubble_flip_mn();
+    //         break;
+    //     case 3:
+    //         mylist.radixSort();
+    //         break;
+    //     case 4:
+    //         mylist.radix_flip();
+    //         break;
+    // }
+    mylist.insertionSort_mn();
+
+    cout << endl << endl << endl;
     
     for(int i = 0; i < size; i++){
         cout << mylist.seeAt(i).m_number << endl;
