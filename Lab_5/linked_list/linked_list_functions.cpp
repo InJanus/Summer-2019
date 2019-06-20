@@ -147,7 +147,7 @@ void linked_list::bubbleSort(){
     int count = 0;
 
     while(!stop){
-        if(temp->m_number > temp->next->m_number){
+        if(temp->firstName.compare(temp->next->firstName) < 0){
             //switch the items
             tempdata.m_number = temp->m_number;
             tempdata.firstName = temp->firstName;
@@ -286,7 +286,7 @@ void linked_list::bubble_flip(){
     int count = 0;
 
     while(!stop){
-        if(temp->m_number < temp->next->m_number){
+        if(temp->firstName.compare(temp->next->firstName) > 0){
             //switch the items
             tempdata.m_number = temp->m_number;
             tempdata.firstName = temp->firstName;
