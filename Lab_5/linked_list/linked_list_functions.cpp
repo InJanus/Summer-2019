@@ -478,7 +478,7 @@ void linked_list::radix_flip(){
 }
 
 void linked_list::insertionSort_mn(){
-    student holder;
+   student holder;
     student *temp = head;
     student *check = head;
 
@@ -512,7 +512,7 @@ void linked_list::insertionSort_mn(){
             temp = temp->prev;
             k--;
         }
-        if(temp == nullptr){
+         if(temp == nullptr){
             temp = head;
             temp->m_number = holder.m_number;
             temp->firstName = holder.firstName;
