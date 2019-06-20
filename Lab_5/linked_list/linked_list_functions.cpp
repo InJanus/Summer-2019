@@ -476,8 +476,6 @@ void linked_list::radix_flip(){
 
         }
 }
-<<<<<<< HEAD
-=======
 
 void linked_list::insertionSort_mn(){
     student *holder;
@@ -514,4 +512,3 @@ void linked_list::insertionSort_mn(){
     // return myArray;
     //works
 }
->>>>>>> 7b3f923642c4d35238d8e6728b47d073aa670580
