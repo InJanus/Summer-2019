@@ -41,26 +41,22 @@ int main(){
     // //So then we shave the array down to the correct size
     // int myArray[size];
     srand(time(0));
-    int test[50];
     int size = 50;
     int count = 1;
     linked_list mylist;
     for(int i=0;i<size;i++){
         student temp;
         temp.m_number = rand()%50+1;
-        temp.firstName = rand()%50+1;
-        temp.lastName = rand()%50+1;
-        // test[i] = rand()%50+1;
-        // cout << test[i] << endl;
+        temp.firstName = rand()%26+65;
+        temp.lastName = rand()%26+65;
 
 
         mylist.addItem(temp);
         count++;
     }
-    insertionSort(test,50);
 
     for(int i = 0; i < size; i++){
-        cout << mylist.seeAt(i).m_number << endl;
+        cout << mylist.seeAt(i).lastName << endl;
     }
 
     // int pick;
@@ -85,7 +81,7 @@ int main(){
     cout << endl << endl << endl;
     
     for(int i = 0; i < size; i++){
-        cout << mylist.seeAt(i).m_number << endl;
+        // cout << mylist.seeAt(i).lastName << endl;
     }
     //bubble
     //insercion
