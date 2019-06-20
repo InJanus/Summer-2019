@@ -60,7 +60,7 @@ int main(){
     }
 
     // int pick;
-    // cout << "Pick a sort (1)bubble (2)bubble reverse (3)radix (4)radix reverse" << endl;
+    // cout << "Pick a sort (1)First Name (2)First Name reverse (3)MNumber (4)Mnumber reverse" << endl;
     // cin >> pick;
     // switch(pick){
     //     case 1:
