@@ -11,11 +11,6 @@ void throwError(string message){
     }
 }
 
-void isSorted(){
-
-}
-
-
 linked_list::linked_list(){
     head = nullptr;
     mylocation = 0;
