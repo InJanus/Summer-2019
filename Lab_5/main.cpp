@@ -81,7 +81,7 @@ int main(){
     cout << endl << endl << endl;
     
     for(int i = 0; i < size; i++){
-        // cout << mylist.seeAt(i).lastName << endl;
+        cout << mylist.seeAt(i).lastName << endl;
     }
     //bubble
     //insercion
