@@ -11,6 +11,7 @@ struct student{
     string birthday;
     double gpa;
     student *next = nullptr;
+    student *prev = nullptr;
 };
 
 class linked_list{
@@ -27,12 +28,12 @@ class linked_list{
         student seeNext();
         student seeAt(int);
         void reset();
-        bool isSorted();
         void bubbleSort();
-        void quickSort();
         void radixSort();
+        void insertionSort();
         void radix_flip();
         void bubble_flip();
+        void insertion_flip();
 };
 
 #endif

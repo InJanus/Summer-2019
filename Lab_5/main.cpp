@@ -12,34 +12,6 @@ typedef std::chrono::high_resolution_clock Clock;
 
 
 int main(){
-    // int size = 0;
-    // int num;
-    // srand(time(0));
-    // cout << "Size of array: \n 1) 10 \n 2) 100 \n 3) 500 \n 4) 5000 \n 5) 25000 \n 6) 100000 " <<endl;
-    // cin >> num;
-    // switch(num){
-    //     case 1: 
-    //         size = 10;
-    //         break;
-    //     case 2:
-    //         size = 100;
-    //         break;
-    //     case 3: 
-    //         size = 500;
-    //         break;
-    //     case 4: 
-    //         size = 5000;
-    //         break;
-    //     case 5:
-    //         size = 25000;
-    //         break;
-    //     case 6: 
-    //         size = 100000;
-    //         break;
-    // }
-    // //We can add a feature that if the size is less we use a "delete"
-    // //So then we shave the array down to the correct size
-    // int myArray[size];
     srand(time(0));
     int size = 50;
     int count = 1;
@@ -47,15 +19,16 @@ int main(){
     for(int i=0;i<size;i++){
         student temp;
         temp.m_number = rand()%50+1;
-        temp.firstName = rand()%50+1;
-        temp.lastName = rand()%50+1;
+        temp.firstName = rand()%26+65;
+        temp.lastName = rand()%26+65;
+
 
         mylist.addItem(temp);
         count++;
     }
 
     int pick;
-    cout << "Pick a sort (1)bubble (2)bubble reverse (3)radix (4)radix reverse" << endl;
+    cout << "Pick a sort (1)First Name (2)First Name reverse (3)Last Name (4)Last Name reverse (5)MNumber (6)Mnumber reverse" << endl;
     cin >> pick;
     switch(pick){
         case 1:
@@ -65,20 +38,27 @@ int main(){
             mylist.bubble_flip();
             break;
         case 3:
-            mylist.radixSort();
+            mylist.insertionSort();
             break;
         case 4:
+            mylist.insertion_flip();
+            break;
+        case 5:
+            mylist.radixSort();
+            break;
+        case 6:
             mylist.radix_flip();
             break;
     }
-    
+    cout << "ID :  F  :  L" << endl;
+    cout << "-------------" << endl;
     for(int i = 0; i < size; i++){
-        cout << mylist.seeAt(i).m_number << endl;
+        if(mylist.seeAt(i).m_number < 10){
+            cout << mylist.seeAt(i).m_number << "  :  ";
+        }else{
+            cout << mylist.seeAt(i).m_number << " :  ";
+        }
+        cout << mylist.seeAt(i).firstName << "  :  ";
+        cout << mylist.seeAt(i).lastName << "\n";
     }
-    //bubble
-    //insercion
-    //merge
-    
-
-
 }

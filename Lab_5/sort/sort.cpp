@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdio.h>       
 #include <stdlib.h>     // srand, rand 
-#include <time.h>     
-#include <math.h>       //log10  
+#include <time.h>   
+#include <math.h>       //log10      
 
 #include "sort.h"
 using namespace std;

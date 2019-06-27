@@ -11,11 +11,6 @@ void throwError(string message){
     }
 }
 
-void isSorted(){
-
-}
-
-
 linked_list::linked_list(){
     head = nullptr;
     mylocation = 0;
@@ -57,6 +52,7 @@ void linked_list::addItem(student stud){
         }
 
         temp2->next = temp;
+        temp->prev = temp2;
     }
 
 }
@@ -147,7 +143,8 @@ void linked_list::bubbleSort(){
     int count = 0;
 
     while(!stop){
-        if(temp->m_number > temp->next->m_number){
+        //this needs to change based off of what you want to sort by
+        if(temp->firstName.compare(temp->next->firstName) > 0){
             //switch the items
             tempdata.m_number = temp->m_number;
             tempdata.firstName = temp->firstName;
@@ -177,61 +174,43 @@ void linked_list::bubbleSort(){
     
 }
 
-bool linked_list::isSorted(){
+void linked_list::bubble_flip(){
+    int ammountSorted = 0;
     student *temp = head;
-    for(int i = 0; i < size(); i++){
-        if(temp->m_number > temp->next->m_number){
-            return false;
-        }
-        temp = temp->next;
-    }
-    return true;
-}
+    student tempdata;
+    bool flag = false;
+    bool stop = false;
+    int count = 0;
 
-void linked_list::quickSort(){
-    int holder = rand() % size()+1;
-    student *tempArray = head;
-    student *tempArrayHead;
-    student *temp = head;
-    int holderMnumber;
-    for(int i = 0; i < holder; i++){
-        temp = temp->next;
-        holderMnumber = temp->m_number;
-    }
-    tempArrayHead = tempArray;
-    for(int j = 0; j < 3;j++){
-        for(int i = 0; i < size()-1; i++){
-            //j=0 less than holder
-            if(temp->m_number < holderMnumber && j == 0){
-                tempArray->m_number = temp->m_number;
-                tempArray->firstName = temp->firstName;
-                tempArray->lastName = temp->lastName;
-                tempArray = tempArray->next;
-            }
-            //j=1 equal to holder
-            else if(temp->m_number == holderMnumber && j == 1){
-                tempArray->m_number = temp->m_number;
-                tempArray->firstName = temp->firstName;
-                tempArray->lastName = temp->lastName;
-                tempArray = tempArray->next; 
-            }
-            //j=2 greater than holder
-            else if(temp->m_number > holderMnumber && j == 2){
-                tempArray->m_number = temp->m_number;
-                tempArray->firstName = temp->firstName;
-                tempArray->lastName = temp->lastName;
-                tempArray = tempArray->next; 
-            }
+    while(!stop){
+        if(temp->firstName.compare(temp->next->firstName) < 0){
+            //switch the items
+            tempdata.m_number = temp->m_number;
+            tempdata.firstName = temp->firstName;
+            tempdata.lastName = temp->lastName;
+            temp->m_number = temp->next->m_number;
+            temp->firstName = temp->next->firstName;
+            temp->lastName = temp->next->lastName;
+            temp->next->m_number = tempdata.m_number;
+            temp->next->firstName = tempdata.firstName;
+            temp->next->lastName = tempdata.lastName;
+            
+        }else{
+            count++;
+        }
+
+        if(count == size()-1){
+            stop = true;
+        }
+        if(temp->next->next == nullptr){
+            temp = head;
+            count = 0;
+        }else{
             temp = temp->next;
         }
-        
-    }
-    head = tempArray;
-    if(isSorted()){
-        return;
-    }
-    quickSort(); 
 
+    }
+    
 }
 
 void linked_list::radixSort(){
@@ -277,45 +256,6 @@ void linked_list::radixSort(){
         }
 }
 
-void linked_list::bubble_flip(){
-    int ammountSorted = 0;
-    student *temp = head;
-    student tempdata;
-    bool flag = false;
-    bool stop = false;
-    int count = 0;
-
-    while(!stop){
-        if(temp->m_number < temp->next->m_number){
-            //switch the items
-            tempdata.m_number = temp->m_number;
-            tempdata.firstName = temp->firstName;
-            tempdata.lastName = temp->lastName;
-            temp->m_number = temp->next->m_number;
-            temp->firstName = temp->next->firstName;
-            temp->lastName = temp->next->lastName;
-            temp->next->m_number = tempdata.m_number;
-            temp->next->firstName = tempdata.firstName;
-            temp->next->lastName = tempdata.lastName;
-            
-        }else{
-            count++;
-        }
-
-        if(count == size()-1){
-            stop = true;
-        }
-        if(temp->next->next == nullptr){
-            temp = head;
-            count = 0;
-        }else{
-            temp = temp->next;
-        }
-
-    }
-    
-}
-
 void linked_list::radix_flip(){
     student *temp = head;
     student tempdata;
@@ -324,7 +264,7 @@ void linked_list::radix_flip(){
     int count = 0;
 
     //int digit = int(log10(size()*2));
-    int digit = 1;
+    int digit = 8;
         for(int j = 0; j <= digit; j++){
             stop = false;
             while(!stop){
@@ -357,4 +297,100 @@ void linked_list::radix_flip(){
             }
 
         }
+}
+
+void linked_list::insertionSort(){
+    student holder;
+    student *temp = head;
+    // student *check = head;
+    student *place = head;
+    bool flag = false;
+
+    student tempval;
+    int k;  
+    for (int i = 1; i < size(); i++) {
+        temp = place;
+        holder.m_number = temp->next->m_number; 
+        holder.firstName = temp->next->firstName; 
+        holder.lastName = temp->next->lastName; 
+        k = i - 1;  
+        while (k > 0 && temp->lastName.compare(holder.lastName) > 0) { 
+            temp->next->m_number = temp->m_number;
+            temp->next->firstName = temp->firstName;
+            temp->next->lastName = temp->lastName;
+            if(temp->prev == nullptr){
+                flag = true;
+            }else{
+                temp = temp->prev;
+                k--;
+            }
+        }
+        if(flag){
+            temp->m_number = holder.m_number;
+            temp->firstName = holder.firstName;
+            temp->lastName = holder.lastName;  
+        }else{
+            temp->next->m_number = holder.m_number;
+            temp->next->firstName = holder.firstName;
+            temp->next->lastName = holder.lastName;  
+        }
+        place = place->next;
+    }  
+}
+
+void linked_list::insertion_flip(){
+    student holder;
+    student *temp = head;
+    // student *check = head;
+    student *place = head;
+    bool flag = false;
+
+    student tempval;
+    int k;  
+    for (int i = 1; i < size(); i++) {
+        temp = place;
+        holder.m_number = temp->next->m_number; 
+        holder.firstName = temp->next->firstName; 
+        holder.lastName = temp->next->lastName; 
+        k = i - 1;  
+
+        // cout << endl;
+        // check = head;
+        // for(int j = 0; j < size(); j++){
+        //     cout << check->lastName;
+        //     check = check->next;
+        // }
+        //Find how far left to insert the holder number we have... if not found put at spot "0"
+        //Also shift each value over to the right by 1
+        while (k > 0 && temp->lastName.compare(holder.lastName) < 0) { 
+            // tempval.m_number = temp->next->m_number;
+            // tempval.firstName = temp->next->firstName;
+            // tempval.lastName = temp->next->lastName;
+            temp->next->m_number = temp->m_number;
+            temp->next->firstName = temp->firstName;
+            temp->next->lastName = temp->lastName;
+            // temp->m_number = tempval.m_number;
+            // temp->firstName = tempval.firstName;
+            // temp->lastName = tempval.lastName;
+            // myArray[k + 1] = myArray[k];
+            if(temp->prev == nullptr){
+                flag = true;
+            }else{
+                temp = temp->prev;
+                k--;
+            }
+        }
+        if(flag){
+            temp->m_number = holder.m_number;
+            temp->firstName = holder.firstName;
+            temp->lastName = holder.lastName;  
+        }else{
+            temp->next->m_number = holder.m_number;
+            temp->next->firstName = holder.firstName;
+            temp->next->lastName = holder.lastName;  
+        }
+        place = place->next;
+        // myArray[k + 1] = holder;  
+    }  
+    // return myArray;
 }
