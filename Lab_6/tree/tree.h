@@ -1,10 +1,21 @@
+#include <string>
+using namespace std;
+
 class tree{
+
     private:
-        int data;
+        string data;
         tree* right;
         tree* left;
     public:
+        tree();         //constructer
+        ~tree();        //destructer
+        void insert(string);
+        bool find(string);
+        int size();
+        string* getAllAcending();
+        string* getAllDecending();
+        void empty();
+        void remove();
         void print();
-        void addNode();
-        void findNode();
 };
