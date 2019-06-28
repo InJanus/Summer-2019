@@ -478,24 +478,28 @@ void linked_list::radix_flip(){
 }
 
 void linked_list::insertionSort_mn(){
-   student holder;
+    student holder;
     student *temp = head;
     student *check = head;
+    student *place = head;
+    bool flag = false;
 
     student tempval;
     int k;  
     cout << "the size is: " << size() << endl;
-    for (int i = 1; i < size(); i++) {  
+    for (int i = 1; i < size(); i++) {
+        temp = place;
         holder.m_number = temp->next->m_number; 
         holder.firstName = temp->next->firstName; 
         holder.lastName = temp->next->lastName; 
         k = i - 1;  
 
         cout << endl;
-        // for(int j = 0; j < size()-1; j++){
-        //     cout << check->lastName;
-        //     check = check->next;
-        // }
+        check = head;
+        for(int j = 0; j < size(); j++){
+            cout << check->lastName;
+            check = check->next;
+        }
         //Find how far left to insert the holder number we have... if not found put at spot "0"
         //Also shift each value over to the right by 1
         while (k >= 0 && temp->lastName.compare(holder.lastName) > 0) { 
@@ -512,8 +516,7 @@ void linked_list::insertionSort_mn(){
             temp = temp->prev;
             k--;
         }
-         if(temp == nullptr){
-            temp = head;
+        if(temp->next == nullptr){
             temp->m_number = holder.m_number;
             temp->firstName = holder.firstName;
             temp->lastName = holder.lastName;  
@@ -522,9 +525,8 @@ void linked_list::insertionSort_mn(){
             temp->next->firstName = holder.firstName;
             temp->next->lastName = holder.lastName;  
         }
-        temp = temp->next;
+        place = place->next;
         // myArray[k + 1] = holder;  
     }  
     // return myArray;
-    //works
 }
