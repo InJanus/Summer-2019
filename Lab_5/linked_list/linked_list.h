@@ -28,20 +28,12 @@ class linked_list{
         student seeNext();
         student seeAt(int);
         void reset();
-        void bubbleSort_mn();
-        void bubbleSort_fn();
-        void bubbleSort_ln();
+        void bubbleSort();
         void radixSort();
-        void insertionSort_mn();
-        void insertionSort_fn();
-        void insertionSort_ln();
+        void insertionSort();
         void radix_flip();
-        void bubble_flip_mn();
-        void bubble_flip_fn();
-        void bubble_flip_ln();
-        void insertion_flip_mn();
-        void insertion_flip_fn();
-        void insertion_flip_ln();
+        void bubble_flip();
+        void insertion_flip();
 };
 
 #endif
