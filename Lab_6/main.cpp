@@ -4,6 +4,11 @@
 using namespace std;
 
 int main(){
-    cout << "Hello World!" << endl;
-    return 0;
+    tree mytree;
+    mytree.insert("d");
+    mytree.insert("c");
+    mytree.insert("e");
+    mytree.insert("a");
+    mytree.insert("b");
+    cout << mytree.find("b")->data << endl;
 }

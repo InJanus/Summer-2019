@@ -3,8 +3,8 @@ using namespace std;
 
 struct node{
     string data;
-    node* right;
-    node* left;
+    node* right = nullptr;
+    node* left = nullptr;
 };
 
 class tree{
@@ -12,14 +12,14 @@ class tree{
     private:
         node* root;
     public:
-        tree();         //constructer
-        ~tree();        //destructer
-        void insert(string);
-        node* find(string);
+        tree(); //done         //constructer
+        // ~tree();        //destructer
+        void insert(string);            //done
+        node* find(string);             //done
         int size();
         string* getAllAcending();
         string* getAllDecending();
         void empty();
-        void remove();
-        void print();
+        void remove(string);
+        void print();                   //done
 };
