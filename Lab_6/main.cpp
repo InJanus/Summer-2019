@@ -11,4 +11,5 @@ int main(){
     mytree.insert("a");
     mytree.insert("b");
     cout << mytree.find("b")->data << endl;
+    cout << mytree.getSize() << endl;
 }

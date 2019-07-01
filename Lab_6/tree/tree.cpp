@@ -74,7 +74,7 @@ void tree::insert(string key){
     }
 }
 
-int tree::Size(){
+int tree::getSize(){
     return size;
 }
 
@@ -85,45 +85,45 @@ void tree::remove(string key){
     node *temp = root;
     node *temp2;
     
-//     while (temp->data != key){ //temp is node to remove
-//         temp2 = temp;	//temp2 is temp's parent
-//         if(key > temp->data){	
-//             temp = temp-> right;
-//         }
-//         else{
-//             temp = temp->left;
-//         }
-//     }
-//     if(temp->left ==  nullptr && temp->right == nullptr){ //remove leaf
-//         if(temp2->data > temp->data) temp2->left = nullptr;
-//         else temp2->right = nullptr;
-//         delete temp;
-//     }
-//     else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on left
-//         if(temp2->data > temp->data){
-//             temp2->left = temp->left;
-//         }
-//         else{
-//             temp2->right = temp->left;
-//         }
-//         delete temp;
-//     }
-//     else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on right
-//         if(temp2->data > temp->data){
-//             temp2->left = temp->left; //may need to fix
-//         }
-//         else{
-//             temp2->right = temp->left; //may need to fix
-//         }
-//         delete temp;
-//     }
-//     else{ // remove with 2 children
-//         node *replace = GetLagestSmaller(temp);
-//         replace->left = temp->left;
-//         replace->right = temp->right;
-//         if(temp2->data > replace->data) temp2-left = replace;
-//         else temp2->right = replace;
-//         delete temp;
-//     }
-//     //still need to handle removing root;
-// }
+    while (temp->data != key){ //temp is node to remove
+        temp2 = temp;	//temp2 is temp's parent
+        if(key > temp->data){	
+            temp = temp-> right;
+        }
+        else{
+            temp = temp->left;
+        }
+    }
+    if(temp->left ==  nullptr && temp->right == nullptr){ //remove leaf
+        if(temp2->data > temp->data) temp2->left = nullptr;
+        else temp2->right = nullptr;
+        delete temp;
+    }
+    else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on left
+        if(temp2->data > temp->data){
+            temp2->left = temp->left;
+        }
+        else{
+            temp2->right = temp->left;
+        }
+        delete temp;
+    }
+    else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on right
+        if(temp2->data > temp->data){
+            temp2->left = temp->left; //may need to fix
+        }
+        else{
+            temp2->right = temp->left; //may need to fix
+        }
+        delete temp;
+    }
+    else{ // remove with 2 children
+        node *replace = GetLagestSmaller(temp); //replace
+        replace->left = temp->left;
+        replace->right = temp->right;
+        if(temp2->data > replace->data) temp2->left = replace;
+        else temp2->right = replace;
+        delete temp;
+    }
+    //still need to handle removing root;
+}

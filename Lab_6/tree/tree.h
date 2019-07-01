@@ -11,16 +11,16 @@ class tree{
 
     private:
         node* root;
+        int size;
     public:
         tree(); //done         //constructer
         // ~tree();        //destructer
         void insert(string);            //done
         node* find(string);             //done
-        int size();
+        int getSize();                  //done
         string* getAllAcending();
         string* getAllDecending();
         void empty();
         void remove(string);        
         void print();                   //done
-        int size;                       //done
 };
