@@ -118,12 +118,17 @@ void tree::remove(string key){
         delete temp;
     }
     else{ // remove with 2 children
-        node *replace = GetLagestSmaller(temp); //replace
+        node *temp3 = root;
+        temp3 = temp3 -> left;
+        while (temp3 -> right != nullptr){
+            temp3 = temp3 -> right;
+        }
+        node *replace = temp3; //replace
         replace->left = temp->left;
         replace->right = temp->right;
         if(temp2->data > replace->data) temp2->left = replace;
         else temp2->right = replace;
-        delete temp;
+        delete temp3;
     }
     //still need to handle removing root;
 }
