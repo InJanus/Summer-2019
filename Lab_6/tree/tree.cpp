@@ -5,7 +5,7 @@ void tree::print(){
     string mytemp;
 }
 
-int Find(string key){
+int tree::find(string key){
     node *temp = root;
     while(temp != nullptr && temp->data != key){
         if(key > temp->data){
@@ -30,7 +30,7 @@ int FindR(string key, node *t = root){
     return FindR(key, t->left);
 }
 
-void Insert(string key){
+void tree::insert(string key){
     node *temp = root;
     node *temp2;
     if(temp == nullptr){
