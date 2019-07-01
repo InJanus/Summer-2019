@@ -1,21 +1,26 @@
 #include <string>
 using namespace std;
 
+struct node{
+    string data;
+    node* right;
+    node* left;
+};
+
 class tree{
 
     private:
-        string data;
-        tree* right;
-        tree* left;
+        node* root;
     public:
         tree();         //constructer
         ~tree();        //destructer
         void insert(string);
-        bool find(string);
-        int size();
+        node* find(string);
+        int Size();
         string* getAllAcending();
         string* getAllDecending();
         void empty();
         void remove();
         void print();
+        int size;
 };

@@ -1,33 +1,29 @@
 #include "tree.h"
+#include <iostream>
 using namespace std;
 
 void tree::print(){
-    string mytemp;
+    bool stop = false;
+
+    while(!stop){
+        
+    }
 }
 
-int tree::find(string key){
+node* tree::find(string key){
     node *temp = root;
     while(temp != nullptr && temp->data != key){
-        if(key > temp->data){
+        if(temp->data.compare(key) > 1){ //test to see if correct
             temp = temp-> right;
         }
         else{
             temp = temp->left;
         }
     }
-    if(temp == nullptr) throw "Not Found!";
-    return temp->data;
-}
-
-int FindR(string key, node *t = root){
-    if(t == nullptr) throw "Not Found!";
-    if(t->data == key) {
-        return t->data;
-    }
-    if(t->data < key){
-        return FindR(key, t->right);
-    }
-    return FindR(key, t->left);
+    if(temp == nullptr){
+        cout << "node not found" << endl;
+    }// throw "Not Found!";
+    return temp;
 }
 
 void tree::insert(string key){
@@ -36,6 +32,7 @@ void tree::insert(string key){
     if(temp == nullptr){
         root = new node;
         root->data = key;
+        size++;
         return;
     }		
     while (temp != nullptr){
@@ -50,16 +47,23 @@ void tree::insert(string key){
     if(temp2->data > key){
         temp2->left = new node;
         temp2->left->data = key;
+        size++;
     }
     else{
         temp2->right = new node;
         temp2->right->data = key;
+        size++;
     }
 }
 
-void Delete(int key){
+int tree::Size(){
+    return size;
+}
+
+// DONT FORGET TO SUBTRACT SIZE <-------------------------------------------------------------------
+void tree::remove(string key){
     if(root == nullptr) throw "Empty tree Error";
-    Find(key); //handles the not in tree condition
+    find(key); //handles the not in tree condition
     node *temp = root;
     node *temp2;
     
