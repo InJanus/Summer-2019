@@ -78,7 +78,6 @@ int tree::getSize(){
     return size;
 }
 
-// DONT FORGET TO SUBTRACT SIZE <-------------------------------------------------------------------
 void tree::remove(string key){
     if(root == nullptr) throw "Empty tree Error";
     find(key); //handles the not in tree condition
@@ -94,13 +93,15 @@ void tree::remove(string key){
             temp = temp->left;
         }
     }
-    if(temp->left ==  nullptr && temp->right == nullptr){ //remove leaf
+    //remove leaf
+    if(temp->left ==  nullptr && temp->right == nullptr){ 
         if(temp2->data > temp->data) temp2->left = nullptr;
         else temp2->right = nullptr;
         delete temp;
         size--;
     }
-    else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on left
+    //remove with 1 child on left
+    else if(temp->right == nullptr && temp->left != nullptr){ 
         if(temp2->data > temp->data){
             temp2->left = temp->left;
         }
@@ -110,16 +111,19 @@ void tree::remove(string key){
         delete temp;
         size --;
     }
-    else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on right
+    //remove with 1 child on right
+    else if(temp->left == nullptr && temp->right != nullptr){ 
         if(temp2->data > temp->data){
-            temp2->left = temp->left; //may need to fix
+            temp2->right = temp->right; //
         }
         else{
-            temp2->right = temp->left; //may need to fix
+            temp2->left = temp->right; //
         }
         delete temp;
+        size--;
     }
-    else{ // remove with 2 children
+    // remove with 2 children
+    else{ 
         node *temp3 = root;
         temp3 = temp3 -> left;
         while (temp3 -> right != nullptr){
