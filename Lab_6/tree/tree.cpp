@@ -1,36 +1,32 @@
 #include "tree.h"
+#include <iostream>
 using namespace std;
 
 void tree::print(){
-    string mytemp;
+    bool stop = false;
+
+    while(!stop){
+        
+    }
 }
 
-int Find(string key){
+node* tree::find(string key){
     node *temp = root;
     while(temp != nullptr && temp->data != key){
-        if(key > temp->data){
+        if(temp->data.compare(key) > 1){ //test to see if correct
             temp = temp-> right;
         }
         else{
             temp = temp->left;
         }
     }
-    if(temp == nullptr) throw "Not Found!";
-    return temp->data;
+    if(temp == nullptr){
+        cout << "node not found" << endl;
+    }// throw "Not Found!";
+    return temp;
 }
 
-int FindR(string key, node *t = root){
-    if(t == nullptr) throw "Not Found!";
-    if(t->data == key) {
-        return t->data;
-    }
-    if(t->data < key){
-        return FindR(key, t->right);
-    }
-    return FindR(key, t->left);
-}
-
-void Insert(string key){
+void tree::insert(string key){
     node *temp = root;
     node *temp2;
     if(temp == nullptr){
@@ -56,6 +52,9 @@ void Insert(string key){
         temp2->right->data = key;
     }
 }
+
+
+
 
 void Delete(int key){
     if(root == nullptr) throw "Empty tree Error";
