@@ -10,8 +10,8 @@ class node{
 };
 
 class tree{
-    
-	int Find(int key){
+
+	int Find(string key){
 		node *temp = root;
 		while(temp != nullptr && temp->data != key){
 			if(key > temp->data){
@@ -32,7 +32,7 @@ class tree{
 		return FindR(key, t->left);
 	}
 	
-	void Add(int key){
+	void Insert(string key){
 		node *temp = root;
 		node *temp2;
 		if(temp == nullptr){
