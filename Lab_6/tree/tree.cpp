@@ -62,16 +62,16 @@ void tree::insert(string key){
             temp = temp->left;
         }
     }
-    if(temp2->data.compare(key) == 1){
-        temp2->left = new node;
-        temp2->left->data = key;
-        size++;
-    }
-    else{
-        temp2->right = new node;
-        temp2->right->data = key;
-        size++;
-    }
+        if(temp2->data.compare(key) == 1){
+            temp2->left = new node;
+            temp2->left->data = key;
+            size++;
+        }
+        else{
+            temp2->right = new node;
+            temp2->right->data = key;
+            size++;
+        }
 }
 
 int tree::getSize(){
@@ -98,6 +98,7 @@ void tree::remove(string key){
         if(temp2->data > temp->data) temp2->left = nullptr;
         else temp2->right = nullptr;
         delete temp;
+        size--;
     }
     else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on left
         if(temp2->data > temp->data){
@@ -107,6 +108,7 @@ void tree::remove(string key){
             temp2->right = temp->left;
         }
         delete temp;
+        size --;
     }
     else if(temp->right == nullptr && temp->left != nullptr){ //remove with 1 child on right
         if(temp2->data > temp->data){
@@ -126,9 +128,12 @@ void tree::remove(string key){
         node *replace = temp3; //replace
         replace->left = temp->left;
         replace->right = temp->right;
-        if(temp2->data > replace->data) temp2->left = replace;
-        else temp2->right = replace;
+        if(temp2->data > replace->data){
+            temp2->left = replace;
+        } 
+        else {
+            temp2->right = replace;
+        }
         delete temp3;
     }
-    //still need to handle removing root;
 }
