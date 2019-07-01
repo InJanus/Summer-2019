@@ -20,6 +20,7 @@ class tree{
         string* getAllAcending();
         string* getAllDecending();
         void empty();
-        void remove(string);
+        void remove(string);        
         void print();                   //done
+        int size;                       //done
 };

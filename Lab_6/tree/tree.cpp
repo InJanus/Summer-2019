@@ -50,6 +50,7 @@ void tree::insert(string key){
     if(temp == nullptr){
         root = new node;
         root->data = key;
+        size++;
         return;
     }		
     while (temp != nullptr){
@@ -64,21 +65,25 @@ void tree::insert(string key){
     if(temp2->data.compare(key) == 1){
         temp2->left = new node;
         temp2->left->data = key;
+        size++;
     }
     else{
         temp2->right = new node;
         temp2->right->data = key;
+        size++;
     }
 }
 
+int tree::Size(){
+    return size;
+}
 
-
-
-// void tree::remove(string key){
-//     if(root == nullptr);
-//     find(key); //handles the not in tree condition
-//     node *temp = root;
-//     node *temp2;
+// DONT FORGET TO SUBTRACT SIZE <-------------------------------------------------------------------
+void tree::remove(string key){
+    if(root == nullptr) throw "Empty tree Error";
+    find(key); //handles the not in tree condition
+    node *temp = root;
+    node *temp2;
     
 //     while (temp->data != key){ //temp is node to remove
 //         temp2 = temp;	//temp2 is temp's parent
