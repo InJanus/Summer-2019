@@ -13,14 +13,14 @@ class tree{
         node* root;
         int size;
     public:
-        tree(); //done         //constructer
-        // ~tree();        //destructer
+        tree();                         //done         //constructer
+        ~tree();                        //done        //destructer
         void insert(string);            //done
         node* find(string);             //done
         int getSize();                  //done
-        string* getAllAcending();
+        string* getAllAcending();       
         string* getAllDecending();
-        void empty();
-        void remove(string);        
+        void empty();                   //done
+        void remove(string);            
         void print();                   //done
 };

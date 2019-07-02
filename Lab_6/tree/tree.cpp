@@ -19,12 +19,15 @@ void printNode(node* temp, int level){
 }
 
 void tree::print(){
-    node* temp = root;
-    printNode(temp, 0);
+    printNode(root, 0);
 }
 
 tree::tree(){
     root = nullptr;
+}
+
+tree::~tree(){
+    empty();
 }
 
 
@@ -118,7 +121,7 @@ void tree::remove(string key){
         delete temp;
     }
     else{ // remove with 2 children
-        node *replace = GetLagestSmaller(temp); //replace
+        node *replace = root;//GetLagestSmaller(temp); //replace
         replace->left = temp->left;
         replace->right = temp->right;
         if(temp2->data > replace->data) temp2->left = replace;
@@ -126,4 +129,78 @@ void tree::remove(string key){
         delete temp;
     }
     //still need to handle removing root;
+}
+
+void deleteNode(node* temp){
+    node* temp2 = temp;
+    if(temp->right == nullptr && temp->left == nullptr){
+        //do nothing
+    }else if(temp->right == nullptr && temp->left != nullptr){
+        deleteNode(temp->left);
+    }else if(temp->right != nullptr && temp->left == nullptr){
+        deleteNode(temp->right);
+    }else{
+        deleteNode(temp->right);
+        deleteNode(temp->left);
+    }
+    delete temp2;
+    temp2 = nullptr;
+}
+
+void tree::empty(){
+    deleteNode(root);
+    delete root;
+    root = nullptr;
+    size = 0;
+}
+
+string* getA(node* temp, string retval[], int count){
+    if(temp == nullptr){
+        return new string[1];
+    }
+    getA(temp->left, retval, count);
+    getA(temp->right, retval, count);
+    retval[count] = temp->data;
+    count++;
+
+}
+
+string* tree::getAllAcending(){
+    // string* temp = getLetter(root, 0);
+    // for(int i = 0; i < size; i++){
+    //     cout << temp[i] << endl;
+    // }
+    string* retval = new string[size];
+
+    return getA(root, retval, 0);
+    // node* temp = root;
+    // node* temp2;
+    // node* retval[size];
+
+    // for(int i = 0; i < size; i++){
+    //     temp = root;
+    //     while(temp->left != nullptr){
+    //         temp2 = temp;
+    //         temp = temp->left;
+    //     }
+    //     if()
+    //     retval[i] = temp;
+
+    // }
+
+    //int ammountSorted = 0;
+
+    // while(ammountSorted < size){
+    //     for(int i = 0; i < size-ammountSorted-1; i++){
+    //         if(retval[i+1].compare(retval[i]) < 1){
+    //             //switch the items
+    //             int temp2 = temp[i];
+    //             temp[i] = temp[i+1];
+    //             temp[i+1] = temp2;
+    //         }
+    //     }
+    //     ammountSorted++;
+    // }
+    // return retval;
+    //works
 }
