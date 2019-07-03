@@ -18,8 +18,8 @@ class tree{
         void insert(string);            //done
         node* find(string);             //done
         int getSize();                  //done
-        string* getAllAcending();       
-        string* getAllDecending();
+        string* getAllAcending();       //done
+        string* getAllDecending();      //done
         void empty();                   //done
         void remove(string);            
         void print();                   //done

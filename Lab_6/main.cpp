@@ -11,7 +11,13 @@ int main(){
     mytree.insert("a");
     mytree.insert("b");
     mytree.print();
+    cout << mytree.getSize() << endl;
     string* temp;
+    temp = mytree.getAllAcending();
+    for(int i = 0; i < mytree.getSize(); i++){
+        cout << temp[i] << endl;
+    }
+    mytree.remove("b");
     temp = mytree.getAllAcending();
     for(int i = 0; i < mytree.getSize(); i++){
         cout << temp[i] << endl;

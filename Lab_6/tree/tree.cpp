@@ -3,6 +3,7 @@
 using namespace std;
 
 string retval[100];
+int count;
 
 void printNode(node* temp, int level){
     if(temp->right == nullptr && temp->left == nullptr){
@@ -25,6 +26,7 @@ void tree::print(){
 }
 
 tree::tree(){
+    size = 0;
     root = nullptr;
 }
 
@@ -143,6 +145,7 @@ void tree::remove(string key){
         else {
             temp2->right = replace;
         }
+        size--;
         delete temp3;
     }
     //still need to handle removing root;
@@ -171,20 +174,35 @@ void tree::empty(){
     size = 0;
 }
 
-string* getA(node* temp, string retval[], int count = 0){
-   if (temp->left) {
-       getA(temp->left, retval, count);
+string* getA(node* temp, string retval[]){
+    if (temp->left) {
+       getA(temp->left, retval);
+    }
+    retval[count] = temp->data; // whatever it is you're storing
+    count++;
+    if (temp->right) {
+       getA(temp->right, retval);
+    }
+    return retval;
+}
+
+string* tree::getAllAcending(){
+    return getA(root, retval);     //this is real close
+}
+
+string* getD(node* temp, string retval[]){
+   if (temp->right) {
+       getD(temp->right, retval);
    }
-   cout << temp->data << endl;
    retval[count] = temp->data; // whatever it is you're storing
    count++;
-   if (temp->right) {
-       getA(temp->right, retval, count);
+   if (temp->left) {
+       getD(temp->left, retval);
    }
    return retval;
 }
 
-string* tree::getAllAcending(){
-    string myarray[10];
-    return getA(root, myarray);     //this is real close
+string* tree::getAllDecending(){
+    return getD(root, retval);
 }
+
