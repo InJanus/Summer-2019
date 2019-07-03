@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+string retval[100];
+
 void printNode(node* temp, int level){
     if(temp->right == nullptr && temp->left == nullptr){
         cout << "level: " << level << " -- " << temp->data << endl;
@@ -173,8 +175,9 @@ string* getA(node* temp, string retval[], int count = 0){
    if (temp->left) {
        getA(temp->left, retval, count);
    }
-   count++;
+   cout << temp->data << endl;
    retval[count] = temp->data; // whatever it is you're storing
+   count++;
    if (temp->right) {
        getA(temp->right, retval, count);
    }
@@ -182,6 +185,6 @@ string* getA(node* temp, string retval[], int count = 0){
 }
 
 string* tree::getAllAcending(){
-    string myarray[100];
+    string myarray[10];
     return getA(root, myarray);     //this is real close
 }

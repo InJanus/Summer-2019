@@ -8,16 +8,15 @@ int main(){
     mytree.insert("d");
     mytree.insert("c");
     mytree.insert("e");
-    // mytree.insert("a");
-    // mytree.insert("b");
-    // mytree.print();
+    mytree.insert("a");
+    mytree.insert("b");
+    mytree.print();
     string* temp;
     temp = mytree.getAllAcending();
     for(int i = 0; i < mytree.getSize(); i++){
         cout << temp[i] << endl;
     }
-    cout << mytree.find("b")->data << endl;
+    // cout << mytree.find("b")->data << endl;
     //mytree.empty();
-    cout << mytree.getSize() << endl;
-
+    // cout << mytree.getSize() << endl;
 }
