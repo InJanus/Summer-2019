@@ -89,7 +89,7 @@ void tree::remove(string key){
     if(root == nullptr) throw "Empty tree Error";
     find(key); //handles the not in tree condition
     node *temp = root;
-    node *temp2;
+    node *temp2 = nullptr;
     
     while (temp->data != key){ //temp is node to remove
         temp2 = temp;	//temp2 is temp's parent
@@ -109,44 +109,53 @@ void tree::remove(string key){
     }
     //remove with 1 child on left
     else if(temp->right == nullptr && temp->left != nullptr){ 
-        if(temp2->data > temp->data){
+        
+        if(temp2 == nullptr){    //if its root
+            root = root->left;
+        }else if(temp2->data > temp->data){
             temp2->left = temp->left;
         }
-        else{
+        else if(temp2->data < temp->data){
             temp2->right = temp->left;
-        }
+        } 
         delete temp;
         size --;
     }
     //remove with 1 child on right
     else if(temp->left == nullptr && temp->right != nullptr){ 
-        if(temp2->data > temp->data){
+        if(temp2 == nullptr){
+            root = root->right;
+        }else if(temp2->data > temp->data){
             temp2->right = temp->right; //
         }
-        else{
+        else if(temp2->data < temp->data){
             temp2->left = temp->right; //
-        }
+        } 
         delete temp;
         size--;
     }
     // remove with 2 children
     else{ 
-        node *temp3 = root;
-        temp3 = temp3 -> left;
-        while (temp3 -> right != nullptr){
-            temp3 = temp3 -> right;
+        bool flag = true;
+        node* temp3 = temp;
+        node* parent;
+        parent = temp3;
+        temp3 = temp3->right;//this has to check to see if noting exists in the right side
+        while(temp3->left != nullptr){
+            flag = false;
+            parent = temp3;
+            temp3 = temp3->left;
         }
-        node *replace = temp3; //replace
-        replace->left = temp->left;
-        replace->right = temp->right;
-        if(temp2->data > replace->data){
-            temp2->left = replace;
-        } 
-        else {
-            temp2->right = replace;
+
+        temp->data = temp3->data;
+        if(flag){
+            delete parent->right;
+            parent->right = nullptr;
+        }else{
+            delete parent->left;
+            parent->left = nullptr;
         }
-        size--;
-        delete temp3;
+
     }
     //still need to handle removing root;
 }
@@ -187,6 +196,9 @@ string* getA(node* temp, string retval[]){
 }
 
 string* tree::getAllAcending(){
+    for(int i = 0; i < 100; i++){
+        retval[i] = "";
+    }
     return getA(root, retval);     //this is real close
 }
 
@@ -203,6 +215,9 @@ string* getD(node* temp, string retval[]){
 }
 
 string* tree::getAllDecending(){
+    for(int i = 0; i < 100; i++){
+        retval[i] = "";
+    }
     return getD(root, retval);
 }
 
