@@ -180,14 +180,25 @@ string* getA(node* temp, string retval[], int count){
 
 }
 
-string* tree::getAllAcending(){
+string* tree::getAllAcending(node* temp, string myarray[],int count){
     // string* temp = getLetter(root, 0);
     // for(int i = 0; i < size; i++){
     //     cout << temp[i] << endl;
     // }
-    string* retval = new string[size];
+   if (temp->left) {
+    getAllAcending(temp->left, myarray, count);
+   }
+   count++;
+   myarray[count] = temp->data; // whatever it is you're storing
+   if (temp->right) {
+    getAllAcending(temp->right, myarray, count);
+   }
 
-    return getA(root, retval, 0);
+   return myarray;
+}
+    //string* retval = new string[size];
+
+    //return getA(root, retval, 0);
     // node* temp = root;
     // node* temp2;
     // node* retval[size];
@@ -218,4 +229,4 @@ string* tree::getAllAcending(){
     // }
     // return retval;
     //works
-}
+//}
