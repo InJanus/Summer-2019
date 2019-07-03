@@ -169,64 +169,19 @@ void tree::empty(){
     size = 0;
 }
 
-string* getA(node* temp, string retval[], int count){
-    if(temp == nullptr){
-        return new string[1];
-    }
-    getA(temp->left, retval, count);
-    getA(temp->right, retval, count);
-    retval[count] = temp->data;
-    count++;
-
-}
-
-string* tree::getAllAcending(node* temp, string myarray[],int count){
-    // string* temp = getLetter(root, 0);
-    // for(int i = 0; i < size; i++){
-    //     cout << temp[i] << endl;
-    // }
+string* getA(node* temp, string retval[], int count = 0){
    if (temp->left) {
-    getAllAcending(temp->left, myarray, count);
+       getA(temp->left, retval, count);
    }
    count++;
-   myarray[count] = temp->data; // whatever it is you're storing
+   retval[count] = temp->data; // whatever it is you're storing
    if (temp->right) {
-    getAllAcending(temp->right, myarray, count);
+       getA(temp->right, retval, count);
    }
-
-   return myarray;
+   return retval;
 }
-    //string* retval = new string[size];
 
-    //return getA(root, retval, 0);
-    // node* temp = root;
-    // node* temp2;
-    // node* retval[size];
-
-    // for(int i = 0; i < size; i++){
-    //     temp = root;
-    //     while(temp->left != nullptr){
-    //         temp2 = temp;
-    //         temp = temp->left;
-    //     }
-    //     if()
-    //     retval[i] = temp;
-
-    // }
-
-    //int ammountSorted = 0;
-
-    // while(ammountSorted < size){
-    //     for(int i = 0; i < size-ammountSorted-1; i++){
-    //         if(retval[i+1].compare(retval[i]) < 1){
-    //             //switch the items
-    //             int temp2 = temp[i];
-    //             temp[i] = temp[i+1];
-    //             temp[i+1] = temp2;
-    //         }
-    //     }
-    //     ammountSorted++;
-    // }
-    // return retval;
-    //works
-//}
+string* tree::getAllAcending(){
+    string myarray[100];
+    return getA(root, myarray);     //this is real close
+}

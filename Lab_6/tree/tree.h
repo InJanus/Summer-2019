@@ -18,7 +18,7 @@ class tree{
         void insert(string);            //done
         node* find(string);             //done
         int getSize();                  //done
-        string* getAllAcending(node* temp, string myarray[],int count);       
+        string* getAllAcending();       
         string* getAllDecending();
         void empty();                   //done
         void remove(string);            
