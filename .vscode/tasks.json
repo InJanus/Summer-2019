@@ -76,6 +76,19 @@
                 "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_6" //change this
             ],
             "problemMatcher": []   
+        },
+        {
+            "type": "shell",
+            "label": "build_lab_7",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-g",
+                ".\\Lab_7\\main.cpp",
+                ".\\Lab_7\\tree\\tree_functions.cpp",
+                "-I",
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_7" //change this
+            ],
+            "problemMatcher": []   
         }
     ]
 }
