@@ -18,6 +18,9 @@ void printNode(node* temp, int level){
         printNode(temp->right, level+1);
         printNode(temp->left, level+1);
         cout << "level: " << level << " -- " << temp->data << endl;
+
+
+        
     }
 }
 
