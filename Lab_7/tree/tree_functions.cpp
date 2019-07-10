@@ -21,19 +21,19 @@ void printNode(node* temp, int level){
     }
 }
 
-void rotateleft(node* pivot, node* parent){
+void tree::rotateleft(node* pivot, node* parent){
     //root case
     if(parent == pivot){
-        
+
     }
-    node *temp = pivot ->right -> left;
-    parent-> right = pivot -> right -> right;
+    node *temp = pivot ->right;
     pivot -> right -> left = pivot;
-    pivot -> right = temp;
+    pivot -> right -> right = nullptr;
+    parent -> right = temp;
 }
 
-int height(node *parent){
-    if (parent = nullptr){
+int tree::height(node *parent){
+    if (parent == nullptr){
         return 0;
     }else{
         int r = height(parent->right);
