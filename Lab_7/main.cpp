@@ -8,15 +8,12 @@ int main(){
     mytree.insert("b");
     mytree.insert("a");
     mytree.insert("c");
+    //mytree.print();
     mytree.insert("d");
-    mytree.insert("d");
-    cout << mytree.height() << endl;
+    //mytree.print();
+    mytree.insert("e");
     mytree.print();
-    node* temp1 = mytree.find("c");
-
-    node* temp2 = mytree.find("b");
-    mytree.rotateleft(temp1, temp2);
-    mytree.print();
+    
 
 
     return 0;

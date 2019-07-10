@@ -21,7 +21,7 @@ void printNode(node* temp, int level){
     }
 }
 
-void tree::rotateleft(node* pivot, node* parent){
+void rotateleft(node* pivot, node* parent){
     //root case
     node* temp = nullptr;
     if(pivot->right->left == nullptr){
@@ -35,7 +35,7 @@ void tree::rotateleft(node* pivot, node* parent){
     }
 }
 
-void tree::rotateright(node* pivot, node* parent){
+void rotateright(node* pivot, node* parent){
     node* temp = nullptr;
     if(parent->left == pivot){
         parent->left = parent->left->left;
@@ -98,6 +98,47 @@ node* tree::find(string key){
     return temp;
 }
 
+void nodesBalance(node* parent, node* child, node* root){
+    //abs(h(temp->right)-h(temp->left))==2
+    if(child != nullptr){
+        node* rootrotate;
+        int heightRight = h(parent->right);
+        int heightLeft = h(parent->left);
+        if(abs(heightRight-heightLeft)==2){
+            if(parent == nullptr){
+                if(heightLeft == 0){
+                    rootrotate = root;
+                    root = root->right;
+                    root->left = rootrotate;
+                    rootrotate->left->right = nullptr;
+                }else{
+                    rootrotate = root;
+                    root = root->left;
+                    root->right = rootrotate;
+                    rootrotate->right->left = nullptr;
+                }
+            }else if(heightRight > heightLeft){
+                if(heightLeft == 0){
+                    rotateleft(child, parent);
+                }else{
+                    nodesBalance(child ,child->right, root);
+                }
+            }else{
+                if(heightRight==0){
+                    rotateright(child, parent);
+                }else{
+                    nodesBalance(child, child->left, root);
+                }
+            }
+        }
+    }
+}
+
+void tree::balanceNodes(){
+    nodesBalance(root, root->right, root);
+    nodesBalance(root, root->left, root);
+}
+
 void tree::insert(string key){
     node *temp = root;
     node *temp2;
@@ -126,6 +167,7 @@ void tree::insert(string key){
             temp2->right->data = key;
             size++;
         }
+    balanceNodes();
 }
 
 int tree::getSize(){
@@ -202,6 +244,7 @@ void tree::remove(string key){
             parent->left = nullptr;
         }
     }
+    balanceNodes();
 }
 
 void deleteNode(node* temp){

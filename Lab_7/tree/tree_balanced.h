@@ -21,9 +21,9 @@ class tree{
         string* getAllAcending();       //done
         string* getAllDecending();      //done
         void empty();                   //done
-        void remove(string);            
-        void print();                   
-        void rotateleft(node* pivot, node* parent);
-        void rotateright(node* pivot, node* parent);
+        void remove(string);            //need to add balance node and balace sides
+        void print();                   //done
         int height();                   //done
+        void balanceNodes();
+        void balanceSides();
 };
