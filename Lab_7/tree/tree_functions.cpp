@@ -68,8 +68,6 @@ int tree::height(){
     return h(root);
 }
 
-
-
 void tree::print(){
     printNode(root, 0);
 }
