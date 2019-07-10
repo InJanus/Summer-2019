@@ -32,12 +32,12 @@ void tree::rotateleft(node* pivot, node* parent){
     parent -> right = temp;
 }
 
-int tree::height(node *parent){
+int h(node *parent){
     if (parent == nullptr){
         return 0;
     }else{
-        int r = height(parent->right);
-        int l = height(parent ->left);
+        int r = h(parent->right);
+        int l = h(parent ->left);
         if(r>l){
             return r+1;
         }
@@ -47,6 +47,12 @@ int tree::height(node *parent){
     }
 
 }
+
+int tree::height(){
+    return h(root);
+}
+
+
 
 void tree::print(){
     printNode(root, 0);
