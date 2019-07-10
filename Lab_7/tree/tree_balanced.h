@@ -24,5 +24,6 @@ class tree{
         void remove(string);            
         void print();                   
         void rotateleft(node* pivot, node* parent);
+        void rotateright(node* pivot, node* parent);
         int height();                   //done
 };

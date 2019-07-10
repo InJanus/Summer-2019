@@ -23,13 +23,29 @@ void printNode(node* temp, int level){
 
 void tree::rotateleft(node* pivot, node* parent){
     //root case
-    if(parent == pivot){
-
+    node* temp = nullptr;
+    if(pivot->right->left == nullptr){
+        parent->right = parent->right->right;
+        pivot->right->left = pivot;
+        pivot->right = temp;
+    }else{
+        parent->right = parent->right->right;
+        pivot->right->right = pivot;
+        pivot->right = temp;
     }
-    node *temp = pivot ->right;
-    pivot -> right -> left = pivot;
-    pivot -> right -> right = nullptr;
-    parent -> right = temp;
+}
+
+void tree::rotateright(node* pivot, node* parent){
+    node* temp = nullptr;
+    if(parent->left == pivot){
+        parent->left = parent->left->left;
+        pivot->left->left = pivot;
+        pivot->left = temp;
+    }else{
+        parent->left = parent->left->left;
+        pivot->left->right = pivot;
+        pivot->left = temp;
+    }
 }
 
 int h(node *parent){
