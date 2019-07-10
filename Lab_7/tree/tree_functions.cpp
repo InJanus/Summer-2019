@@ -24,6 +24,29 @@ void printNode(node* temp, int level){
     }
 }
 
+void rotateleft(node* pivot, node* parent){
+    node *temp = pivot ->right -> left;
+    parent-> right = pivot -> right -> right;
+    pivot -> right -> left = pivot;
+    pivot -> right = temp;
+}
+
+int height(node *parent){
+    if (parent = nullptr){
+        return 0;
+    }else{
+        int r = height(parent->right);
+        int l = height(parent ->left);
+        if(r>l){
+            return r+1;
+        }
+        else{
+            return l+1;
+        }
+    }
+
+}
+
 void tree::print(){
     printNode(root, 0);
 }
