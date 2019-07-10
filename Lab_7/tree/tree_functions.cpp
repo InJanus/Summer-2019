@@ -3,7 +3,7 @@
 using namespace std;
 
 string retval[100];
-int count;
+int count2;
 
 void printNode(node* temp, int level){
     if(temp->right == nullptr && temp->left == nullptr){
@@ -184,8 +184,8 @@ string* getA(node* temp, string retval[]){
     if (temp->left) {
        getA(temp->left, retval);
     }
-    retval[count] = temp->data; // whatever it is you're storing
-    count++;
+    retval[count2] = temp->data; // whatever it is you're storing
+    count2++;
     if (temp->right) {
        getA(temp->right, retval);
     }
@@ -196,7 +196,7 @@ string* tree::getAllAcending(){
     for(int i = 0; i < 100; i++){
         retval[i] = "";
     }
-    count = 0;
+    count2 = 0;
     return getA(root, retval);     //this is real close
 }
 
@@ -204,8 +204,8 @@ string* getD(node* temp, string retval[]){
    if (temp->right) {
        getD(temp->right, retval);
    }
-   retval[count] = temp->data; // whatever it is you're storing
-   count++;
+   retval[count2] = temp->data; // whatever it is you're storing
+   count2++;
    if (temp->left) {
        getD(temp->left, retval);
    }
@@ -216,7 +216,7 @@ string* tree::getAllDecending(){
     for(int i = 0; i < 100; i++){
         retval[i] = "";
     }
-    count = 0;
+    count2 = 0;
     return getD(root, retval);
 }
 
