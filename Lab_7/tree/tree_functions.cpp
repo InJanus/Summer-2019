@@ -22,6 +22,10 @@ void printNode(node* temp, int level){
 }
 
 void rotateleft(node* pivot, node* parent){
+    //root case
+    if(parent == pivot){
+        
+    }
     node *temp = pivot ->right -> left;
     parent-> right = pivot -> right -> right;
     pivot -> right -> left = pivot;
