@@ -111,7 +111,7 @@ void nodesBalance(node* parent, node* child, node* root){
         int heightLeft = h(child->left);
         if(abs(heightRight-heightLeft)==2){
             // if(parent == root){
-            //     if(heightLeft == 0){
+            //     if(heightLeft ==d 0){
             //         rootrotate = root;
             //         root = root->right;
             //         root->left = rootrotate;

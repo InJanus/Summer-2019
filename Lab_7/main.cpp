@@ -12,6 +12,7 @@ int main(){
     mytree.insert("d");
     //mytree.print();
     //mytree.insert("e");
+    cout<<endl;
     mytree.print();
     
 

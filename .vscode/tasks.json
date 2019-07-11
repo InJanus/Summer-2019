@@ -31,7 +31,7 @@
                 ".\\Lab_3\\main.cpp",
                 ".\\Lab_3\\linked_list\\linked_list_functions.cpp",
                 "-I",
-                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_3" //change this
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_3"
             ],
             "problemMatcher": []
         },
@@ -46,9 +46,9 @@
                 ".\\Lab_4\\classes\\classes.cpp",
                 ".\\Lab_4\\classes_s\\classes_s.cpp",
                 "-I",
-                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_4" //change this
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_4"
             ],
-            "problemMatcher": []   
+            "problemMatcher": []
         },
         {
             "type": "shell",
@@ -60,9 +60,9 @@
                 ".\\Lab_5\\sort\\sort.cpp",
                 ".\\Lab_5\\linked_list\\linked_list_functions.cpp",
                 "-I",
-                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_5" //change this
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_5"
             ],
-            "problemMatcher": []   
+            "problemMatcher": []
         },
         {
             "type": "shell",
@@ -73,22 +73,26 @@
                 ".\\Lab_6\\main.cpp",
                 ".\\Lab_6\\tree\\tree.cpp",
                 "-I",
-                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_6" //change this
+                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_6"
             ],
-            "problemMatcher": []   
+            "problemMatcher": []
         },
         {
             "type": "shell",
             "label": "build_lab_7",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "command": "C:\\MinGW\\mingw32\\bin\\g++.exe",
             "args": [
                 "-g",
                 ".\\Lab_7\\main.cpp",
                 ".\\Lab_7\\tree\\tree_functions.cpp",
                 "-I",
-                "C:\\Users\\Brian_Culberson\\Documents\\Code\\Summer-2019-1\\Lab_7" //change this
+                "C:\\Users\\mugip\\Desktop\\Summer_2019\\DataStructures\\Programming\\Greg_likes_tits\\Summer-2019\\Lab_7"
             ],
-            "problemMatcher": []   
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
