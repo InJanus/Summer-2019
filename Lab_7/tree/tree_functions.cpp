@@ -21,10 +21,15 @@ void printNode(node* temp, int level){
     }
 }
 
-void rotateleft(node* pivot, node* parent){
+void rotateleft(node* pivot, node* parent, node* root){
     //root case
     node* temp = nullptr;
-    if(pivot->right->left == nullptr){
+    if(parent == pivot){
+        root->right->left = root;
+        root = root->right;
+        root->left->right = nullptr;
+        printNode(root, 0);
+    }else if(pivot->right->left == nullptr){
         parent->right = parent->right->right;
         pivot->right->left = pivot;
         pivot->right = temp;
@@ -100,26 +105,27 @@ node* tree::find(string key){
 
 void nodesBalance(node* parent, node* child, node* root){
     //abs(h(temp->right)-h(temp->left))==2
-    if(child != nullptr){
+    //if(child != nullptr){
         node* rootrotate;
-        int heightRight = h(parent->right);
-        int heightLeft = h(parent->left);
+        int heightRight = h(child->right);
+        int heightLeft = h(child->left);
         if(abs(heightRight-heightLeft)==2){
-            if(parent == nullptr){
+            // if(parent == root){
+            //     if(heightLeft == 0){
+            //         rootrotate = root;
+            //         root = root->right;
+            //         root->left = rootrotate;
+            //         rootrotate->left->right = nullptr;
+            //     }else if(heightRight == 0){
+            //         rootrotate = root;
+            //         root = root->left;
+            //         root->right = rootrotate;
+            //         rootrotate->right->left = nullptr;
+            //     }
+            // }
+            if(heightRight > heightLeft){
                 if(heightLeft == 0){
-                    rootrotate = root;
-                    root = root->right;
-                    root->left = rootrotate;
-                    rootrotate->left->right = nullptr;
-                }else{
-                    rootrotate = root;
-                    root = root->left;
-                    root->right = rootrotate;
-                    rootrotate->right->left = nullptr;
-                }
-            }else if(heightRight > heightLeft){
-                if(heightLeft == 0){
-                    rotateleft(child, parent);
+                    rotateleft(child, parent, root);
                 }else{
                     nodesBalance(child ,child->right, root);
                 }
@@ -131,12 +137,12 @@ void nodesBalance(node* parent, node* child, node* root){
                 }
             }
         }
-    }
+    //}
 }
 
 void tree::balanceNodes(){
-    nodesBalance(root, root->right, root);
-    nodesBalance(root, root->left, root);
+    nodesBalance(root, root, root);
+    // nodesBalance(root, root, root);
 }
 
 void tree::insert(string key){

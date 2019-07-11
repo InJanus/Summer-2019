@@ -5,13 +5,13 @@ using namespace std;
 int main(){
     tree mytree;
 
-    mytree.insert("b");
+    //mytree.insert("b");
     mytree.insert("a");
     mytree.insert("c");
     //mytree.print();
     mytree.insert("d");
     //mytree.print();
-    mytree.insert("e");
+    //mytree.insert("e");
     mytree.print();
     
 
