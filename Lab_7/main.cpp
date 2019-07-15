@@ -4,12 +4,12 @@ using namespace std;
 
 int main(){
     tree mytree;
-    //mytree.insert("b");
+    mytree.insert("b");
     mytree.insert("a");
     mytree.insert("c");
     mytree.insert("d");
     //mytree.print();
-    //mytree.insert("e");
+    mytree.insert("e");
     cout<<endl;
     mytree.print();
     return 0;

@@ -133,10 +133,7 @@ void nodesBalance(node* parent, node* child, node* root){
 }
 
 void tree::balanceNodes(){
-    
     nodesBalance(root, root, root);
-    
-    
 }
 
 void tree::insert(string key){
