@@ -80,7 +80,7 @@
         {
             "type": "shell",
             "label": "build_lab_7",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "command": "C:\\MinGW\\mingw32\\bin\\g++.exe",
             "args": [
                 "-g",
                 ".\\Lab_7\\main.cpp",
