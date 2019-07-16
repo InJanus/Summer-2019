@@ -24,6 +24,6 @@ class tree{
         void remove(string);            //need to add balance node and balace sides
         void print();                   //done
         int height();                   //done
-        void balanceNodes();
+        void balanceNodes();            //done
         void balanceSides();
 };
