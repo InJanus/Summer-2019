@@ -3,6 +3,7 @@
 using namespace std;
 
 int main(){
+    /* 
     tree mytree;
     mytree.insert("b");
     mytree.insert("a");
@@ -14,4 +15,39 @@ int main(){
     cout<<endl;
     mytree.print();
     return 0;
+    */
+    tree BTree;
+
+	bool endInput = false;
+	while (!endInput)
+	{
+		int choice = 0;
+		cout << "Type 1: to insert number, 2: to remove number, 3: to exit app." << endl;
+		cin >> choice;
+		int input = 0;
+		switch (choice)
+		{
+			case 1: //Insert a node
+				cout << "Enter integer to add: ";
+				cin >> input;
+				BTree.Insert(input);
+				break;
+			case 2: //Remove a node
+				cout << "Enter integer to remove: ";
+				cin >> input;
+				BTree.Remove(input);
+				break;
+			case 3: //End
+				cout << "Ending Program" << endl;
+				endInput = true;
+				BTree.Order();
+				BTree.remakeTree();
+				break;
+			default: //Incorrect
+				cout << "Invalid Option" << endl;
+				break;
+		}
+	}
+		system("pause");
+	return 0;
 }
