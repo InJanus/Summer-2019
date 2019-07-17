@@ -20,7 +20,7 @@ void printNode(node* temp, int level){
         cout << "level: " << level << " -- " << temp->data << endl;
     }
 }
-
+/* 
 void rotateleft(node* pivot, node* parent){
     //root case
     node* temp = nullptr;
@@ -328,4 +328,207 @@ void tree::empty(){
     delete root;
     root = nullptr;
     size = 0;
+}
+*/
+void tree::Insert(int s)
+{
+	Node* n = new Node();
+	Node* parent;
+	n->data = s;
+	n->left = NULL;
+	n->right = NULL;
+	parent = NULL;
+	if (Size() == 0)
+	{
+		Head = n;
+	}
+	else
+	{
+		Node* current;
+		current = Head;
+		while (current)
+		{
+			parent = current;
+			if (n->data > current->data)
+			{
+				current = current->right;
+			}
+			else
+			{
+				current = current->left;
+			}
+		}
+		if (n->data < parent->data)
+			parent->left = n;
+		else
+			parent->right = n;
+	}
+	count++;
+}
+
+int tree::Size()
+{
+	return count;
+}
+
+void tree::Order()
+{
+	preOrder(Head);
+}
+
+void tree::preOrder(Node* node)
+{
+	if (node == NULL)
+		return;
+	//cout << node->data << " ";
+	l_node.push_back(node->data);
+
+	preOrder(node->left);
+	preOrder(node->right);
+}
+
+void tree::remakeTree()
+{
+	delete Head;
+	l_node.sort();
+	int s = l_node.size();
+	int mid = s / 2;
+	vector<int> v_node{ l_node.begin(), l_node.end() };
+	Insert(v_node.at(mid));
+
+	Test(v_node, 1, mid - 1);
+	Test(v_node, mid + 1, s - 1);
+}
+
+void tree::Test(vector<int> v_node, int start, int end)
+{
+	if (start > end)
+		return;
+
+	/* Get the middle element and make it root */
+	int mid = (start + end) / 2;
+
+	Insert(v_node.at(mid));
+
+	Test(v_node, start, mid - 1);
+	Test(v_node, mid + 1, end);
+}
+
+void tree::Remove(int s)
+{
+	bool found = false;
+	if (Size() == 0)
+	{
+		cout << " This Binary Tree is empty! " << endl;
+		return;
+	}
+	Node* current;
+	Node* parent;
+	current = Head;
+	while (current != NULL)
+	{
+		if (current->data == s)
+		{
+			found = true;
+			break;
+		}
+		else
+		{
+			parent = current;
+			if (s > current->data)
+			{
+				current = current->right;
+			}
+			else
+			{
+				current = current->left;
+			}
+		}
+	}
+	parent = current;
+	if (!found)
+	{
+		cout << "String not found! " << endl;
+		return;
+	}
+	count--;
+	//Single Node
+	if ((current->left == NULL && current->right != NULL) || (current->left != NULL
+		&& current->right == NULL))
+	{
+		if (current->left == NULL && current->right != NULL)
+		{
+			if (parent->left == current)
+			{
+				parent->left = current->right;
+				delete current;
+			}
+			else
+			{
+				parent->right = current->right;
+				delete current;
+			}
+		}
+		else
+		{
+			if (parent->left == current)
+			{
+				parent->left = current->left;
+				delete current;
+			}
+			else
+			{
+				parent->right = current->left;
+				delete current;
+			}
+		}
+		return;
+	}
+	//Leaf Node
+	if (current->left == NULL && current->right == NULL)
+	{
+		if (parent->left == current) parent->left = NULL;
+		else parent->right = NULL;
+		delete current;
+		return;
+	}
+	// 2 Children
+	if (current->left != NULL && current->right != NULL)
+	{
+		Node* check;
+		check = current->right;
+		if ((check->left == NULL) && (check->right == NULL))
+		{
+			current = check;
+			delete check;
+			current->right = NULL;
+		}
+		else
+		{
+			if ((current->right)->left != NULL)
+			{
+				Node* left_current;
+				Node* lcurrp;
+				lcurrp = current->right;
+				left_current = (current->right)->left;
+				while (left_current->left != NULL)
+				{
+					lcurrp = left_current;
+					left_current = left_current->left;
+				}
+				current->data = left_current->data;
+				delete left_current;
+				lcurrp->left = NULL;
+			}
+			else
+			{
+				Node* tmp;
+				tmp = current->right;
+				current->data = tmp->data;
+				current->right = tmp->right;
+				delete tmp;
+			}
+		}
+		return;
+	}
 }

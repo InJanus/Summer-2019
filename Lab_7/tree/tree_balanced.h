@@ -1,4 +1,7 @@
 #include <string>
+#include <list>
+#include <vector>
+
 using namespace std;
 
 struct node{
@@ -8,11 +11,8 @@ struct node{
 };
 
 class tree{
-
-    private:
-        node* root;
-        int size;
     public:
+    /* 
         tree();                         //done         //constructer
         ~tree();                        //done        //destructer
         void insert(string);            
@@ -27,4 +27,27 @@ class tree{
         void balanceNodes();            //done
         void balanceTree();
         void balanceSides();
+        */
+    struct Node
+        {
+            Node* left;
+            Node* right;
+            int data;
+        };
+	tree(); //Done
+	~tree(); //Done
+	void Insert(int s); //Done
+	int Size(); //Done
+	void Order(); //Done
+	void Remove(int s); //May need work
+	void remakeTree();
+	void Test(vector<int> v_node, int start, int end);
+    
+    private:
+        //node* root;
+        //int size;
+        Node* Head;
+	    int count;
+	    list<int> l_node;
+	    void preOrder(Node* node);
 };
