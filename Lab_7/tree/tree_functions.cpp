@@ -192,8 +192,31 @@ void tree::balanceNodes(){
     nodesBalance(root, root, root);
 }
 
+
+
 void tree::balanceTree() {
-	treeBalance(root);
+    int heightRight = h(root->right);
+	int heightLeft = h(root->left);
+    
+    if(heightRight - heightLeft == 2){
+        if(heightRight > heightLeft){
+            node* temp3 = root;
+            node* temp = root->right;
+            node* temp2;
+            while(temp->left != nullptr){
+                temp2 = temp;
+                temp = temp->left;
+            }
+            root = temp2->left;
+            temp2->left = nullptr;
+            root->right = temp2;
+            root->left = temp3;
+            root->left->right = nullptr;
+            //root->left->right = nullptr;
+        }else{
+
+        }
+    }
 
 }
 

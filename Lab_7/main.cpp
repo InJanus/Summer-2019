@@ -6,10 +6,11 @@ int main(){
     tree mytree;
     mytree.insert("b");
     mytree.insert("a");
-    mytree.insert("c");
     mytree.insert("d");
-    //mytree.print();
+    mytree.insert("c");
     mytree.insert("e");
+    //mytree.print();
+    mytree.insert("f");
     cout<<endl;
     mytree.print();
     return 0;
