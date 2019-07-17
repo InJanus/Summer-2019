@@ -62,6 +62,29 @@ void rotateright(node* pivot, node* parent){
     }
 }
 
+void tree_left(node* subRoot)
+{
+	if (subRoot == NULL || subRoot->right == NULL)
+		cout << "WARNING: program error detected in rotate_left" << endl;
+	else {
+		node* right_tree = subRoot->right;
+		subRoot->right = right_tree->left;
+		right_tree->left = subRoot;
+		subRoot = right_tree;
+	}
+}
+void tree_right(node* subRoot)
+{
+	if (subRoot == NULL || subRoot->left == NULL)
+		cout << "WARNING: program error detected in rotate_left" << endl;
+	else {
+		node* left_tree = subRoot->left;
+		subRoot->left = left_tree->right;
+		left_tree->right = subRoot;
+		subRoot = left_tree;
+	}
+}
+
 int h(node *parent){
     if (parent == nullptr){
         return 0;
@@ -112,6 +135,39 @@ node* tree::find(string key){
     return temp;
 }
 
+void rightTree(node* root)
+{
+	int heightRight = h(root->right);
+	int heightLeft = h(root->left);
+	node* right_tree = root->right;
+	if (heightRight - heightLeft == 2) {
+		if (heightRight > heightLeft) {
+			tree_left(root);
+		}
+		else {
+
+		}
+		tree_right(right_tree);
+		tree_left(root);
+	}
+}
+void leftTree(node* root)
+{
+	int heightRight = h(root->right);
+	int heightLeft = h(root->left);
+	node* left_tree = root->left;
+	if (heightRight - heightLeft == 2) {
+		if (heightRight < heightLeft) {
+			tree_right(root);
+		}
+		else {
+
+		}
+		tree_left(left_tree);
+		tree_right(root);
+	}
+}
+
 void nodesBalance(node* parent, node* child, node* root){
     int heightRight = h(child->right);
     int heightLeft = h(child->left);
@@ -134,6 +190,11 @@ void nodesBalance(node* parent, node* child, node* root){
 
 void tree::balanceNodes(){
     nodesBalance(root, root, root);
+}
+
+void tree::balanceTree() {
+	treeBalance(root);
+
 }
 
 void tree::insert(string key){
@@ -164,6 +225,7 @@ void tree::insert(string key){
             temp2->right->data = key;
             size++;
         }
+    balanceTree();
     balanceNodes();
     
 }
