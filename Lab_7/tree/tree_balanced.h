@@ -25,5 +25,6 @@ class tree{
         void print();                   //done
         int height();                   //done
         void balanceNodes();            //done
+        void balanceTree();
         void balanceSides();
 };
