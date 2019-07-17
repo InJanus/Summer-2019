@@ -36,18 +36,18 @@ class tree{
         };
 	tree(); //Done
 	~tree(); //Done
-	void Insert(int s); //Done
+	void Insert(int input); //Done
 	int Size(); //Done
 	void Order(); //Done
-	void Remove(int s); //May need work
+	void Remove(int input); //May need work
 	void remakeTree();
 	void Test(vector<int> v_node, int start, int end);
-    
+
     private:
         //node* root;
         //int size;
         Node* Head;
-	    int count;
+	    int count2;
 	    list<int> l_node;
 	    void preOrder(Node* node);
 };

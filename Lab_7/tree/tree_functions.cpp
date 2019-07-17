@@ -330,11 +330,11 @@ void tree::empty(){
     size = 0;
 }
 */
-void tree::Insert(int s)
+void tree::Insert(int input)
 {
 	Node* n = new Node();
 	Node* parent;
-	n->data = s;
+	n->data = input;
 	n->left = NULL;
 	n->right = NULL;
 	parent = NULL;
@@ -363,12 +363,12 @@ void tree::Insert(int s)
 		else
 			parent->right = n;
 	}
-	count++;
+	count2++;
 }
 
 int tree::Size()
 {
-	return count;
+	return count2;
 }
 
 void tree::Order()
@@ -414,12 +414,12 @@ void tree::Test(vector<int> v_node, int start, int end)
 	Test(v_node, mid + 1, end);
 }
 
-void tree::Remove(int s)
+void tree::Remove(int input)
 {
 	bool found = false;
 	if (Size() == 0)
 	{
-		cout << " This Binary Tree is empty! " << endl;
+		cout << "Empty! " << endl;
 		return;
 	}
 	Node* current;
@@ -427,7 +427,7 @@ void tree::Remove(int s)
 	current = Head;
 	while (current != NULL)
 	{
-		if (current->data == s)
+		if (current->data == input)
 		{
 			found = true;
 			break;
@@ -435,7 +435,7 @@ void tree::Remove(int s)
 		else
 		{
 			parent = current;
-			if (s > current->data)
+			if (input > current->data)
 			{
 				current = current->right;
 			}
@@ -451,7 +451,8 @@ void tree::Remove(int s)
 		cout << "String not found! " << endl;
 		return;
 	}
-	count--;
+	count2--;
+    
 	//Single Node
 	if ((current->left == NULL && current->right != NULL) || (current->left != NULL
 		&& current->right == NULL))
