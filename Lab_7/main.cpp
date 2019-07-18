@@ -23,7 +23,7 @@ int main(){
 		int choice = 0;
 		cout << "Type 1: to insert number, 2: to remove number, 3: to exit app." << endl;
 		cin >> choice;
-		int input = 0;
+     	int input = 0;
 		switch (choice)
 		{
 			case 1: //Insert a node
