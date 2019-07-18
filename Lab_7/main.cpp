@@ -7,10 +7,11 @@ int main(){
     tree mytree;
     mytree.insert("b");
     mytree.insert("a");
-    mytree.insert("c");
     mytree.insert("d");
-    //mytree.print();
+    mytree.insert("c");
     mytree.insert("e");
+    //mytree.print();
+    mytree.insert("f");
     cout<<endl;
     mytree.print();
     return 0;
@@ -21,19 +22,21 @@ int main(){
 	while (!endInput)
 	{
 		int choice = 0;
-		cout << "Type 1: to insert number, 2: to remove number, 3: to exit app." << endl;
+		cout << "Type 1: to insert string, 2: to remove string, 3: to exit app." << endl;
 		cin >> choice;
-     	int input = 0;
+		string input;
 		switch (choice)
 		{
 			case 1: //Insert a node
-				cout << "Enter integer to add: ";
-				cin >> input;
+				cout << "Enter string to add: ";
+                fflush(stdin);
+				getline(cin, input);
 				BTree.Insert(input);
 				break;
 			case 2: //Remove a node
-				cout << "Enter integer to remove: ";
-				cin >> input;
+				cout << "Enter string to remove: ";
+			    fflush(stdin);
+				getline(cin, input);
 				BTree.Remove(input);
 				break;
 			case 3: //End
@@ -46,7 +49,8 @@ int main(){
 				cout << "Invalid Option" << endl;
 				break;
 		}
+        BTree.printTree();
 	}
-		system("pause");
+	cin.get();
 	return 0;
 }
