@@ -87,7 +87,7 @@ bool PQueue::isEmpty(){
 int PQueue::getSize(){
     return length;}
 
-void PQueue::print(){
+void PQueue::printQueue(){
     cout<< "Priority Queue: "<<endl;
     Node *temp= first;
     while( temp!=nullptr){

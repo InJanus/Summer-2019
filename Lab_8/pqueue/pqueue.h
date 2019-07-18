@@ -21,6 +21,6 @@ public:
     bool isInList(int inMnum); //Done
     bool isEmpty(); //Done
     int getSize(); //Done
-    void print();
+    void printQueue();
 };
 
