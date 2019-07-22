@@ -26,6 +26,51 @@ void heap::printHeap(){
     }
 }
 
+node* heap::getNode(int index){
+    node* temp = head;
+    for(int i = 0; i < index; i++){
+        temp = temp->next;
+    }
+    return temp;
+}
+
+void heap::remove(int getdata){
+    //this has to search first then delete the found data
+    int tempindex = -1;
+    node* temp = head;
+    node* prevnode;
+    //find the removing node
+    while(temp != nullptr){
+        prevnode = temp;
+        if(temp->data == getdata){
+            tempindex = temp->index;
+        }
+        temp = temp->next;
+    }
+    
+    if(tempindex != -1){
+        //number exists
+        node* myleft = getNode(left(tempindex));
+        node* myright = getNode(right(tempindex));
+
+        if((myleft == nullptr)&&(myright == nullptr)){   //no children
+            prevnode->next = prevnode->next->next;
+            delete temp;
+        }else if((myleft != nullptr)&&(myright == nullptr)){
+
+        }else if((myleft == nullptr)&&(myright != nullptr)){
+            
+        }else if((myleft != nullptr)&&(myright != nullptr)){
+            
+        }
+    }
+
+    
+
+
+
+}
+
 
 //for remove we have to look at the children and replace with the greater child and continue to do that.
 
