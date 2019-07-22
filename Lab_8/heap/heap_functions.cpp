@@ -3,20 +3,36 @@
 #include <math.h>
 using namespace std;
 
-int parent(int node) { 
-    return floor(node-1)/2; 
+int parent(int index) { 
+    return floor(index-1)/2; 
 } 
   
 // to get index of left child of node at index i 
-int left(int node) { 
-    return (2*node + 1); 
+int left(int index) { 
+    return (2*index + 1); 
 } 
   
 // to get index of right child of node at index i 
-int right(int node) { 
-    return (2*node + 2); 
+int right(int index) { 
+    return (2*index + 2); 
 }
 
+void heap::insert(int inVal){
+    if (head == nullptr){
+        head->data = inVal;
+        head -> index = 0;
+    }
+    else{
+        tail -> next = new node;
+        tail -> next -> data = inVal;
+        tail = tail->next;
+        tail -> index = size;
+    }
+    size++;
+    if(tail -> data > getNode(parent(tail -> index)){
+
+    }
+}
 void heap::printHeap(){
     //this just prints the array/linked list for the heap
     node* temp = head;
@@ -73,5 +89,6 @@ void heap::remove(int getdata){
 
 
 //for remove we have to look at the children and replace with the greater child and continue to do that.
+
 
 //heap up 

@@ -10,6 +10,7 @@ struct node{
 class heap{
     private:
         node* head;
+        node* tail;
         int size;
     public:
         void insert(int);
