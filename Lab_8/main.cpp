@@ -12,7 +12,7 @@ using namespace std;
 
 int main(){
 
-    cout<<"Hello main Bitches"<<endl;
+    //cout<<"Hello main Bitches"<<endl;
 
     PQueue test;
     //cout<<"size: " <<test.getSize()<<endl;
