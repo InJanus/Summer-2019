@@ -20,9 +20,9 @@ int main(){
     test.insert(30);
     test.insert(20);
     test.insert(5);
-    test.print();
+    test.printQueue();
     //test.insert(30);
-    //test.print();
+    //test.printQueue();
     cout<<"size: " <<test.getSize()<<endl;
 
 
