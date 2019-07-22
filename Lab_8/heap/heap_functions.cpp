@@ -1,5 +1,6 @@
 #include "heap.h"
-#include<iostream>
+#include <iostream>
+#include <math.h>
 using namespace std;
 
 int parent(int node) { 
@@ -14,6 +15,15 @@ int left(int node) {
 // to get index of right child of node at index i 
 int right(int node) { 
     return (2*node + 2); 
+}
+
+void heap::printHeap(){
+    //this just prints the array/linked list for the heap
+    node* temp = head;
+    while(temp != nullptr){
+        cout << "index:" << temp->index << " -- " << temp->data << endl;
+        temp = temp->next;
+    }
 }
 
 
