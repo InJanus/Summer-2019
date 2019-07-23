@@ -11,7 +11,7 @@ int parent(int index) {
 int left(int index) { 
     return (2*index + 1); 
 } 
-  
+
 // to get index of right child of node at index i 
 int right(int index) { 
     return (2*index + 2); 
