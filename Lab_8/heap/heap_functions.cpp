@@ -19,8 +19,10 @@ int right(int index) {
 
 void heap::insert(int inVal){
     if (head == nullptr){
+        head = new node;
         head->data = inVal;
         head -> index = 0;
+        tail = head;
     }
     else{
         tail -> next = new node;
