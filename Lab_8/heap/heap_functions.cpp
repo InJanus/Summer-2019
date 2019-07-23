@@ -29,6 +29,7 @@ void heap::insert(int inVal){
         head->data = inVal;
         head -> index = 0;
         tail = head;
+        size++;
     }
     else{
         tail -> next = new node;
@@ -46,7 +47,6 @@ void heap::insert(int inVal){
             parentIndex = parent(parentIndex);
         }    
     }
-    size++;
 
 }
 void heap::printHeap(){
@@ -60,7 +60,7 @@ void heap::printHeap(){
 
 node* heap::getNode(int index){
     node* temp = head;
-    for(int i = 0; i < index; i++){
+    for(int i = 0; i < index - 1; i++){
         temp = temp->next;
     }
     return temp;
