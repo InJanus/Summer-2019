@@ -107,8 +107,6 @@ void heap::remove(/* int getdata*/){
     cout << prev->data << endl;
     delete temp;
     prev->next = nullptr;
-    
-    
 }
 
 
