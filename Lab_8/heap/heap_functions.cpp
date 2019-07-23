@@ -35,6 +35,7 @@ void heap::insert(int inVal){
         tail -> next = new node;
         tail = tail->next;
         tail -> data = inVal;
+        size++;
         tail -> index = size;
         tail -> next = nullptr;
 
