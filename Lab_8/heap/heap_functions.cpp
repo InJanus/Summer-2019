@@ -98,13 +98,15 @@ void heap::remove(/* int getdata*/){
     // }
     node* temp = head;
     node * prev;
-    while(temp != nullptr){
+    while(temp->next != nullptr){
         prev = temp;
         temp = temp->next;
     }
     tail = prev;
-    temp = nullptr;
+    cout << prev->data << endl;
     delete temp;
+    temp = nullptr;
+    
     
 }
 
