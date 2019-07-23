@@ -45,6 +45,7 @@ int main()
 		h.insert(3);
 		h.printHeap();
 		h.remove();
+		h.printHeap();
 
 	}
 	else if (task == 3) {

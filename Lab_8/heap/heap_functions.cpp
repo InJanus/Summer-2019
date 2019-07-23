@@ -17,6 +17,12 @@ int right(int index) {
     return (2*index + 2); 
 }
 
+heap::heap(){
+    head = nullptr;
+    tail = nullptr;
+    size = 0;
+}
+
 void heap::insert(int inVal){
     if (head == nullptr){
         head = new node;
@@ -26,9 +32,10 @@ void heap::insert(int inVal){
     }
     else{
         tail -> next = new node;
-        tail -> next -> data = inVal;
         tail = tail->next;
+        tail -> data = inVal;
         tail -> index = size;
+        tail -> next = nullptr;
 
         // This swaps it up. So if the parent is larger... it'll swap the parent with the child.  
         int parentIndex = tail -> index;
@@ -91,13 +98,14 @@ void heap::remove(/* int getdata*/){
     // }
     node* temp = head;
     node * prev;
-    while(temp != tail){
+    while(temp != nullptr){
         prev = temp;
         temp = temp->next;
     }
-    node* remove = temp;
     tail = prev;
-    delete remove;
+    temp = nullptr;
+    delete temp;
+    
 }
 
 

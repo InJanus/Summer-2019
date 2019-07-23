@@ -13,6 +13,7 @@ class heap{
         node* tail;
         int size;
     public:
+        heap();
         void insert(int);
         void remove();
         void printHeap();
