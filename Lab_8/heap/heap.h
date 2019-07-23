@@ -14,7 +14,7 @@ class heap{
         int size;
     public:
         void insert(int);
-        void remove(int);
+        void remove();
         void printHeap();
         node* getNode(int);
 };
