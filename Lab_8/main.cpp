@@ -1,6 +1,6 @@
 #include <iostream>
-#include "pqueue.h"
-//#include "..\\Lab_8\heap\heap.h"
+#include "..\\Lab_8\pqueue\pqueue.h"
+#include "..\\Lab_8\heap\heap.h"
 #include <string>
 #include <cstdlib>
 #include <chrono>
@@ -40,7 +40,12 @@ int main()
 		}
 	}
 	else if (task == 2) {
-		//run task 2
+		heap h;
+		h.insert(2);
+		h.insert(3);
+		h.printHeap();
+		h.remove();
+
 	}
 	else if (task == 3) {
 
