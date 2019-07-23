@@ -72,19 +72,8 @@ void heap::remove(int getdata){
         if((myleft == nullptr)&&(myright == nullptr)){   //no children
             prevnode->next = prevnode->next->next;
             delete temp;
-        }else if((myleft != nullptr)&&(myright == nullptr)){
-
-        }else if((myleft == nullptr)&&(myright != nullptr)){
-            
-        }else if((myleft != nullptr)&&(myright != nullptr)){
-            
         }
     }
-
-    
-
-
-
 }
 
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "..\\Lab_8\pqueue\pqueue.h"
-//#include "..\\Lab_8\heap\heap.h"
+#include "..\\Lab_8\heap\heap.h"
 #include <string>
 #include <cstdlib>
 #include <chrono>
@@ -55,7 +55,7 @@ int main()
 		auto start4 = Clock::now();
 		for (int j = maxNum; j > 0; j--)
 		{
-			myheap.remove();
+			myheap.remove(myheap.getNode(j)->data);
 		}
 		auto end4 = Clock::now();
 		std::cout << "Heap Remove, Size " << maxNum << ": "
