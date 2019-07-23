@@ -43,6 +43,9 @@ int main()
 		heap h;
 		h.insert(2);
 		h.insert(3);
+		h.insert(1);
+		h.insert(7);
+		h.insert(8);
 		h.printHeap();
 		h.remove();
 		h.printHeap();

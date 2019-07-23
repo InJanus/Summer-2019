@@ -27,7 +27,7 @@ void heap::insert(int inVal){
     if (head == nullptr){
         head = new node;
         head->data = inVal;
-        head -> index = 0;
+        head -> index = 1;
         tail = head;
         size++;
     }
@@ -38,6 +38,7 @@ void heap::insert(int inVal){
         size++;
         tail -> index = size;
         tail -> next = nullptr;
+        //tail -> index--;
 
         // This swaps it up. So if the parent is larger... it'll swap the parent with the child.  
         int parentIndex = tail -> index;
@@ -54,7 +55,7 @@ void heap::printHeap(){
     //this just prints the array/linked list for the heap
     node* temp = head;
     while(temp != nullptr){
-        cout << "index:" << temp->index << " -- " << temp->data << endl;
+        cout << "index:" << temp->index-1 << " -- " << temp->data << endl;
         temp = temp->next;
     }
 }
