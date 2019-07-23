@@ -23,12 +23,14 @@ void heap::insert(int inVal){
         head->data = inVal;
         head -> index = 0;
         tail = head;
+        size++;
     }
     else{
         tail -> next = new node;
         tail -> next -> data = inVal;
         tail = tail->next;
         tail -> index = size;
+        size++;
 
         // This swaps it up. So if the parent is larger... it'll swap the parent with the child.  
         int parentIndex = tail -> index;
@@ -39,7 +41,6 @@ void heap::insert(int inVal){
             parentIndex = parent(parentIndex);
         }    
     }
-    size++;
 
 }
 void heap::printHeap(){
