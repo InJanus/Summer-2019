@@ -7,12 +7,53 @@
 
 int main()
 {
+	int task;
+	std::cout<<"task 1, 2 or 3?"<<endl;
+	std::cin>>task;
+	if (task ==1){
+		//run tASK 1
+		using namespace std;
+		PQueue q;
+		int option;
+		bool inner_flag = true;
+		while (inner_flag){
+			cout<<"1)Insert\n2)Remove\n3)Print\n4)End"<<endl;
+			cin>>option;
+			//switch (option)
+			if (option==1){
+				int inval;
+				cout<<"Enter Value to insert: "<<endl;
+				cin>> inval;
+				q.insert(inval);
+			}
+			else if(option == 2){
+				int outval;
+				outval = q.remove();
+				cout<<"Removed: "<<outval<<endl;
+			}
+			else if(option ==3){
+				q.printQueue();
+			}else{
+				inner_flag =false;
+			}
+		}
+	}
+	else if ( task ==2){
+		//run task 2
+	}
+	else if (task == 3){
+
+		//TASK 3 Code HERE
+		
+	}
+	
+
 	typedef std::chrono::high_resolution_clock Clock;
 	bool flag = true;
 	int listOfSizes[5] = { 500, 1000, 2000, 5000, 20000 };
 	int k = 0;
 	PQueue myqueue;
-	heap myheap;
+	//heap myheap; //FIXME
 	while (flag)
 	{
 		//cout << "Choose the amount of items to be in the pQueue" << endl;
@@ -34,7 +75,7 @@ int main()
 		auto start2 = Clock::now();
 		for (int i = 0; i < maxNum; i++)
 		{
-			myheap.insert(rand());
+			//myheap.insert(rand());
 		}
 		auto end2 = Clock::now();
 
@@ -55,7 +96,7 @@ int main()
 		auto start4 = Clock::now();
 		for (int j = maxNum; j > 0; j--)
 		{
-			myheap.remove();
+			//myheap.remove();
 		}
 		auto end4 = Clock::now();
 		std::cout << "Heap Remove, Size " << maxNum << ": "

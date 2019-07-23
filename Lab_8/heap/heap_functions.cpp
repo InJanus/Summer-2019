@@ -77,11 +77,12 @@ void heap::remove(int getdata){
         if((myleft == nullptr)&&(myright == nullptr)){   //no children
             prevnode->next = prevnode->next->next;
             delete temp;
-        }else if((myleft != nullptr)&&(myright == nullptr)){
-
-        }else if((myleft == nullptr)&&(myright != nullptr)){
+        }else if((myleft != nullptr)&&(myright == nullptr)){ //left child no right
             
-        }else if((myleft != nullptr)&&(myright != nullptr)){
+
+        }else if((myleft == nullptr)&&(myright != nullptr)){ // right child no left
+            
+        }else if((myleft != nullptr)&&(myright != nullptr)){ // shit... two children
             
         }
     }
