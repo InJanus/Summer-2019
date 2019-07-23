@@ -21,7 +21,12 @@ void heap::insert(int inVal){
     if (head == nullptr){
         head = new node;
         head->data = inVal;
+<<<<<<< HEAD
         head->index = 0;
+=======
+        head -> index = 0;
+        tail = head;
+>>>>>>> 2efc139435d9ebf0dfa1a273df7b7e0e712d4325
     }
     else{
         tail -> next = new node;
