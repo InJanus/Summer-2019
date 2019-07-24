@@ -58,7 +58,7 @@ int main()
 		int listOfSizes[5] = { 500, 1000, 2000, 5000, 20000 };
 		int k = 0;
 		PQueue myqueue;
-		//heap myheap; //FIXME
+		heap myheap; //FIXME
 		while (flag)
 		{
 			//cout << "Choose the amount of items to be in the pQueue" << endl;
@@ -80,7 +80,7 @@ int main()
 			auto start2 = Clock::now();
 			for (int i = 0; i < maxNum; i++)
 			{
-				//myheap.insert(rand());
+				myheap.insert(rand());
 			}
 			auto end2 = Clock::now();
 
@@ -101,7 +101,7 @@ int main()
 			auto start4 = Clock::now();
 			for (int j = maxNum; j > 0; j--)
 			{
-				//myheap.remove();
+				myheap.remove();
 			}
 			auto end4 = Clock::now();
 			std::cout << "Heap Remove, Size " << maxNum << ": "
