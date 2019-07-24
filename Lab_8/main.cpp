@@ -9,6 +9,7 @@ int main()
 {
 	int task;
 	std::cout << "task 1, 2 or 3?" << endl;
+	
 	std::cin >> task;
 	if (task == 1) {
 		//run tASK 1
@@ -19,7 +20,6 @@ int main()
 		while (inner_flag) {
 			cout << "1)Insert\n2)Remove\n3)Print\n4)End" << endl;
 			cin >> option;
-			//switch (option)
 			if (option == 1) {
 				int inval;
 				cout << "Enter Value to insert: " << endl;
@@ -57,66 +57,64 @@ int main()
 		bool flag = true;
 		int listOfSizes[5] = { 500, 1000, 2000, 5000, 20000 };
 		int k = 0;
-		PQueue myqueue;
-		heap myheap; //FIXME
+		auto start = Clock::now();
+		auto end = Clock::now();
+
+		srand(time(0));
+		
 		while (flag)
 		{
+			PQueue myqueue;
+			heap myheap; 
 			//cout << "Choose the amount of items to be in the pQueue" << endl;
 			int maxNum;
 			//cin >> maxNum;
-
 			maxNum = listOfSizes[k];
-			auto start1 = Clock::now();
-			for (int i = 0; i < maxNum; i++)
-			{
-				myqueue.insert(rand());
+			/* auto start1*/ start= Clock::now();
+			for (int i = 0; i < maxNum; i++){
+				myqueue.insert((rand()*maxNum-1)+1);
 			}
-			auto end1 = Clock::now();
-
+			/* auto end1*/ end = Clock::now();
 			std::cout << "Queue Insert, Size " << maxNum << ": "
-				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end1 - start1).count()
+				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
 				<< " nanoseconds" << std::endl;
 
-			auto start2 = Clock::now();
-			for (int i = 0; i < maxNum; i++)
-			{
-				myheap.insert(rand());
+
+			/* auto start2*/start = Clock::now();
+			for (int i = 0; i < maxNum; i++){
+				myheap.insert((rand()*maxNum-1)+1);
 			}
-			auto end2 = Clock::now();
-
+			/* auto end2*/ end= Clock::now();
 			std::cout << "Heap insert, Size " << maxNum << ": "
-				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count()
+				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
 				<< " nanoseconds" << std::endl;
 
-			auto start3 = Clock::now();
-			for (int j = maxNum; j > 0; j--)
-			{
+
+			/* auto start3*/ start= Clock::now();
+			for (int j = maxNum-1; j > 0; j--){
 				myqueue.remove();
 			}
-			auto end3 = Clock::now();
+			/* auto end3*/ end= Clock::now();
 			std::cout << "Queue Remove, Size " << maxNum << ": "
-				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end3 - start3).count()
+				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
 				<< " nanoseconds" << std::endl;
 
-			auto start4 = Clock::now();
-			for (int j = maxNum; j > 0; j--)
-			{
+
+			/* auto start4*/ start= Clock::now();
+			for (int j = maxNum-1; j > 0; j--){
 				myheap.remove();
 			}
-			auto end4 = Clock::now();
+			/* auto end4*/ end= Clock::now();
 			std::cout << "Heap Remove, Size " << maxNum << ": "
-				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end4 - start4).count()
+				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
 				<< " nanoseconds" << std::endl;
 
 			k++;
-
 			if (k == 5)
 			{
 				flag = false;
 			}
-
 		}
-
 	}
 	return 0;
 }
