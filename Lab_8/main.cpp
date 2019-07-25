@@ -84,12 +84,15 @@ int main()
 			heap myheap; 
 			//cout << "Choose the amount of items to be in the pQueue" << endl;
 			int maxNum;
+			int r;
 			//cin >> maxNum;
 			maxNum = listOfSizes[k];
 			/* auto start1*/ start= Clock::now();
 			for (int i = 0; i < maxNum; i++){
-				myqueue.insert((rand()*maxNum-1)+1);
+				r = (rand()%maxNum);
+				myqueue.insert(r);
 			}
+			
 			/* auto end1*/ end = Clock::now();
 			std::cout << "Queue Insert, Size " << maxNum << ": "
 				<< std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
@@ -98,7 +101,8 @@ int main()
 
 			/* auto start2*/start = Clock::now();
 			for (int i = 0; i < maxNum; i++){
-				myheap.insert((rand()*maxNum-1)+1);
+				r = (rand()%maxNum);
+				myheap.insert(r);
 			}
 			/* auto end2*/ end= Clock::now();
 			std::cout << "Heap insert, Size " << maxNum << ": "

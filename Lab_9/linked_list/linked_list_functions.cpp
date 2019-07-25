@@ -2,15 +2,6 @@
 #include <iostream>
 using namespace std;
 
-void throwError(string message){
-    try{
-        throw runtime_error(message);
-    }catch(exception& e){
-        cerr << e.what() << endl;
-    }
-}
-
-
 linked_list::linked_list(){
     head = nullptr;
     mylocation = 0;
@@ -20,7 +11,7 @@ bigdata linked_list::getItem(int location){
     bigdata *temp = head;
     
     if(location > size()){
-        throwError("Location not inside list");
+        cout << "Location not inside list" << endl;
     }else{
         if(location == 0){
             bigdata *returnVal = head;
@@ -104,7 +95,7 @@ int linked_list::isinList(string search){
             temp = temp->next;
         }
     }
-    throwError("not in list");
+    cout << "not in list" << endl;
     return -1;
 }
 
@@ -114,7 +105,7 @@ bool linked_list::isEmpty(){
 
 bigdata linked_list::seeNext(){
     if (isEmpty()){
-        throwError("list is empty");
+        cout << "list is empty" << endl;
     }else{
         // if(pointer == nullptr){
         //     return *pointer;
@@ -125,7 +116,7 @@ bigdata linked_list::seeNext(){
         bigdata retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
-            throwError("End of list");
+            cout << ("End of list");
         }else{
             mylocation++;
         }

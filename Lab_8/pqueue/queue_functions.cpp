@@ -42,6 +42,7 @@ void PQueue::insert(int inVal){             //FIXME need to do it so that the in
             temp = temp->next;
             count++;
         }
+        
         if(temp->data<= inVal){
             Node *inNode=new Node;  //Inserting inbetween a higher value and a lower value
             previous->next=inNode;
