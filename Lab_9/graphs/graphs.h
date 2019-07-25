@@ -6,7 +6,9 @@ struct node{
     int index;
     node* next;
 };
-
+//Constructor – This should have an overload indicating the number of vertices in
+//the graph.
+//Destructor
 class graph{
     private:
         node* head;

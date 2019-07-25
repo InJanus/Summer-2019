@@ -1,18 +1,13 @@
 #include <string>
 using namespace std;
 
-struct student{
-    int m_number;
-    string firstName;
-    string lastName;
-    string birthday;
-    double gpa;
-    student *next = nullptr;
+struct state{
+    
 };
 
 class linked_list{
     private:
-        student *head;
+        node *head;
         int mylocation;
     public:
         linked_list();
