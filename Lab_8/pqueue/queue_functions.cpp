@@ -2,69 +2,36 @@
 #include <iostream>
 using namespace std;
 
-void PQueue::insert(int inVal){             //FIXME need to do it so that the insert is in the right place 
-    // Node *temp = first;
-    // if (first == nullptr){
-    //     first =new Node;
-    //     first->data = inMnum;
-    // }else{
-    //     Node *current = new Node;
-    //     while (temp->next != nullptr){
-    //         current->next = temp;
-    //         temp = temp->next;
-    //     }
-    //     temp->next = new Node; //if we are at the last node
-    //     temp->next->data = inMnum;
-    // }
-    // length++;
-
-    Node *temp = first;
-    if (first == nullptr){
-        first =new Node;
-        first->data = inVal;
-    }
-    else if(inVal > first->data){ 
-        Node* inNode= new Node;    //case where the inserted Node is > first
-        inNode->data=inVal;
-        inNode->next= first;
-        first =inNode;
-    }
-    else if(inVal<first->data && temp->next== nullptr){
-        Node *inNode = new Node;  //case where the inserted Node is the second Node to be entered
-        inNode->data=inVal;
-        first->next = inNode;
-    }
-    else{
-        Node *previous=nullptr;
-        int count=0;
-        while (temp->next != nullptr && temp->data > inVal){ // traverse the list for the value that is right 
-            previous = temp;
-            temp = temp->next;
-            count++;
-        }
-        
-        if(temp->data<= inVal){
-            Node *inNode=new Node;  //Inserting inbetween a higher value and a lower value
-            previous->next=inNode;
-            inNode->next=temp;
-            inNode->data = inVal;
-        }
-        //if (temp->next == nullptr &&count==length){
-        else{
-            temp->next = new Node; //if we are at the last node
-            temp->next->data = inVal;
-        }
-    }
-    length++;
+void PQueue::insert(int inVal) {             //FIXME need to do it so that the insert is in the right place 
+	Node* temp, * temp2;
+	temp = new Node;
+	temp->data = inVal;
+	if (first == NULL) {
+		temp->next = first;
+		first = temp;
+	}
+	else {
+		temp2 = first;
+		while (temp2->next != NULL && temp2->next->data >= inVal)
+			temp2 = temp2->next;
+		temp->next = temp2->next;
+		temp2->next = temp;
+	}
+	length++;
 }
 
-int PQueue::remove(){
-    Node* rem = first;
-    first = first->next;
-    int retVal = rem->data;
-    delete rem;
-    length--;
-    return retVal;
+int PQueue::remove() {
+	Node* temp;
+	if (first == NULL) //if queue is null
+		cout << "Queue Underflow\n";
+	else {
+		temp = first;
+		//cout << "Deleted item is: " << temp->data << endl;
+		first = first->next;
+		int value = temp->data;
+		free(temp);
+		return value;
+		}
 }
 
 bool PQueue::isInList(int inMnum){
