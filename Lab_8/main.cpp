@@ -40,16 +40,32 @@ int main()
 		}
 	}
 	else if (task == 2) {
+		using namespace std;
 		heap h;
-		h.insert(2);
-		h.insert(3);
-		h.insert(1);
-		h.insert(7);
-		h.insert(8);
-		h.printHeap();
-		h.remove();
-		h.printHeap();
-
+		int option;
+		bool inner_flag = true;
+		while (inner_flag) {
+			cout << "1)Insert\n2)Remove\n3)Print\n4)End" << endl;
+			cin >> option;
+			//switch (option)
+			if (option == 1) {
+				int inval;
+				cout << "Enter Value to insert: " << endl;
+				cin >> inval;
+				h.insert(inval);
+			}
+			else if (option == 2) {
+				int outval;
+				h.remove();
+				h.printHeap();
+			}
+			else if (option == 3) {
+				h.printHeap();
+			}
+			else {
+				inner_flag = false;
+			}
+		}
 	}
 	else if (task == 3) {
 
