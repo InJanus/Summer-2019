@@ -1,27 +1,23 @@
 #include <string>
 using namespace std;
 
-struct student{
-    int m_number;
-    string firstName;
-    string lastName;
-    string birthday;
-    double gpa;
-    student *next = nullptr;
+struct bigdata{
+    string name;
+    bigdata *next = nullptr;
 };
 
 class linked_list{
     private:
-        student *head;
+        bigdata *head;
         int mylocation;
     public:
         linked_list();
-        void addItem(student);
-        student getItem(int);
-        int isinList(int);
+        void addItem(bigdata);
+        bigdata getItem(int);
+        int isinList(string);
         bool isEmpty();
         int size();
-        student seeNext();
-        student seeAt(int);
+        bigdata seeNext();
+        bigdata seeAt(int);
         void reset();
 };

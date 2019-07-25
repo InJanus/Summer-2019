@@ -16,21 +16,21 @@ linked_list::linked_list(){
     mylocation = 0;
 }
 
-student linked_list::getItem(int location){
-    student *temp = head;
+bigdata linked_list::getItem(int location){
+    bigdata *temp = head;
     
     if(location > size()){
         throwError("Location not inside list");
     }else{
         if(location == 0){
-            student *returnVal = head;
+            bigdata *returnVal = head;
             head = temp->next;
             return *returnVal;
         }else{
             for(int i = 0; i < location-2; i++){
                 temp = temp->next;
             }
-            student returnValue = *(temp->next);
+            bigdata returnValue = *(temp->next);
             temp->next = temp->next->next;
             return returnValue;
         }
@@ -38,19 +38,15 @@ student linked_list::getItem(int location){
     }
 }
 
-void linked_list::addItem(student stud){
-    student *temp;
-    student *temp2 = head;
-    temp = new student;
-    temp-> m_number = stud.m_number;
-    temp-> firstName = stud.firstName;
-    temp-> lastName = stud.lastName;
-    temp-> birthday = stud.birthday;
-    temp-> gpa = stud.gpa;
+void linked_list::addItem(bigdata stud){
+    bigdata *temp;
+    bigdata *temp2 = head;
+    temp = new bigdata;
+    temp-> name = stud.name;
     if(temp2 == nullptr){
         head = temp;
     }else{
-        if(temp->m_number < temp2->m_number){
+        if(temp->name < temp2->name){
             head = temp;
             head -> next = temp2;
         }
@@ -60,7 +56,7 @@ void linked_list::addItem(student stud){
                 temp2 -> next = temp;
                 flag = true;
             }else{
-                while(temp->m_number > temp2->next->m_number){
+                while(temp->name > temp2->next->name){
                     if(temp2->next->next == nullptr){
                         temp2 -> next -> next = temp;
                         flag = true;
@@ -79,7 +75,7 @@ void linked_list::addItem(student stud){
 }
 
 int linked_list::size(){
-    student *temp = head;
+    bigdata *temp = head;
     int i = 0;
     if(temp == nullptr){
         return i;
@@ -95,14 +91,14 @@ int linked_list::size(){
     
 }
 
-int linked_list::isinList(int search){
+int linked_list::isinList(string search){
     //returns the int of the location of the student, if not in list then returns -1
     //searches down the list of the .h file
     int location = -1;
-    student *temp = head;
+    bigdata *temp = head;
     for(int i = 0; i < size(); i++){
         location++;
-        if(temp->m_number == search){
+        if(temp->name == search){
             return location;
         }else{
             temp = temp->next;
@@ -116,7 +112,7 @@ bool linked_list::isEmpty(){
     return(size() == 0);
 }
 
-student linked_list::seeNext(){
+bigdata linked_list::seeNext(){
     if (isEmpty()){
         throwError("list is empty");
     }else{
@@ -126,7 +122,7 @@ student linked_list::seeNext(){
         //     pointer = pointer->next;
         //     return *pointer;
         // }
-        student retval = seeAt(mylocation);
+        bigdata retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
             throwError("End of list");
@@ -137,8 +133,8 @@ student linked_list::seeNext(){
     }
 }
 
-student linked_list::seeAt(int location){
-    student *temp = head;
+bigdata linked_list::seeAt(int location){
+    bigdata *temp = head;
     if (isEmpty()){
         throwError("list is empty");
     }else{
