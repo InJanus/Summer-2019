@@ -17,10 +17,10 @@ class graph{
         graph();
         ~graph();
         void addEdge(string ,linked_list );
-        void removeEdge(string i,linked_list j);
-        bool hasEdge(string i,string j);
-        string outEdges(node i);
-        string inEdges(node j);
+        void removeEdge(string ,linked_list);
+        bool hasEdge(string ,string);
+        linked_list outEdges(string);
+        linked_list inEdges(string);
         void printGraph();
 
 };

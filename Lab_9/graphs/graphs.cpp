@@ -93,51 +93,33 @@ bool graph::hasEdge(string i, string j)
 }
 
 //May need a lot of work
-string graph::outEdges(node i)
+linked_list graph::inEdges(string i)
 {
-	// string retString = "";
-	// if (linkedList[i].empty())
-	// {
-	// 	return (to_string(i) + " has no out edges.");
-	// }
-	// else
-	// {
-	// 	retString += to_string(i) + " outEdges: ";
-	// 	for (int j = 0; j < linkedList[i].size(); j++)
-	// 	{
-	// 		retString += to_string(linkedList[i].at(j)) + " ";
-	// 	}
-
-	// 	return retString;
-	// }
+	linked_list retval;
+	node* temp = head;
+	while(temp != nullptr){
+		if(temp->data.isinList(i) >= 0){
+			retval.addItem(temp->name);
+		}
+		temp = temp->next;
+	}
+	return retval;
+	//return everything connected to j
+	//a little harder since we have to find every instance of this in avery node
 }
 
 //May need a lot of work
-string graph::inEdges(node i)
+linked_list graph::outEdges(string i)
 {
-	// string retString = to_string(i) + " inEdges: ";
-	// for (int j = 0; j < 10; j++)
-	// {
-	// 	if (!linkedList[j].empty())
-	// 	{
-	// 		for (int k = 0; k < linkedList[j].size(); k++)
-	// 		{
-	// 			if (linkedList[j].at(k) == i)
-	// 			{
-	// 				retString += to_string(j) + " ";
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// if (retString == (to_string(i)  + " inEdges: "))
-	// {
-	// 	return (to_string(i) + " has no edges.");
-	// }
-	// else
-	// {
-	// 	return retString;
-	// }
+	node* temp = head;
+	while(temp != nullptr){
+		if(temp->name.compare(i) == 0){
+			return temp->data;
+		}
+		temp = temp->next;
+	}
+	return linked_list();
+	//going to return the linked list everything connected to i
 }
 
 //Print the graph

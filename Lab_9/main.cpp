@@ -20,6 +20,7 @@ int main()
 	cout << "Press 6 to Quit." << endl;
 	cout << "Press 7 to Print Array." << endl;
 	graph graph;
+	linked_list output;
 	while (quit == false)
 	{
 
@@ -83,18 +84,31 @@ int main()
 				cout << "edge does not exist" << endl;
 			}
 			break;
-		case (4):
-
-			cout << "Enter the vertice that is connected to the desired edge." << endl;
-			cin >> vert1;
-
-			//cout << graph.inEdges(vert1) << endl;
-			break;
 		case (5):
-			cout << "Enter the vertice that is connected to the desired edge." << endl;
-			cin >> vert1;
 
-			//cout << graph.outEdges(vert1) << endl;
+			cout << "Enter the vertice that is connected to the desired edge." << endl;
+			fflush(stdin);
+            getline(cin, vert1);
+
+			output = graph.inEdges(vert1);
+			for(int i = 0; i < output.size(); i++){
+				cout << "index: " << i << " --= " << output.seeAt(i).name << endl;
+			}
+			if(output.size() == 0){
+				cout << "no connections" << endl;
+			}
+			break;
+		case (4):
+			cout << "Enter the vertice that is connected to the desired edge." << endl;
+			fflush(stdin);
+            getline(cin, vert1);
+			output = graph.outEdges(vert1);
+			for(int i = 0; i < output.size(); i++){
+				cout << "index: " << i << " --= " << output.seeAt(i).name << endl;
+			}
+			if(output.size() == 0){
+				cout << "no connections" << endl;
+			}
 			break;
 		case (6):
 			quit = true;
