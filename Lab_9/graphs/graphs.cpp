@@ -7,11 +7,6 @@ using namespace std;
 //Constructor
 graph::graph()
 {
-	// Auto populate the linkedList of vertices to be between 0 and 9;
-	// for (int i = 0; i < linkedList.size(); i++)
-	// {
-	// 	linkedList[i].push_back(i);
-	// }
 	size = 0;
 	head = nullptr;
 }
@@ -56,19 +51,6 @@ void graph::printGraph()
 		}
 		temp = temp->next;
 	}
-
-	// for (int i = 0; i < 10; i++)
-	// {
-	// 	cout << "[" << i << "]";
-	// 	if (!linkedList[i].empty())
-	// 	{
-	// 		for (int j = 0; j < linkedList[i].size(); j++)
-	// 		{
-	// 			cout << "->(" << linkedList[i].at(j) << ")";
-	// 		}
-	// 	}
-	// 	cout << endl;
-	// }
 }
 
 //Remove edge but if does not exist inform them.
@@ -93,38 +75,21 @@ void graph::removeEdge(string i, linked_list j)
 		temp = temp->next;
 	}
 	size--;
-    // See if this edge exists.
-	// if (this->hasEdge(i, j)) 
-	// {
-	// 	for (int k = 0; k < linkedList[i].size(); k++)
-	// 	{
-	// 		if (linkedList[i].at(k) == j)
-	// 		{
-	// 			linkedList[i].erase(linkedList[i].begin() + k);
-	// 		}
-	// 	}
-	// }else{
-	//     std::cout << "Edge does not exist" << std::endl;
-    // }
 }
 
 //Return if the edge exists
-bool graph::hasEdge(node i, node j)
+bool graph::hasEdge(string i, string j)
 {
-	//check to see if an edge exists in the one you are looking for
-
-
-	// if (!linkedList[i].empty())
-	// {
-	// 	for (int k = 0; k < linkedList[i].size(); k++)
-	// 	{
-	// 		if (linkedList[i].at(k) == j)
-	// 		{
-	// 			return true;
-	// 		}
-	// 	}
-	// }
-	// return false;
+	node* temp = head;
+	while(temp != nullptr){
+		if(temp->name.compare(i) == 0){
+			if(temp->data.isinList(j) >= 0){
+				return true;
+			}
+		}
+		temp = temp->next;
+	}
+	return false;
 }
 
 //May need a lot of work

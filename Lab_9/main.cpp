@@ -70,11 +70,18 @@ int main()
 		case (3):
 			cout << "Enter the two vertices that are on connected to the desired edge." << endl;
 			cout << "Enter vertice one." << endl;
-			cin >> vert1;
+			fflush(stdin);
+            getline(cin, vert1);
 			cout << "Enter vertice two." << endl;
-			//cin >> vert2;
+			
+			fflush(stdin);
+            getline(cin, input);
 
-			//graph.hasEdge(vert1, vert2);
+			if(graph.hasEdge(vert1, input)){
+				cout << "edge exists" << endl;
+			}else{
+				cout << "edge does not exist" << endl;
+			}
 			break;
 		case (4):
 
