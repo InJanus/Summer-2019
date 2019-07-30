@@ -27,6 +27,7 @@ bigdata linked_list::getItem(int location){
         }
         //temp->next = temp->next->next;  //replaces the next value
     }
+    return bigdata();
 }
 
 void linked_list::addItem(string stud){
@@ -122,6 +123,7 @@ bigdata linked_list::seeNext(){
         }
         return retval;
     }
+    return bigdata();
 }
 
 bigdata linked_list::seeAt(int location){
@@ -136,6 +138,7 @@ bigdata linked_list::seeAt(int location){
         mylocation = location;
         return *temp;
     }
+    return bigdata();
 }
 
 void linked_list::reset(){
