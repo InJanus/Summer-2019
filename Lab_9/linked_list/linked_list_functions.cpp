@@ -29,11 +29,11 @@ bigdata linked_list::getItem(int location){
     }
 }
 
-void linked_list::addItem(bigdata stud){
+void linked_list::addItem(string stud){
     bigdata *temp;
     bigdata *temp2 = head;
     temp = new bigdata;
-    temp-> name = stud.name;
+    temp-> name = stud;
     if(temp2 == nullptr){
         head = temp;
     }else{
@@ -116,7 +116,7 @@ bigdata linked_list::seeNext(){
         bigdata retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
-            cout << ("End of list");
+            cout << "End of list" << endl;
         }else{
             mylocation++;
         }
@@ -127,7 +127,7 @@ bigdata linked_list::seeNext(){
 bigdata linked_list::seeAt(int location){
     bigdata *temp = head;
     if (isEmpty()){
-        throwError("list is empty");
+        cout << "list is empty" << endl;
     }else{
         for(int i = 0; i < location; i++){
                 temp = temp->next;
@@ -140,4 +140,21 @@ bigdata linked_list::seeAt(int location){
 
 void linked_list::reset(){
     mylocation = 0; 
+}
+
+void linked_list::removeAll(){
+    delete head;
+    head = nullptr;
+}
+
+bool linked_list::equalto(linked_list input){
+    if(size() == input.size()){
+        for(int i = 0; i < size(); i++){
+            if(i != isinList(input.seeAt(i).name)){
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
 }

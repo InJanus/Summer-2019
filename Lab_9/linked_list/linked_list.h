@@ -12,7 +12,7 @@ class linked_list{
         int mylocation;
     public:
         linked_list();
-        void addItem(bigdata);
+        void addItem(string);
         bigdata getItem(int);
         int isinList(string);
         bool isEmpty();
@@ -20,4 +20,6 @@ class linked_list{
         bigdata seeNext();
         bigdata seeAt(int);
         void reset();
+        void removeAll();
+        bool equalto(linked_list);
 };
