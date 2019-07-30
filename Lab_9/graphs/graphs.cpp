@@ -76,19 +76,23 @@ void graph::removeEdge(string i, linked_list j)
 {
 	node* prev = head;
 	node* temp = head;
-	while(temp->next == nullptr){
-		if(temp->name == i){
+	while(temp != nullptr){
+		if(temp->name.compare(i) == 0){
 			if(temp->data.equalto(j)){
 				if(prev == temp){
 					//head case
 					head = head->next;
+				}else{
+					prev->next = prev->next->next;
+					
 				}
-				prev->next = prev->next->next;
+				break;
 			}
 		}
 		prev = temp;
 		temp = temp->next;
 	}
+	size--;
     // See if this edge exists.
 	// if (this->hasEdge(i, j)) 
 	// {
@@ -107,6 +111,9 @@ void graph::removeEdge(string i, linked_list j)
 //Return if the edge exists
 bool graph::hasEdge(node i, node j)
 {
+	//check to see if an edge exists in the one you are looking for
+
+
 	// if (!linkedList[i].empty())
 	// {
 	// 	for (int k = 0; k < linkedList[i].size(); k++)
