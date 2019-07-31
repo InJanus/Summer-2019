@@ -125,7 +125,7 @@ int main()
 		case(8):
 			cout << "getting data from file" << endl;
 			
-			myfile.open("C:\\Users\\culbe\\Documents\\Code\\Summer-2019-1\\Lab_9\\states.txt");
+			myfile.open("C:\\Users\\culbe\\Documents\\Code\\Summer-2019-1\\Lab_9\\states.txt");		//this needs to be changed due to the relitive path
 			if(myfile.is_open()){
 				while(!myfile.eof()){
 					myfile >> myout;
