@@ -1,6 +1,7 @@
 #include <iostream>
 #include "..\\Lab_9\graphs\graphs.h"
 #include <string>
+#include <fstream>
 
 int command;
 bool quit = false;
@@ -19,8 +20,11 @@ int main()
 	cout << "Press 5 to Find the in edge" << endl;
 	cout << "Press 6 to Quit." << endl;
 	cout << "Press 7 to Print Array." << endl;
+	cout << "Press 8 to get data" << endl;
 	graph graph;
 	linked_list output;
+	ifstream myfile;
+	string myout;
 	while (quit == false)
 	{
 
@@ -116,6 +120,20 @@ int main()
 		case (7):
 			cout << "Printing Current Graph." << endl;
 			graph.printGraph();
+			break;
+
+		case(8):
+			cout << "getting data from file" << endl;
+			
+			myfile.open("C:\\Users\\culbe\\Documents\\Code\\Summer-2019-1\\Lab_9\\states.txt");
+			if(myfile.is_open()){
+				while(!myfile.eof()){
+					myfile >> myout;
+					cout << myout;
+				}
+			}
+			// function here to get input from file to get data
+			myfile.close();
 			break;
 		default:
 			cout << "Invalid Input"<< endl; 
