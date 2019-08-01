@@ -10,5 +10,6 @@ class hash{
         ~hash();
         void addItem(string item);
         string returnItem(string item);
-        int* getItem();
-};
+        string* getItem();
+        int getLength();
+        };
