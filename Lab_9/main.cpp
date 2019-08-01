@@ -1,9 +1,10 @@
 #include <iostream>
 #include "..\\Lab_9\graphs\graphs.h"
 #include <string>
+#include <fstream>
 
 int command;
-bool quit = false;
+bool quit;
 string vert1;
 linked_list vert2;
 string input;
@@ -19,9 +20,13 @@ int main()
 	cout << "Press 5 to Find the in edge" << endl;
 	cout << "Press 6 to Quit." << endl;
 	cout << "Press 7 to Print Array." << endl;
+	cout << "Press 8 to get data" << endl;
 	graph graph;
 	linked_list output;
-	while (quit == false)
+	ifstream myfile;
+	string myout;
+	quit = false;
+	while (!quit)
 	{
 
 		cout << "Command: ";
@@ -117,17 +122,36 @@ int main()
 			cout << "Printing Current Graph." << endl;
 			graph.printGraph();
 			break;
-		case (8):
-			//this is for the states input
-			
-			
-			
-			break;
 
+		case(8):
+			cout << "getting data from file" << endl;
+			
+			myfile.open("C:\\Users\\culbe\\Documents\\Code\\Summer-2019-1\\Lab_9\\states.txt");		//this needs to be changed due to the relitive path
+			bool myswitch;
+			if(myfile.is_open()){
+				while(!myfile.eof()){
+					myfile >> myout;
+					if(myout.compare(";") == 0){
+						graph.addEdge(vert1, vert2);
+						myswitch = true;
+						vert2.removeAll();
+					}else{
+						if(myswitch){
+							vert1 = myout;
+							myswitch = false;
+						}else{
+							vert2.addItem(myout);
+						}
+					}
+				}
+			}
+			// function here to get input from file to get data
+			myfile.close();
+			break;
 		default:
 			cout << "Invalid Input"<< endl; 
 	}
-	quit = false;
+	//quit = false;
 	
 	}
 }
