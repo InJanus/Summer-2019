@@ -4,7 +4,7 @@
 #include <fstream>
 
 int command;
-bool quit = false;
+bool quit;
 string vert1;
 linked_list vert2;
 string input;
@@ -25,7 +25,8 @@ int main()
 	linked_list output;
 	ifstream myfile;
 	string myout;
-	while (quit == false)
+	quit = false;
+	while (!quit)
 	{
 
 		cout << "Command: ";
@@ -126,10 +127,22 @@ int main()
 			cout << "getting data from file" << endl;
 			
 			myfile.open("C:\\Users\\culbe\\Documents\\Code\\Summer-2019-1\\Lab_9\\states.txt");		//this needs to be changed due to the relitive path
+			bool myswitch;
 			if(myfile.is_open()){
 				while(!myfile.eof()){
 					myfile >> myout;
-					cout << myout;
+					if(myout.compare(";") == 0){
+						graph.addEdge(vert1, vert2);
+						myswitch = true;
+						vert2.removeAll();
+					}else{
+						if(myswitch){
+							vert1 = myout;
+							myswitch = false;
+						}else{
+							vert2.addItem(myout);
+						}
+					}
 				}
 			}
 			// function here to get input from file to get data
@@ -138,7 +151,7 @@ int main()
 		default:
 			cout << "Invalid Input"<< endl; 
 	}
-	quit = false;
+	//quit = false;
 	
 	}
 }

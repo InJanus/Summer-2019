@@ -96,7 +96,7 @@ int linked_list::isinList(string search){
             temp = temp->next;
         }
     }
-    cout << "not in list" << endl;
+    //cout << "not in list" << endl;
     return -1;
 }
 
@@ -117,7 +117,7 @@ bigdata linked_list::seeNext(){
         bigdata retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
-            cout << "End of list" << endl;
+            //cout << "End of list" << endl;
         }else{
             mylocation++;
         }
