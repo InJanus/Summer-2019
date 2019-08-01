@@ -121,11 +121,3 @@ linked_list graph::outEdges(string i)
 	return linked_list();
 	//going to return the linked list everything connected to i
 }
-
-//Print the graph
-
-
-/*I did this approximately with ints instead of nodes, and array instead of linked lists
-the logic I believe is there but those are the edits that need to be made. I went ahead and
-changed all the ints in the functions to nodes which makes more errors yes but it was easy and shows where we are
-may need. Also task 3 needs completely done.*/
