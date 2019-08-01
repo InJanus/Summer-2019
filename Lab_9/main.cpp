@@ -117,6 +117,13 @@ int main()
 			cout << "Printing Current Graph." << endl;
 			graph.printGraph();
 			break;
+		case (8):
+			//this is for the states input
+			
+			
+			
+			break;
+
 		default:
 			cout << "Invalid Input"<< endl; 
 	}
