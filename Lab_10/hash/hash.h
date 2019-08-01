@@ -4,6 +4,7 @@ using namespace std;
 class hash{
     private:
         int size;
+        int hashfunction(string);
         
     public:
         hash();
