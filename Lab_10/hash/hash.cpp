@@ -1,81 +1,188 @@
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <cstdio>
 #include <cstdlib>
 #include "hash.h"
 
 using namespace std;
 
-
-HashMapTable::HashMapTable() {
-	ht = new HashTable * [T_S];
-	for (int i = 0; i < T_S; i++) {
-		ht[i] = NULL;
-	}
+//Both Constructors
+HashTable::HashTable(){
+    maxSize=100;
+    size=0;
+    conflicts=0;
 }
-int HashMapTable::Hash(string inVal){
-    int retVal;
+HashTable::HashTable(int inVal){
+    maxSize =inVal;
+    size=0;
+    conflicts=0;
+}
+//Destructor
+HashTable::~HashTable(){
+    for(int i=0;i<=maxSize;i++){
+        delete arr[i];
+    }
+}
+//Hash Function, adds all the ASCII values in the string
+int HashTable::Hash(string inVal){
+    int retVal=0;
     for ( int i =0; i <inVal.length();i++){
         retVal += int(inVal.at(i));
     }
     return retVal;
 }
-void HashMapTable::addItem(int k, int v) {
-	int hash_val = Hash(k);
-	int init = -1;
-	int delindex = -1;
-	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-		if (init == -1)
-			init = hash_val;
-		if (ht[hash_val] == DelNode::getNode())
-			delindex = hash_val;
-		hash_val = Hash(hash_val + 1);
-	}
-	if (ht[hash_val] == NULL || hash_val == init) {
-		if (delindex != -1)
-			ht[delindex] = new HashTable(k, v);
-		else
-			ht[hash_val] = new HashTable(k, v);
-	}
-	if (init != hash_val) {
-		if (ht[hash_val] != DelNode::getNode()) {
-			if (ht[hash_val] != NULL) {
-				if (ht[hash_val]->k == k)
-					ht[hash_val]->v = v;
-			}
-		}
-		else
-			ht[hash_val] = new HashTable(k, v);
-	}
+void HashTable::addItem(string inVal){
+    if (size ==maxSize){
+        cout<<" HashTable is full, Can not ADD"<<endl;
+        return;
+    }
+    int key = Hash(inVal);
+    key = key%maxSize;
+    while(arr[key]!=nullptr){
+        key++;
+        key=key%maxSize;
+        conflicts++;
+    }
+    arr[key]=new string;
+    *arr[key]=inVal;
+    size++;
 }
-int HashMapTable::getItem(int k) {
-	int hash_val = Hash(k);
-	int init = -1;
-	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-		if (init == -1)
-			init = hash_val;
-		hash_val = Hash(hash_val + 1);
-	}
-	if (ht[hash_val] == NULL || hash_val == init)
-		return -1;
-	else
-		return ht[hash_val]->v;
+void HashTable::print(){
+    cout<<"Index"<<setw(8)<<"Value"<<setw(8)<<endl;
+    for(int i=0;i<maxSize;i++){
+        if(arr[i]!=nullptr){
+            cout<<i<<setw(8)<<*arr[i]<<setw(8)<<endl;
+        }
+    }
 }
-void HashMapTable::RemoveItem(int k) {
-	int hash_val = Hash(k);
-	int init = -1;
-	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-		if (init == -1)
-			init = hash_val;
-		hash_val = Hash(hash_val + 1);
-	}
-	if (hash_val != init && ht[hash_val] != NULL) {
-		delete ht[hash_val];
-		ht[hash_val] = DelNode::getNode();
-	}
+string* HashTable::getItem(string inVal){
+    int key = Hash(inVal);
+    int ogKey=key;
+    key=key%maxSize;
+    //Checking for if value isnt there at all
+    if(arr[key]==nullptr){
+        cout<<"Not Found"<<endl;
+        return nullptr;
+    }
+    //Loop for checking for duplicates
+    while(*arr[key]==inVal && arr[(key+1)%maxSize]!=nullptr){
+        ogKey= key;
+        key++;
+        key=key%maxSize;
+    }
+    //Finding the value and if duplicates, will remove the duplicate added last
+    if(*arr[key]==inVal){
+        cout<<"Value found in HashTable "<<endl;
+        cout<<"Index value: "<<key<<endl;
+        return arr[key]; 
+    }
 }
-HashMapTable::~HashMapTable() {
-	delete[] ht;
+string HashTable::RemoveItem(string inVal){
+    string retVal;
+    string* delnode=getItem(inVal);
+    if(delnode==nullptr || size ==0){
+        cout<<"Can Not Delete"<<endl;
+        return "nullptr"; //[FIXME] I think its supposed to return nullptr but like idk
+    }
+    retVal = *delnode;
+    delete delnode; //FIXME neeed to null the pointer because during print out it will cause an error
+    size--;
+    return retVal;
 }
-DelNode* DelNode::en = NULL;
+int HashTable::getLength(){
+    return size;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// HashMapTable::HashMapTable() {
+// 	ht = new HashTable * [TableSIze];
+// 	for (int i = 0; i < TableSIze; i++) {
+// 		ht[i] = NULL;
+// 	}
+// }
+
+// }
+// void HashMapTable::addItem(int k, int v) {
+// 	int hash_val = Hash(k);
+// 	int init = -1;
+// 	int delindex = -1;
+// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
+// 		if (init == -1)
+// 			init = hash_val;
+// 		if (ht[hash_val] == DelNode::getNode())
+// 			delindex = hash_val;
+// 		hash_val = Hash(hash_val + 1);
+// 	}
+// 	if (ht[hash_val] == NULL || hash_val == init) {
+// 		if (delindex != -1)
+// 			ht[delindex] = new HashTable(k, v);
+// 		else
+// 			ht[hash_val] = new HashTable(k, v);
+// 	}
+// 	if (init != hash_val) {
+// 		if (ht[hash_val] != DelNode::getNode()) {
+// 			if (ht[hash_val] != NULL) {
+// 				if (ht[hash_val]->k == k)
+// 					ht[hash_val]->v = v;
+// 			}
+// 		}
+// 		else
+// 			ht[hash_val] = new HashTable(k, v);
+// 	}
+// }
+// int HashMapTable::getItem(int k) {
+// 	int hash_val = Hash(k);
+// 	int init = -1;
+// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
+// 		if (init == -1)
+// 			init = hash_val;
+// 		hash_val = Hash(hash_val + 1);
+// 	}
+// 	if (ht[hash_val] == NULL || hash_val == init)
+// 		return -1;
+// 	else
+// 		return ht[hash_val]->v;
+// }
+// void HashMapTable::RemoveItem(int k) {
+// 	int hash_val = Hash(k);
+// 	int init = -1;
+// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
+// 		if (init == -1)
+// 			init = hash_val;
+// 		hash_val = Hash(hash_val + 1);
+// 	}
+// 	if (hash_val != init && ht[hash_val] != NULL) {
+// 		delete ht[hash_val];
+// 		ht[hash_val] = DelNode::getNode();
+// 	}
+// }
+// HashMapTable::~HashMapTable() {
+// 	delete[] ht;
+// }
+// DelNode* DelNode::en = NULL;
 
