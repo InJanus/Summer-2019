@@ -1,11 +1,13 @@
-#include <string>
-#include <iostream>
-#include <iomanip>
-#include <cstdio>
-#include <cstdlib>
+#include <string>    //using
+#include <iostream>  //using
+#include <iomanip>   //using
+#include <cstdio>    //FIXME i dont know if we are using this waste if we arent
+#include <cstdlib>   //FIXME i dont know if we are using this waste if we arent
+#include <random>    //using in creating random numbers for task 3
 #include "hash.h"
 
 using namespace std;
+random_device rd;  // code for the random generator
 
 //Both Constructors
 HashTable::HashTable(){
@@ -13,10 +15,11 @@ HashTable::HashTable(){
     size=0;
     conflicts=0;
 }
-HashTable::HashTable(int inVal){
+HashTable::HashTable(int inVal/*,int numLetters_Hashs*/){
     maxSize =inVal;
     size=0;
     conflicts=0;
+    //numLetters_Hash=numLetters_Hashs;
 }
 //Destructor
 HashTable::~HashTable(){
@@ -24,10 +27,17 @@ HashTable::~HashTable(){
         delete arr[i];
     }
 }
-//Hash Function, adds all the ASCII values in the string
+//Hash Function, adds all the ASCII values in the string. FIXME put dis bitch in Private
 int HashTable::Hash(string inVal){
     int retVal=0;
     for ( int i =0; i <inVal.length();i++){
+        retVal += int(inVal.at(i));
+    }
+    return retVal;
+}
+int HashTable::Hash(string inVal,int numhash){
+    int retVal=0;
+    for ( int i =0; i <numhash;i++){
         retVal += int(inVal.at(i));
     }
     return retVal;
@@ -38,6 +48,22 @@ void HashTable::addItem(string inVal){
         return;
     }
     int key = Hash(inVal);
+    key = key%maxSize;
+    while(arr[key]!=nullptr){
+        key++;
+        key=key%maxSize;
+        conflicts++;
+    }
+    arr[key]=new string;
+    *arr[key]=inVal;
+    size++;
+}
+void HashTable::addItem(string inVal,int numhash){
+    if (size ==maxSize){
+        cout<<" HashTable is full, Can not ADD"<<endl;
+        return;
+    }
+    int key = Hash(inVal,numhash);
     key = key%maxSize;
     while(arr[key]!=nullptr){
         key++;
@@ -93,6 +119,23 @@ string HashTable::RemoveItem(string inVal){
 int HashTable::getLength(){
     return size;
 }
+int HashTable::getCollisions(){
+    return conflicts;
+}
+int HashTable::getMaxSize(){
+    return maxSize;
+}
+string HashTable::randStringCreate(){
+    //srand(time(NULL)); //NOT USING BECAUSE IT DOES NOT REFRESH FAST ENOUGH. ITS NO GOOD
+    string out;               
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(65,122);// FIXME maybe fix becuase it seeds the same everytime, possibly fix
+    for( int i=0;i<4;i++){
+        out +=char(dist(mt));
+    }
+    return out;
+}
+
 
 
 
