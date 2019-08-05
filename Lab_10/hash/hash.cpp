@@ -12,6 +12,10 @@ random_device rd;  // code for the random generator
 //Both Constructors
 HashTable::HashTable(){
     maxSize=100;
+    arr = new string*[maxSize];
+    for(int i = 0; i<maxSize; i++){
+        arr[i] = nullptr;
+    }
     size=0;
     conflicts=0;
 }
@@ -50,6 +54,7 @@ void HashTable::addItem(string inVal){
     int key = Hash(inVal);
     key = key%maxSize;
     while(arr[key]!=nullptr){
+        cout << arr[key] << endl;
         key++;
         key=key%maxSize;
         conflicts++;
@@ -107,12 +112,14 @@ string* HashTable::getItem(string inVal){
 string HashTable::RemoveItem(string inVal){
     string retVal;
     string* delnode=getItem(inVal);
+    int key = Hash(inVal);
     if(delnode==nullptr || size ==0){
         cout<<"Can Not Delete"<<endl;
-        return "nullptr"; //[FIXME] I think its supposed to return nullptr but like idk
+        return ""; //[FIXME] I think its supposed to return nullptr but like idk
     }
     retVal = *delnode;
-    delete delnode; //FIXME neeed to null the pointer because during print out it will cause an error
+    delete arr[key%maxSize];
+    arr[key%maxSize] = nullptr;
     size--;
     return retVal;
 }

@@ -8,7 +8,7 @@ using namespace std;
 class HashTable{
 	private:
 		int maxSize;
-		string** arr= new string*[maxSize]; //dynamically sized array of pointers for strings
+		string** arr; //dynamically sized array of pointers for strings
 		int size;
 		int conflicts;
 	public:
