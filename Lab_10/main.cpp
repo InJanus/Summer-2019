@@ -73,7 +73,7 @@ int main() {
                    // hash.print(); //Testing
                 }
                 //hash.print(); //Testing
-                cout<< "HashTable Size: "<<(hashsize+1)<<endl<<"Number of Letters used in HashFunction: "<<j<<endl;
+                cout<< "HashTable Size: "<<(hashsize)<<endl<<"Number of Letters used in HashFunction: "<<(j+1)<<endl;
                 cout<< "Number of Collisions: "<<hash.getCollisions()<<endl;
             }
         }
