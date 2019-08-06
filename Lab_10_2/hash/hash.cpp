@@ -11,26 +11,24 @@ using namespace std;
 //auto seed = chrono::high_resolution_clock::now().time_since_epoch().count(); //Tryin something stupid //Edit it didnt work, keepin as an idea
 random_device rd;  // code for the random generator
 
+bool team::operator==(team &f) {
+    return ((name == f.name)&&(resultyears.isEqual(f.resultyears));
+}
+
+void team::operator=(team &f){
+    name=f.name;
+    resultyears=f.resultyears;
+}
 
 //Both Constructors
 HashTable::HashTable(){
-    maxSize=100;
-    arr = new string*[maxSize];
+    maxSize=40;
+    arr = new team*[maxSize];
     for(int i = 0; i<maxSize; i++){
         arr[i] = nullptr;
     }
     size=0;
     conflicts=0;
-}
-HashTable::HashTable(int inVal/*,int numLetters_Hashs*/){
-    maxSize =inVal;
-    arr = new string*[maxSize];
-    for(int i = 0; i<maxSize; i++){
-        arr[i] = nullptr;
-    }    
-    size=0;
-    conflicts=0;
-    //numLetters_Hash=numLetters_Hashs;
 }
 //Destructor
 HashTable::~HashTable(){
@@ -39,23 +37,16 @@ HashTable::~HashTable(){
     }
 }
 //Hash Function, adds all the ASCII values in the string. FIXME put dis bitch in Private
-int HashTable::Hash(string inVal){
+int HashTable::Hash(team inVal){
     int retVal=0;
-    for ( int i =0; i <inVal.length();i++){
-        retVal += int(inVal.at(i));
+    for ( int i =0; i < inVal.name.length();i++){
+        retVal += int(inVal.name.at(i));
     }
     return retVal;
 }
-int HashTable::Hash(string inVal,int numhash){
-    int retVal=0;
-    for ( int i =0; i <numhash+1;i++){
-        retVal += int(inVal.at(i));
-    }
-    return retVal;
-}
-void HashTable::addItem(string inVal){
-    if (size ==maxSize){
-        cout<<" HashTable is full, Can not ADD"<<endl;
+void HashTable::addItem(team inVal){
+    if (size == maxSize){
+        cout << " HashTable is full, Can not ADD" << endl;
         return;
     }
     int key = Hash(inVal);
@@ -66,35 +57,20 @@ void HashTable::addItem(string inVal){
         key=key%maxSize;
         conflicts++;
     }
-    arr[key]=new string;
-    *arr[key]=inVal;
+    arr[key] = new team;
+    *arr[key] = inVal;
     size++;
 }
-void HashTable::addItem(string inVal,int numhash){
-    if (size ==maxSize){
-        cout<<" HashTable is full, Can not ADD"<<endl;
-        return;
-    }
-    int key = Hash(inVal,numhash);
-    key = key%maxSize;
-    while(arr[key]!=nullptr){
-        key++;
-        key=key%maxSize;
-        conflicts++;
-    }
-    arr[key]=new string;
-    *arr[key]=inVal;
-    size++;
-}
+
 void HashTable::print(){
     cout<<"Index"<<setw(8)<<"Value"<<setw(8)<<endl;
     for(int i=0;i<maxSize;i++){
         if(arr[i]!=nullptr){
-            cout<<i<<setw(8)<<*arr[i]<<setw(8)<<endl;
+            cout << i << setw(8) << arr[i]->name << setw(8) << endl;
         }
     }
 }
-string* HashTable::getItem(string inVal){
+team* HashTable::getItem(team inVal){
     int key = Hash(inVal);
     int ogKey=key;
     key=key%maxSize;
@@ -104,7 +80,7 @@ string* HashTable::getItem(string inVal){
         return nullptr;
     }
     //Loop for checking for duplicates
-    while(*arr[key]==inVal && arr[(key+1)%maxSize]!=nullptr){
+    while(*arr[key] == inVal && arr[(key+1)%maxSize]!=nullptr){
         ogKey= key;
         key++;
         key=key%maxSize;
@@ -116,13 +92,13 @@ string* HashTable::getItem(string inVal){
         return arr[key]; 
     }
 }
-string HashTable::RemoveItem(string inVal){
-    string retVal;
-    string* delnode=getItem(inVal);
+team HashTable::RemoveItem(team inVal){
+    team retVal;
+    team* delnode=getItem(inVal);
     int key = Hash(inVal);
     if(delnode==nullptr || size ==0){
         cout<<"Can Not Delete"<<endl;
-        return ""; //[FIXME] I think its supposed to return nullptr but like idk
+        return team(); //[FIXME] I think its supposed to return nullptr but like idk
     }
     retVal = *delnode;
     delete arr[key%maxSize];
