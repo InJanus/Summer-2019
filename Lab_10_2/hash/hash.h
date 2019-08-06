@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
-#include ".\\Lab_10_2\linked_list\linked_list.h"
+#include "..\\Lab_10_2\linked_list\linked_list.h"
 
 using namespace std;
 

@@ -12,7 +12,7 @@ using namespace std;
 random_device rd;  // code for the random generator
 
 bool team::operator==(team &f) {
-    return ((name == f.name)&&(resultyears.isEqual(f.resultyears));
+    return (((name == f.name)&&(resultyears.isEqual(f.resultyears))));
 }
 
 void team::operator=(team &f){
