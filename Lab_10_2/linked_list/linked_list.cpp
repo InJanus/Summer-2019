@@ -16,21 +16,21 @@ linked_list::linked_list(){
     mylocation = 0;
 }
 
-student linked_list::getItem(int location){
-    student *temp = head;
+game linked_list::getItem(int location){
+    game *temp = head;
     
     if(location > size()){
         throwError("Location not inside list");
     }else{
         if(location == 0){
-            student *returnVal = head;
+            game *returnVal = head;
             head = temp->next;
             return *returnVal;
         }else{
             for(int i = 0; i < location-2; i++){
                 temp = temp->next;
             }
-            student returnValue = *(temp->next);
+            game returnValue = *(temp->next);
             temp->next = temp->next->next;
             return returnValue;
         }
@@ -38,19 +38,16 @@ student linked_list::getItem(int location){
     }
 }
 
-void linked_list::addItem(student stud){
-    student *temp;
-    student *temp2 = head;
-    temp = new student;
-    temp-> m_number = stud.m_number;
-    temp-> firstName = stud.firstName;
-    temp-> lastName = stud.lastName;
-    temp-> birthday = stud.birthday;
-    temp-> gpa = stud.gpa;
+void linked_list::addItem(game stud){
+    game *temp;
+    game *temp2 = head;
+    temp = new game;
+    temp-> year = stud.year;
+    temp-> result = stud.result;
     if(temp2 == nullptr){
         head = temp;
     }else{
-        if(temp->m_number < temp2->m_number){
+        if(temp->year < temp2->year){
             head = temp;
             head -> next = temp2;
         }
@@ -60,7 +57,7 @@ void linked_list::addItem(student stud){
                 temp2 -> next = temp;
                 flag = true;
             }else{
-                while(temp->m_number > temp2->next->m_number){
+                while(temp->year > temp2->next->year){
                     if(temp2->next->next == nullptr){
                         temp2 -> next -> next = temp;
                         flag = true;
@@ -79,7 +76,7 @@ void linked_list::addItem(student stud){
 }
 
 int linked_list::size(){
-    student *temp = head;
+    game *temp = head;
     int i = 0;
     if(temp == nullptr){
         return i;
@@ -96,13 +93,13 @@ int linked_list::size(){
 }
 
 int linked_list::isinList(int search){
-    //returns the int of the location of the student, if not in list then returns -1
+    //returns the int of the location of the game, if not in list then returns -1
     //searches down the list of the .h file
     int location = -1;
-    student *temp = head;
+    game *temp = head;
     for(int i = 0; i < size(); i++){
         location++;
-        if(temp->m_number == search){
+        if(temp->year == search){
             return location;
         }else{
             temp = temp->next;
@@ -116,7 +113,7 @@ bool linked_list::isEmpty(){
     return(size() == 0);
 }
 
-student linked_list::seeNext(){
+game linked_list::seeNext(){
     if (isEmpty()){
         throwError("list is empty");
     }else{
@@ -126,7 +123,7 @@ student linked_list::seeNext(){
         //     pointer = pointer->next;
         //     return *pointer;
         // }
-        student retval = seeAt(mylocation);
+        game retval = seeAt(mylocation);
         if(retval.next == nullptr){
             //still has a value but end of list
             throwError("End of list");
@@ -137,14 +134,13 @@ student linked_list::seeNext(){
     }
 }
 
-student linked_list::seeAt(int location){
-    student *temp = head;
+game linked_list::seeAt(int location){
+    game *temp = head;
     if (isEmpty()){
         throwError("list is empty");
     }else{
         for(int i = 0; i < location; i++){
                 temp = temp->next;
-                
         }
         mylocation = location;
         return *temp;
@@ -153,4 +149,16 @@ student linked_list::seeAt(int location){
 
 void linked_list::reset(){
     mylocation = 0; 
+}
+
+bool linked_list::isEqual(linked_list indata){
+    if(size() == indata.size()){
+        for(int i = 0; i < size(); i++){
+            if(!((seeAt(i).year == indata.seeAt(i).year)&&(seeAt(i).result == indata.seeAt(i).result))){
+                return false;
+            }
+        }
+        return true;    
+    }
+    return false;
 }
