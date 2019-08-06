@@ -4,10 +4,13 @@
 #include <cstdio>    //FIXME i dont know if we are using this waste if we arent
 #include <cstdlib>   //FIXME i dont know if we are using this waste if we arent
 #include <random>    //using in creating random numbers for task 3
+#include <chrono>
 #include "hash.h"
 
 using namespace std;
+//auto seed = chrono::high_resolution_clock::now().time_since_epoch().count(); //Tryin something stupid //Edit it didnt work, keepin as an idea
 random_device rd;  // code for the random generator
+
 
 //Both Constructors
 HashTable::HashTable(){
@@ -21,13 +24,17 @@ HashTable::HashTable(){
 }
 HashTable::HashTable(int inVal/*,int numLetters_Hashs*/){
     maxSize =inVal;
+    arr = new string*[maxSize];
+    for(int i = 0; i<maxSize; i++){
+        arr[i] = nullptr;
+    }    
     size=0;
     conflicts=0;
     //numLetters_Hash=numLetters_Hashs;
 }
 //Destructor
 HashTable::~HashTable(){
-    for(int i=0;i<=maxSize;i++){
+    for(int i=0;i<maxSize;i++){
         delete arr[i];
     }
 }
@@ -41,7 +48,7 @@ int HashTable::Hash(string inVal){
 }
 int HashTable::Hash(string inVal,int numhash){
     int retVal=0;
-    for ( int i =0; i <numhash;i++){
+    for ( int i =0; i <numhash+1;i++){
         retVal += int(inVal.at(i));
     }
     return retVal;
@@ -142,97 +149,3 @@ string HashTable::randStringCreate(){
     }
     return out;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// HashMapTable::HashMapTable() {
-// 	ht = new HashTable * [TableSIze];
-// 	for (int i = 0; i < TableSIze; i++) {
-// 		ht[i] = NULL;
-// 	}
-// }
-
-// }
-// void HashMapTable::addItem(int k, int v) {
-// 	int hash_val = Hash(k);
-// 	int init = -1;
-// 	int delindex = -1;
-// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-// 		if (init == -1)
-// 			init = hash_val;
-// 		if (ht[hash_val] == DelNode::getNode())
-// 			delindex = hash_val;
-// 		hash_val = Hash(hash_val + 1);
-// 	}
-// 	if (ht[hash_val] == NULL || hash_val == init) {
-// 		if (delindex != -1)
-// 			ht[delindex] = new HashTable(k, v);
-// 		else
-// 			ht[hash_val] = new HashTable(k, v);
-// 	}
-// 	if (init != hash_val) {
-// 		if (ht[hash_val] != DelNode::getNode()) {
-// 			if (ht[hash_val] != NULL) {
-// 				if (ht[hash_val]->k == k)
-// 					ht[hash_val]->v = v;
-// 			}
-// 		}
-// 		else
-// 			ht[hash_val] = new HashTable(k, v);
-// 	}
-// }
-// int HashMapTable::getItem(int k) {
-// 	int hash_val = Hash(k);
-// 	int init = -1;
-// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-// 		if (init == -1)
-// 			init = hash_val;
-// 		hash_val = Hash(hash_val + 1);
-// 	}
-// 	if (ht[hash_val] == NULL || hash_val == init)
-// 		return -1;
-// 	else
-// 		return ht[hash_val]->v;
-// }
-// void HashMapTable::RemoveItem(int k) {
-// 	int hash_val = Hash(k);
-// 	int init = -1;
-// 	while (hash_val != init && (ht[hash_val] == DelNode::getNode() || ht[hash_val] != NULL && ht[hash_val]->k != k)) {
-// 		if (init == -1)
-// 			init = hash_val;
-// 		hash_val = Hash(hash_val + 1);
-// 	}
-// 	if (hash_val != init && ht[hash_val] != NULL) {
-// 		delete ht[hash_val];
-// 		ht[hash_val] = DelNode::getNode();
-// 	}
-// }
-// HashMapTable::~HashMapTable() {
-// 	delete[] ht;
-// }
-// DelNode* DelNode::en = NULL;
-

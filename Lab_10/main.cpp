@@ -4,7 +4,6 @@
 #include <cstdlib>
 using namespace std;
 
-
 int main() {
 	string inElement;
 	int option;
@@ -71,9 +70,10 @@ int main() {
                 HashTable hash(hashsize);
                 for (int i=0;i< hashsize;i++){
                     hash.addItem(hash.randStringCreate(),j);
+                   // hash.print(); //Testing
                 }
-                hash.print();
-                cout<< "HashTable Size: "<<hashsize<<endl<<"Number of Letters used in HashFunction: "<<j;
+                //hash.print(); //Testing
+                cout<< "HashTable Size: "<<(hashsize+1)<<endl<<"Number of Letters used in HashFunction: "<<j<<endl;
                 cout<< "Number of Collisions: "<<hash.getCollisions()<<endl;
             }
         }
