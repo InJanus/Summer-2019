@@ -24,7 +24,11 @@ game linked_list::getItem(int location){
     }else{
         if(location == 0){
             game *returnVal = head;
-            head = temp->next;
+            if(temp->next == nullptr){
+                head = nullptr;
+            }else{
+                head = temp->next;
+            }
             return *returnVal;
         }else{
             for(int i = 0; i < location-2; i++){
@@ -161,4 +165,9 @@ bool linked_list::isEqual(linked_list indata){
         return true;    
     }
     return false;
+}
+
+void linked_list::removeAll(){
+    delete head;
+    head = nullptr;
 }

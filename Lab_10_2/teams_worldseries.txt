@@ -113,7 +113,7 @@ Chicago_Cubs 2016 W ;
 Houston_Astros 2017 W ;
 Boston_Red_Sox 2018 W ;
 Pittsburgh_Pirates 1903 L ;
-Philadelphia_Athletics  1905 L ;
+Philadelphia_Athletics 1905 L ;
 Chicago_Cubs 1906 L ;
 Detroit_Tigers 1907 L ;
 Detroit_Tigers 1908 L ;

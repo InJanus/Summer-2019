@@ -52,14 +52,22 @@ void HashTable::addItem(team inVal){
     int key = Hash(inVal);
     key = key%maxSize;
     while(arr[key]!=nullptr){
-        cout << arr[key] << endl;
-        key++;
-        key=key%maxSize;
-        conflicts++;
+        if (arr[key]->name.compare(inVal.name) == 0){
+            //its the same team
+            arr[key]->resultyears.addItem(inVal.resultyears.getItem(0));
+            break;
+        }else{
+            //cout << arr[key] << endl;
+            key++;
+            key=key%maxSize;
+            conflicts++;
+        }
     }
-    arr[key] = new team;
-    *arr[key] = inVal;
-    size++;
+    if(arr[key]==nullptr){
+        arr[key] = new team;
+        *arr[key] = inVal;
+        size++;
+    }
 }
 
 void HashTable::print(){

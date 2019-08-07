@@ -4,7 +4,7 @@ using namespace std;
 struct game{
     int year;
     bool result;
-    game* next;
+    game* next = nullptr;
 };
 
 class linked_list{
@@ -22,4 +22,5 @@ class linked_list{
         game seeAt(int);
         void reset();
         bool isEqual(linked_list);
+        void removeAll();
 };
