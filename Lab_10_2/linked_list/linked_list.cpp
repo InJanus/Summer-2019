@@ -12,6 +12,7 @@ void throwError(string message){
 
 
 linked_list::linked_list(){
+    head = new game();
     head = nullptr;
     mylocation = 0;
 }

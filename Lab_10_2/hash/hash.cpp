@@ -54,7 +54,8 @@ void HashTable::addItem(team inVal){
     while(arr[key]!=nullptr){
         if (arr[key]->name.compare(inVal.name) == 0){
             //its the same team
-            arr[key]->resultyears.addItem(inVal.resultyears.getItem(0));
+            arr[key]->resultyears.addItem(inVal.resultyears.seeAt(0));
+            cout << arr[key]->resultyears.size() << endl;
             break;
         }else{
             //cout << arr[key] << endl;
@@ -74,7 +75,7 @@ void HashTable::print(){
     cout<<"Index"<<setw(8)<<"Value"<<setw(8)<<endl;
     for(int i=0;i<maxSize;i++){
         if(arr[i]!=nullptr){
-            cout << i << setw(8) << arr[i]->name << setw(8) << endl;
+            cout << i << setw(8) << arr[i]->name << setw(8) << arr[i]->resultyears.size() << endl;
         }
     }
 }

@@ -7,7 +7,7 @@ using namespace std;
 
 struct team{
 	string name;
-	linked_list resultyears;
+	linked_list resultyears = linked_list();
 	bool operator==(team &);
 	void operator=(team &);
 };
